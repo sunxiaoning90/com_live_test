@@ -10,8 +10,7 @@
 	<name>com_live_test_javase</name>
 
 	<modules>
-		<!-- <module>javase</module>
-		<module>javaweb</module> -->
+		<module>com_live_test_javase_a</module>
 	</modules>
 
 	<build>
