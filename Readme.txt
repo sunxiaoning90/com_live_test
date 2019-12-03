@@ -2,3 +2,8 @@
 2.javaweb
 3.javaee
 4.designpattern
+1)创建型
+1.1)单例
+5.api(企业开发常用api)
+1)json
+1.1)fastjson
