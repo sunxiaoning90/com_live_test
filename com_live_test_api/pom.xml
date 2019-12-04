@@ -10,10 +10,7 @@
 	<name>com_live_test_api</name>
 
 	<modules>
-		<module>com_live_test_api_json</module>
-		<module>com_live_test_api_poi</module>
-		<module>com_live_test_api_random</module>
-		<module>com_live_test_api_orderNumber</module>
+		<module>com_live_test_api</module>
 	</modules>
 
 	<build>
