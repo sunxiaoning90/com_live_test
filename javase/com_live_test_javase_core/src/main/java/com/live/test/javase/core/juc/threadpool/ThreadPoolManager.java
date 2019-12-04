@@ -26,7 +26,7 @@ public class ThreadPoolManager {
 	}
 	
 	private static class singletonHolder{
-		public static ThreadPoolManager instance = new ThreadPoolManager();
+		public static final ThreadPoolManager instance = new ThreadPoolManager();
 	}
 	
 	public boolean existDomain(String id) {
