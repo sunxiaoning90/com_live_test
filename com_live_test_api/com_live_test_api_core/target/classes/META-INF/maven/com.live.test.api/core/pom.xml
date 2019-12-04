@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.api</groupId>
-	<artifactId>a</artifactId>
+	<artifactId>core</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_api_json</name>
+	<name>com_live_test_api_core</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

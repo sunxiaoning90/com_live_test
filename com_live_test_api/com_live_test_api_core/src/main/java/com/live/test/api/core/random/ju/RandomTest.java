@@ -1,4 +1,4 @@
-package com.live.test.api.random.ju;
+package com.live.test.api.core.random.ju;
 
 import java.util.Random;
 /*
