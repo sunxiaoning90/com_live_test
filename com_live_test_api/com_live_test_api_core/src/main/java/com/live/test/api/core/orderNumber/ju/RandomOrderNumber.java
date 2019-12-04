@@ -1,4 +1,4 @@
-package com.live.test.api.ordernumber.ju;
+package com.live.test.api.core.orderNumber.ju;
 
 import java.util.Random;
 /*

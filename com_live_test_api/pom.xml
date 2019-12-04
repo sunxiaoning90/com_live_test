@@ -10,7 +10,7 @@
 	<name>com_live_test_api</name>
 
 	<modules>
-		<module>com_live_test_api</module>
+		<module>com_live_test_api_core</module>
 	</modules>
 
 	<build>

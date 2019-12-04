@@ -1,4 +1,4 @@
-package com.live.test.api.json.fastjson;
+package com.live.test.api.core.json.fastjson;
 
 import java.util.Map;
 
