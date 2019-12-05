@@ -8,7 +8,8 @@
   <name>com_live_test_javaweb</name>
   
 <modules>
-	<module>sessioncookie</module>
+	<module>com_live_test_javaweb_sessioncookie</module>
+	<module>com_live_test_javaweb_sso</module>
 </modules>  
   <build>
     <plugins>
