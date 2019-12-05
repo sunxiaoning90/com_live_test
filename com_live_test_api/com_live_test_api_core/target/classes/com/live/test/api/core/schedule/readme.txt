@@ -1,15 +1,16 @@
 一.调度的实现方式
 1.基于 java.lang 的 Thread 类
-	1.1 封装 java.lang.Thread
+ 1.1 封装 java.lang.Thread
 	
 2.基于 java.util 的 Timer 类
-	2.1 封装 java.util.Timer
+ 2.1 封装 java.util.Timer
 	
 3.使用 java.util.concurrent 的 ScheduledThreadPoolExecutor 类
-	2.1 使用 java.util.concurrent.ScheduledThreadPoolExecutor
+ 2.1 使用 java.util.concurrent.ScheduledThreadPoolExecutor
 	
-4.使用 quartz 框架
+4.使用 quartz 框架（支持持久化）
 
+5.Elastic-job（待研究）
 
 二.主要用线程处理任务
 
