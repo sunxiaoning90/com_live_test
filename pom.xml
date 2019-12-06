@@ -10,10 +10,11 @@
 	<name>com_live_test</name>
 
 	<modules>
-		<module>javase</module>
-		<module>javaweb</module>
-		<module>javaee</module>
+		<module>com_live_test_javase</module>
+		<module>om_live_test_javaweb</module>
+		<module>om_live_test_javaee</module>
+		<module>om_live_test_api</module>
+		<module>om_live_test_designpattern</module>
 	</modules>
-
 
 </project>
