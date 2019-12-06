@@ -1,9 +1,0 @@
-com_live_test_api_core新增:
-cache:缓存
-conver:类型转换
-initalizable:初始化工具
-json
-orderNumber:订单号
-poi:cvs/excel
-random:随机数算法
-schedule:调度
