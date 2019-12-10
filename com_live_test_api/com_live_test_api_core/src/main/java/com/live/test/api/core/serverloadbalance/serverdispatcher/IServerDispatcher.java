@@ -1,5 +1,10 @@
 package com.live.test.api.core.serverloadbalance.serverdispatcher;
 
+/**
+ * 负载均衡(轮询\随机\保持上一次等)
+ * @author live
+ * @2019年12月10日 @下午6:16:24
+ */
 public interface IServerDispatcher {
 	
 	/**

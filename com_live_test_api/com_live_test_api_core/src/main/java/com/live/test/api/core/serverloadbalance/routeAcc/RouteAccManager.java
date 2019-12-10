@@ -10,7 +10,38 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * 路由访问管理
+ * 路由命中管理
+ * eg:
+ * {
+    "date(开始时间)": "Dec 10, 2019 5:25:18 PM",
+    "routeAccs": [
+        {
+            "Knowledge.KnowledgeDataService.findKnowledgeData": {
+                "route(路由)": "Knowledge.KnowledgeDataService.findKnowledgeData",
+                "count(命中总数)": 10000,
+                "keepCount(最高连续命中计数器)": 0,
+                "routeNodeAcc": [
+                    {
+                        "Knowledge.KnowledgeDataService.findKnowledgeData.192168152": {
+                            "keepCount(最高连续命中计数器)": 0,
+                            "routeNode(路由节点)": "Knowledge.KnowledgeDataService.findKnowledgeData.192168152",
+                            "count(命中总数数计数器)": 5000,
+                            "keepCountTmp(临时连续命中计数器)": 0
+                        }
+                    },
+                    {
+                        "Knowledge.KnowledgeDataService.findKnowledgeData.SXN": {
+                            "keepCount(最高连续命中计数器)": 0,
+                            "routeNode(路由节点)": "Knowledge.KnowledgeDataService.findKnowledgeData.SXN",
+                            "count(命中总数数计数器)": 5000,
+                            "keepCountTmp(临时连续命中计数器)": 0
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
  * 
  * @author live
  * @2019年12月3日 @上午11:01:56
