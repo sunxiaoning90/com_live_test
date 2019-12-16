@@ -1,15 +1,17 @@
-package com.live.test.api.core.idcreator.ju.impl;
+package com.live.test.api.core.idcreator.ju.idcreator.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.live.test.api.core.idcreator.ju.IIDCreator;
+import com.live.test.api.core.idcreator.ju.idcreator.IIDCreator;
 /**
- * 生成ID,by uuid
+ * 生成ID(不保证全局唯一)
+ * 日期
+ * eg:2019_12_16_15_06_58_058
  * @author live
  * @2019年12月12日 @下午2:55:24
  */
-public class DateStrIDCreator implements IIDCreator{
+public class DateIDCreator implements IIDCreator{
 	private String last;
 	
 	@Override

@@ -1,8 +1,10 @@
-package com.live.test.api.core.idcreator.ju.impl;
+package com.live.test.api.core.idcreator.ju.idcreator.impl;
 
 import java.util.UUID;
 /**
- * 生成ID,by uuid
+ * 生成ID
+ * uuid
+ * eg:fe04d427-b332-4d8f-b924-e67c3fcd44fa
  * @author live
  * @2019年12月12日 @下午2:55:24
  */
