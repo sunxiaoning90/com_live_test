@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * File工具类,基于 java.io
@@ -14,13 +15,13 @@ import java.io.IOException;
 public class FileUtil {
 
 	/**
-	 * 复制文件(FileOutputStream)
+	 * 复制文件
 	 * 
 	 * @param in:输入流
 	 * @param target:目标文件
 	 */
-	public static void wrriteFile(FileInputStream fin, String target) {
-		if (fin == null || target == null) {
+	public static void wrriteFile(InputStream in, String target) {
+		if (in == null || target == null) {
 			return;
 		}
 		FileOutputStream out = null;
@@ -29,7 +30,7 @@ public class FileUtil {
 
 			byte[] buf = new byte[1024];
 			int len = 0;
-			while ((len = fin.read(buf)) != -1) {
+			while ((len = in.read(buf)) != -1) {
 				out.write(buf, 0, len);
 			}
 			out.flush();
@@ -43,9 +44,9 @@ public class FileUtil {
 					e.printStackTrace();
 				}
 			}
-			if (fin != null) {
+			if (in != null) {
 				try {
-					fin.close();
+					in.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
