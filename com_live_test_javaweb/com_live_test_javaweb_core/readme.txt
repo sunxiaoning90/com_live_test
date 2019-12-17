@@ -20,3 +20,8 @@ eg:{"msg":"","code":0,"data":"/opt/saasUpload/HeadImage/sxn002/2019_12_17_14_44_
 基于 fileUpload(Apache Commons FileUpload)实现文件上传
 上传文件,并响应给前端一个可以浏览器访问的url
 eg:{"code":0,"data":{"fileUrl":"http://192.168.1.53:8080/core-0.0.1-SNAPSHOT/imUpload/2019/12/17/dfd9570b-92bd-4bf3-833c-6a04bd6745e6_11.PNG"}}
+
+2.filedownload(文件下载)
+
+方式一.文件下载,支持断点续传
+方式二.文件下载,不支持断点续传
