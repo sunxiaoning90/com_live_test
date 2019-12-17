@@ -22,9 +22,10 @@ public class TriggerFactory {
 		if (delay > 0) {
 			triggerBuilder.startAt(new Date(System.currentTimeMillis() + delay));
 		}
-		if (repeatCount > 0) {
+//		更新调度,支持无限循环(循环次数指定小于0即可)
+//		if (repeatCount > 0) {
 			schedBuilder.withRepeatCount(repeatCount);// 重复次数
-		}
+//		}
 		if (intervalInSeconds > 0) {
 			schedBuilder.withIntervalInSeconds(intervalInSeconds);// 时间间隔
 		}
