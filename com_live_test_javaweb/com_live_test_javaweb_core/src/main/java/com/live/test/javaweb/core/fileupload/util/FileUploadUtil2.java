@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.live.test.javaweb.core.config.ConfigUtil;
+import com.live.test.javaweb.core.qrcode.QRCodeUtil;
 
 /**
  * 基于 fileUpload(Apache Commons FileUpload)
@@ -74,6 +75,18 @@ public class FileUploadUtil2 {
 				File savedFile = getSavedFile(rootDir, fileName);
 				//写入
 				fileItem.write(savedFile);
+				
+				///
+				String from = savedFile.getAbsolutePath();
+				System.out.println("from:" + from);
+				String to = "/opt/qrcode/to/qrcode-" + fileName;
+				to = savedFile.getParent() + "/qrcode-" + savedFile.getName();
+				System.out.println("to:" + to);
+				
+				// 生成二维码
+				QRCodeUtil.encode("hello", from, to, true);
+				savedFile = new File(to); 
+				///
 				
 				//获取文件的url
 				return getSavedFileUrl(request,savedFile);
