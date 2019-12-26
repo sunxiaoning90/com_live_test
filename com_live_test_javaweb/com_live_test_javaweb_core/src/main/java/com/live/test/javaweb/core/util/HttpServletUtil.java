@@ -79,4 +79,14 @@ public class HttpServletUtil {
 
 	}
 
+	/**
+	 * 判断是否请求的静态资源
+	 * TODO 待补充
+	 * @param request
+	 * @return
+	 */
+	public static boolean isStaticResource(HttpServletRequest request) {
+		String uri = request.getRequestURI();
+		return uri.indexOf(".css") > -1 || uri.indexOf(".js")> -1 || uri.indexOf(".png") > -1;
+	}
 }
