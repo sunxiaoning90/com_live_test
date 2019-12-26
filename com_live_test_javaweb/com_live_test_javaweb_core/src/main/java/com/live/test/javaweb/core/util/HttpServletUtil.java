@@ -87,6 +87,6 @@ public class HttpServletUtil {
 	 */
 	public static boolean isStaticResource(HttpServletRequest request) {
 		String uri = request.getRequestURI();
-		return uri.indexOf(".css") > -1 || uri.indexOf(".js")> -1 || uri.indexOf(".png") > -1;
+		return uri.lastIndexOf(".css") > -1 || uri.indexOf(".js")> -1 || uri.indexOf(".png") > -1;
 	}
 }
