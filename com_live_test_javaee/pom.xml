@@ -10,8 +10,7 @@
 	<name>com_live_test_javaee</name>
 
 	<modules>
-		<!-- <module>javase</module>
-		<module>javaweb</module> -->
+		<module>com_live_test_javaee_mybatis</module>
 	</modules>
 
 	<build>
