@@ -10,7 +10,7 @@ public class EvaluateServiceTest extends TestCase {
 
 	@Test
 	public void test1() {
-		int id = 1;
+		int id = 2;
 		Evaluate po = new EvaluateService().getEvaluateById(id);
 		System.out.println(po);
 	}
