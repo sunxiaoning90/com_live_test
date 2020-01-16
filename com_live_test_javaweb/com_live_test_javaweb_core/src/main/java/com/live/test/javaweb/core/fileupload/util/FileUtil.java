@@ -1,8 +1,10 @@
 package com.live.test.javaweb.core.fileupload.util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -86,6 +88,32 @@ public class FileUtil {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static boolean write(String path, String str, boolean append) {
+		File file = new File(path);
+		if (!file.exists()) {
+			return false;
+		}
+
+		// FileOutputStream out = new FileOutputStream(file);
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(file, append);
+			writer.write(str);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			if (writer != null) {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return true;
 	}
 	
 }
