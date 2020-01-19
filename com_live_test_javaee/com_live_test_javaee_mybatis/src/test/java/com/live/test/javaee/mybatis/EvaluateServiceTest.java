@@ -26,7 +26,7 @@ public class EvaluateServiceTest {
 	
 	@Test
 	public void saveEvaluate() {
-		Evaluate po = new Evaluate(101, "非常满意", "...");
+		Evaluate po = new Evaluate(101, "满意度-非常满意", "...");
 		boolean flg = new EvaluateService().saveEvaluate(po);
 			System.out.println(flg);
 	}
