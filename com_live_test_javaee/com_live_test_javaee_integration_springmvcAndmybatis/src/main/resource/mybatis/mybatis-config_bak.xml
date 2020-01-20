@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<properties resource="mybatis/db.properties" />
+
+	<!-- <settings> -->
+		<!-- 设置自动驼峰转换 -->
+		<!-- <setting name="mapUnderscoreToCamelCase" value="true" /> -->
+
+		<!-- 开启懒加载 -->
+		<!-- 当启用时，有延迟加载属性的对象在被调用时将会完全加载任意属性。否则，每种属性将会按需要加载。默认：true -->
+		<!-- <setting name="aggressiveLazyLoading" value="false" /> -->
+
+	<!-- </settings> -->
+
+	<!-- 别名定义 -->
+	<!-- <typeAliases>
+		<package name="com.enjoylearning.mybatis.entity" />
+	</typeAliases> -->
+
+	<!-- <plugins> <plugin interceptor="com.enjoylearning.mybatis.Interceptors.ThresholdInterceptor"> 
+		<property name="threshold" value="10"/> </plugin> <plugin interceptor="com.github.pagehelper.PageInterceptor"> 
+		<property name="pageSizeZero" value="true" /> </plugin> </plugins> -->
+
+
+
+	<!--配置environment环境 -->
+	<environments default="dev01">
+		<!-- 环境配置1，每个SqlSessionFactory对应一个环境 -->
+		<environment id="dev01">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc_driver}" />
+				<property name="url" value="${jdbc_url}" />
+				<property name="username" value="${jdbc_username}" />
+				<property name="password" value="${jdbc_password}" />
+			</dataSource>
+		</environment>
+		
+		<!-- 环境配置2，每个SqlSessionFactory对应一个环境 -->
+	</environments>
+
+	<!-- 映射文件，mapper的配置文件 -->
+	<mappers>
+		<!--直接映射到相应的mapper文件 -->
+		<mapper resource="mybatis/mapper/EvaluateMapper.xml" />
+	</mappers>
+
+</configuration>  
