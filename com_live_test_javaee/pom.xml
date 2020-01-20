@@ -13,6 +13,7 @@
 		<module>com_live_test_javaee_mybatis</module>
 		<module>com_live_test_javaee_spring</module>
 		<module>com_live_test_javaee_springmvc</module>
+		<module>com_live_test_javaee_integration_springmvcAndmybatis</module>
 	</modules>
 
 	<build>
