@@ -1,5 +1,6 @@
 设计模式总结
 https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_designpattern/src/main/java/com/live/test/designpattern
+
 一.创建型
 https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_designpattern/src/main/java/com/live/test/designpattern/create
 单例:
@@ -15,6 +16,7 @@ https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_designp
 https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_designpattern/src/main/java/com/live/test/designpattern/action/adapter
 观察者:
 https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_designpattern/src/main/java/com/live/test/designpattern/action/observer
+
 三.结构型
 https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_designpattern/src/main/java/com/live/test/designpattern/structure
 代理:

@@ -15,6 +15,7 @@
 		<module>com_live_test_javaee</module>
 		<module>com_live_test_api</module>
 		<module>com_live_test_designpattern</module>
+		<module>com_live_test_mq</module>
 	</modules>
 
 </project>
