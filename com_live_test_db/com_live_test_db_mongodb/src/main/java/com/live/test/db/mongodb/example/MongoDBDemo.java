@@ -24,7 +24,7 @@ public class MongoDBDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	String mongoIP = "192.168.1.52";
+	String mongoIP = "x";
 	int mongoPort = 27017;
 		
 //	1)Connect to MongoDB
