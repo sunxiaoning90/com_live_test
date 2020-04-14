@@ -17,6 +17,35 @@ public class HttpServletUtil {
 	private static final Logger log = LoggerFactory.getLogger(HttpServletUtil.class);
 
 	/**
+	 * 获取请求的路径(包括项目名)
+	 * @param request
+	 * @return
+	 * eg:https://ip:port/appName
+	 */
+	public String getRequestUrl(HttpServletRequest request) {
+		String path = request.getContextPath();
+		String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+		return basePath + path;
+	}
+	
+	/**
+	 * 待实现
+	 * 重定向,并对参数值进行编码
+	 * @param resp
+	 * @param url
+	 */
+	public void redirect(HttpServletResponse resp, String url) {
+
+		// URLEncoder.encode("v", "UTF-8")；
+		try {
+			resp.sendRedirect(url);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * 打印请求信息
 	 */
 	public static String printRequestInfo(HttpServletRequest request, HttpServletResponse response) {

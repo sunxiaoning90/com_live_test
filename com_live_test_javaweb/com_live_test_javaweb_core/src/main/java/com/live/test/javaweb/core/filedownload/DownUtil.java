@@ -1,14 +1,7 @@
 package com.live.test.javaweb.core.filedownload;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.logging.log4j.MarkerManager;
 
 public class DownUtil {
 
