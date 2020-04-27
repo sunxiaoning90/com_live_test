@@ -1,6 +1,6 @@
-mybatis 开发笔记
+MyBatis 开发笔记
 
-mybatis 脱离spring使用小结（基于xml配置）
+MyBatis 脱离 Spring使用（基于xml配置）
 1、mybatis.xml：数据源、数据库类型、mapper.xml位置
 2、po、pomapper
 3、mapper.xml：nameapace、id（增删改查）

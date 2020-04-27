@@ -14,6 +14,7 @@
 		<module>com_live_test_javaee_spring</module>
 		<module>com_live_test_javaee_springmvc</module>
 		<module>com_live_test_javaee_integration_springmvcAndmybatis</module>
+		<module>com_live_test_javaee_springboot</module>
 	</modules>
 
 	<build>
