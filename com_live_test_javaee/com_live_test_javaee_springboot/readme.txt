@@ -45,4 +45,7 @@ SpringBoot 开发笔记：使用SpringBoot搭建一个web项目
 
 更多请访问：
 *我的github源代码地址： 
+https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_javaee/com_live_test_javaee_springboot
+
 *我的csdn地址：
+https://blog.csdn.net/Sunxn1991/article/details/105820857
