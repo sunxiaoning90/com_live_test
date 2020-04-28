@@ -1,4 +1,4 @@
-SpringMVC项目搭建demo
+SpringMVC开发笔记:SpringMVC 项目搭建demo
 
 一.思路
 1\修改 web.xml,配置 DispatcherServlet ()
