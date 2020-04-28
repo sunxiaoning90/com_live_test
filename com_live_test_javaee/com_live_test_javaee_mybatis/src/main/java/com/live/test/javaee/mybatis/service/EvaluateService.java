@@ -3,12 +3,14 @@ package com.live.test.javaee.mybatis.service;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
 
 import com.live.test.javaee.mybatis.mapper.EvaluateMapper;
 import com.live.test.javaee.mybatis.po.Evaluate;
 import com.live.test.javaee.mybatis.util.MybatisHelper;
 
 public class EvaluateService {
+	@Test
 	public Evaluate getEvaluateById(int id) {
 		SqlSession sqlSession = MybatisHelper.getInstance().getSqlSessionFactory().openSession();
 		System.out.println("sqlSession:" + sqlSession);
