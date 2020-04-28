@@ -18,10 +18,12 @@ SpringBoot 开发笔记：使用SpringBoot搭建一个web项目
 	</dependencies>
 
 	<!-- 3、添加 SpringBoot 插件 -->
-	<!-- <plugin>
+	<!-- Spring Boot的Maven插件（Spring Boot Maven plugin）能够以Maven的方式为应用提供Spring Boot的支持，即为Spring Boot应用提供了执行Maven操作的可能。
+		  Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用。 -->
+	<plugin>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-maven-plugin</artifactId>
-	</plugin> -->
+	</plugin>
 	
 2、编写controller
 	@SpringBootApplication // SpringBoot 的核心注解，主要目的是开启自动配置
