@@ -52,3 +52,8 @@ SpringMVC开发笔记:SpringMVC 项目搭建demo
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="100"></property>
 	</bean>
+
+3.编写Controller等
+...
+4.打包、部署
+...
