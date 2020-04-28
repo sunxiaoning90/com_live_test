@@ -20,3 +20,4 @@ mybatis.xml > in > sqlsessionfactory > seqsession > mapper >增删改查
 https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_javaee/com_live_test_javaee_mybatis
 
 *我的csdn地址：
+https://blog.csdn.net/Sunxn1991/article/details/105821471
