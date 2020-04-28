@@ -13,6 +13,10 @@ MyBatis 开发笔记:MyBatis 脱离 Spring使用（基于xml配置）
 
 二、MyBatis 执行流程
 mybatis.xml > in > sqlsessionfactory > seqsession > mapper >增删改查
-		
-*源代码地址：
+
+更多请参考我的整理：
+
+*我的github源代码地址：
 https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_javaee/com_live_test_javaee_mybatis
+
+*我的csdn地址：
