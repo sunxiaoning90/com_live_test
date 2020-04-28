@@ -35,7 +35,7 @@ public class EvaluateController {
 		int id = 1;
 		 Evaluate entity = evaluateService.getEvaluateById(id);
 		   System.out.println(entity);
-		   return "ok";///m/WEB-INF/views/ok.jsp
+		   return "success";///m/WEB-INF/views/ok.jsp
 	}
 	
 	@RequestMapping("getEvaluateById2")

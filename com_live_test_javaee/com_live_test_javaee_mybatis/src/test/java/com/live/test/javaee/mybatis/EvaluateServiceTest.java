@@ -13,6 +13,7 @@ public class EvaluateServiceTest {
 	public void getEvaluateById() {
 		int id = 2;
 		Evaluate po = new EvaluateService().getEvaluateById(id);
+		System.out.println();
 		po = new EvaluateService().getEvaluateById(id);
 		System.out.println(po);
 	}

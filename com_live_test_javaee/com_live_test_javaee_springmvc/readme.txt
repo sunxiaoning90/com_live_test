@@ -1,12 +1,37 @@
-springmvc
+SpringMVC项目搭建demo
 
 一.思路
-spring管理bean
-配置web相关的,dispathservlet\视图解析器等等
+1\修改 web.xml,配置 DispatcherServlet ()
+	web.xml是web项目的重要描述,使web项目发现spring的 "servlet"
+2\配置 springmvc.xml
+配置 扫描包\视图解析器等
 
 二.整合过程
-1.保持spring(IOC)正常跑起来
-2.重点配置spring的xml文件:
+1\修改 web.xml,配置 DispatcherServlet ()
+	<!-- 配置 DispatcherServlet -->
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 配置 DispatcherServlet 初始化参数: 
+		通过 contextConfigLocation 配置 SpringMVC 配置文件的位置和名称. 
+		默认的配置文件为: /WEB-INF/<servlet-name>-servlet.xml -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc.xml</param-value>
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+2.创建spring的xml文件:
+1)配置bean扫描包
+2)开启注解支持
+3)配置视图解析器
 <!-- bean配置形式一:通过注解 -->
 	<!-- 需配置 mvc:annotation-driven 标签,开启注解支持-->
 	<mvc:annotation-driven></mvc:annotation-driven>
