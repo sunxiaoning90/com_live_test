@@ -1,11 +1,10 @@
-ssm 笔记
-ssm整合小结(springmvc整合mybatis小结)
+SSM 开发笔记:ssm搭建(springmvc整合mybatis)
 
-一.我的整合思路
+一.思路
 一分为二,保持springmvc 和 mybatis均正常跑起来
 spring管理mybatis即可
 
-二.整合过程
+二.过程
 1.保持springmvc正常跑起来
 2.保持mybatis正常跑起来
 3.重点配置spring的xml文件:
