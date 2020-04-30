@@ -103,7 +103,7 @@ public class DateUtil {
 	 * 
 	 * @return
 	 */
-	public static Date getToday() {
+	public static Date getNow() {
 		Calendar c = Calendar.getInstance();
 		return c.getTime();
 	}
@@ -121,6 +121,10 @@ public class DateUtil {
 		calendar.set(Calendar.MILLISECOND, 0);
 		return calendar.getTime();
 	}
+	
+	public static String getToday0String() {
+		return coverToString(getToday0(),FORMAT_yyyy_MM_dd_HH_mm_ss);
+	}
 
 	/**
 	 * 获取今天23:59:59
@@ -131,6 +135,10 @@ public class DateUtil {
 		cal.add(Calendar.DAY_OF_MONTH, 1);
 		cal.add(Calendar.SECOND, -1);
 		return cal.getTime();
+	}
+	
+	public static String getToday24String() {
+		return coverToString(getToday24(),FORMAT_yyyy_MM_dd_HH_mm_ss);
 	}
 
 	/**
