@@ -1,5 +1,6 @@
 package com.live.test.api.core.date.ju;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -108,6 +109,10 @@ public class DateUtil {
 		return c.getTime();
 	}
 
+	public static String getNowString() {
+		return coverToString(getNow(), FORMAT_yyyy_MM_dd_HH_mm_ss);
+	}
+
 	/**
 	 * 获取今天 00:00:00
 	 * 
@@ -121,9 +126,9 @@ public class DateUtil {
 		calendar.set(Calendar.MILLISECOND, 0);
 		return calendar.getTime();
 	}
-	
+
 	public static String getToday0String() {
-		return coverToString(getToday0(),FORMAT_yyyy_MM_dd_HH_mm_ss);
+		return coverToString(getToday0(), FORMAT_yyyy_MM_dd_HH_mm_ss);
 	}
 
 	/**
@@ -136,9 +141,9 @@ public class DateUtil {
 		cal.add(Calendar.SECOND, -1);
 		return cal.getTime();
 	}
-	
+
 	public static String getToday24String() {
-		return coverToString(getToday24(),FORMAT_yyyy_MM_dd_HH_mm_ss);
+		return coverToString(getToday24(), FORMAT_yyyy_MM_dd_HH_mm_ss);
 	}
 
 	/**
@@ -306,4 +311,59 @@ public class DateUtil {
 		return weekDays[w];
 	}
 
+	/**
+	 * 获取 N分钟前的时间
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public static Date getBeforeMinute(int n) {
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.MINUTE, -n);
+		return c.getTime();
+	}
+
+	/**
+	 * 获取 N分钟前的时间
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public static String getBeforeMinuteString(int n) {
+		return coverToString(getBeforeMinute(n), FORMAT_yyyy_MM_dd_HH_mm_ss);
+	}
+
+	/**
+	 * 转换，字符串 转 Date
+	 * 
+	 * @param str
+	 * @param format
+	 * @return
+	 * @throws ParseException
+	 */
+	public static Date coverToDate(String str, String format) throws ParseException {
+		return new SimpleDateFormat(format).parse(str);
+	}
+
+	/**
+	 * 比较两个时间 d1 d2 -1：d1比较早 1：d2比较早
+	 * 
+	 * @param str1
+	 * @param str2
+	 * @param format
+	 * @return
+	 * @throws ParseException
+	 */
+	public static int compare(String str1, String str2, String format) throws ParseException {
+		if (str1 != null && str1 != null) {
+			try {
+				Date d1 = DateUtil.coverToDate(str1, format);
+				Date d2 = DateUtil.coverToDate(str2, format);
+				return d1.before(d2) ? -1 : 1;
+			} catch (ParseException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return 0;
+	}
 }
