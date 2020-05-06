@@ -2,6 +2,7 @@ package com.live.test.javaee.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +18,9 @@ public class HelloSpringBoot {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(HelloSpringBoot.class, args);
+//		SpringApplication.run(HelloSpringBoot.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(HelloSpringBoot.class, args);
+		HelloSpringBoot bean = context.getBean(HelloSpringBoot.class);
+		System.out.println(bean);
 	}
 }
