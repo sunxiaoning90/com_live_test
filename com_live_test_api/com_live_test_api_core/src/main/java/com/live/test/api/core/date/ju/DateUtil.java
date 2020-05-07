@@ -366,4 +366,56 @@ public class DateUtil {
 		}
 		return 0;
 	}
+	/**
+	 * 获取下一个半小时的时间点
+	 * 
+	 * @return
+	 */
+	public static Date getNextHalfHour() {
+		Calendar c = Calendar.getInstance();
+		int minute = c.get(Calendar.MINUTE);
+
+		if (minute == 0) {
+			minute = 0;
+		} else if (minute <= 30) {
+			minute = 30;
+		} else if (minute > 30) {
+			minute = 60;
+		}
+
+		return getDate(minute, 0, 0);
+	}
+
+	public static Date getDate(int minute, int second, int millisecond) {
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.MINUTE, minute);
+		c.set(Calendar.SECOND, second);
+		c.set(Calendar.MILLISECOND, millisecond);
+		return c.getTime();
+	}
+
+	/**
+	 * 获取指定时间与当前时间相差的毫秒数
+	 * 
+	 * @param d
+	 * @return
+	 */
+	public static long getBetweenWithNow(Date d) {
+		return getBetween(new Date(), d);
+	}
+
+	/**
+	 * 获取指定时间相差的毫秒数
+	 */
+	public static long getBetween(Date d1, Date d2) {
+		return d2.getTime() - d1.getTime();
+	}
+
+	public static void main(String[] args) {
+		Date date = DateUtil.getNextHalfHour();
+		System.out.println(date);
+
+		long i = getBetweenWithNow(date);
+		System.out.println(i);
+	}
 }
