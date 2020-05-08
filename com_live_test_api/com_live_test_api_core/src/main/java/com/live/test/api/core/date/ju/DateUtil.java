@@ -366,6 +366,7 @@ public class DateUtil {
 		}
 		return 0;
 	}
+
 	/**
 	 * 获取下一个半小时的时间点
 	 * 
@@ -411,6 +412,26 @@ public class DateUtil {
 		return d2.getTime() - d1.getTime();
 	}
 
+	public static Calendar coverToCalendar(String str, String format) {
+		Date date = null;
+		try {
+			date = coverToDate(str, format);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return coverToCalendar(date);
+	}
+	
+	public static Calendar coverToCalendar(Date date) {
+		if(date ==null) {
+			return null;
+		}
+		
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		return c;
+	}
+	
 	public static void main(String[] args) {
 		Date date = DateUtil.getNextHalfHour();
 		System.out.println(date);
