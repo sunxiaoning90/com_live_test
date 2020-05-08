@@ -366,6 +366,7 @@ public class DateUtil {
 		}
 		return 0;
 	}
+
 	/**
 	 * 获取下一个半小时的时间点
 	 * 
