@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import spzc.module.cdr.together.util.DateUtil;
+
 /**
  * 日期工具类 基于 java.util.Calendar
  * 
@@ -359,6 +361,9 @@ public class DateUtil {
 			try {
 				Date d1 = DateUtil.coverToDate(str1, format);
 				Date d2 = DateUtil.coverToDate(str2, format);
+				if(d1 == null || d2 == null) {
+					return 0;
+				}
 				return d1.before(d2) ? -1 : 1;
 			} catch (ParseException e1) {
 				e1.printStackTrace();
