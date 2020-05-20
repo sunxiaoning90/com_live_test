@@ -3,9 +3,13 @@ package com.live.test.api.core.thread;
 import java.lang.Thread.State;
 
 /**
+ * 线程5种状态，
  * 查看JDK注释
  * @author live
  * @2020年5月20日 @上午10:36:08
+ * 
+ * 状态注释
+ * 
  */
 public class TestThreadState {
 	/**
