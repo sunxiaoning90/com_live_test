@@ -2,6 +2,11 @@ package com.live.test.api.core.thread;
 
 import java.lang.Thread.State;
 
+/**
+ * 查看JDK注释
+ * @author live
+ * @2020年5月20日 @上午10:36:08
+ */
 public class TestThreadState {
 	/**
 	 * NEW RUNNABLE run... TIMED_WAITING RUNNABLE TERMINATED
