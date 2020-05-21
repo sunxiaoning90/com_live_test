@@ -1,4 +1,4 @@
-package com.live.test.api.core.thread;
+package com.live.test.api.core.thread.communication;
 
 /**
  * @author live

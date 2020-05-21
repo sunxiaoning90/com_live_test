@@ -1,5 +1,11 @@
-package com.live.test.api.core.thread;
+package com.live.test.api.core.thread.stopThread;
 
+/**
+ * 停止线程方式之一：
+ * 设置并判断停止标识flg，判断flg是否为true（停止），true则退出。
+ * @author live
+ * @2020年5月20日 下午6:51:33
+ */
 public class StopThreadByTagMine extends Thread {
 	/**
 	 * 停止标识

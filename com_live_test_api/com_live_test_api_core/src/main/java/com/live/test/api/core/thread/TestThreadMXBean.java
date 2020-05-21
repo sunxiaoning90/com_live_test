@@ -40,5 +40,12 @@ public class TestThreadMXBean {
 			System.out.println(mxb.getCurrentThreadCpuTime());
 			System.out.println(mxb.getCurrentThreadUserTime());
 		}
+		
+		try {
+			Thread.sleep(1000*20);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
