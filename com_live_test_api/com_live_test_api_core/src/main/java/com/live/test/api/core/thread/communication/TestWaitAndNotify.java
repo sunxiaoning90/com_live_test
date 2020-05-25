@@ -9,7 +9,7 @@ package com.live.test.api.core.thread.communication;
  * wait()方法是释放锁的； notify()方法不释放锁，必须等到所在线程把代码执行完。
  * 
  * @author live
- * @2020年5月21日 @下午6:13:40
+ * @2020年5月21日 @下午7:13:40
  */
 public class TestWaitAndNotify extends Thread {
 
