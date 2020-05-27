@@ -58,8 +58,15 @@ public class TestSafeCollection {
 	 * 
 	 * CopyOnWriteArrayList在写操作时需要进行 ‘数组copy’操作，读性能较好，写性能较差 <br>
 	 * 
-	 * Collections.synchronizedList性能较均衡，但是迭代操作并未加锁，所以需要时需要额外注意
+	 * Collections.synchronizedList性能较均衡，但是迭代操作并未加锁，所以需要时需要额外注意 <br>
+	 * 附测试结果：
 	 */
+	private void testListAll() {
+		ArrayList<String> list1 = new ArrayList<String>();
+		Vector<String> list2 = new Vector<String>();
+		List<String> list4 = Collections.synchronizedList(list1);
+		List<String> list3 = new CopyOnWriteArrayList<String>();
+	}
 
 	/**
 	 * Arrays.asList(list)返回的list对象 是线程安全的吗？<br>
@@ -78,28 +85,6 @@ public class TestSafeCollection {
 		for (String s : list) {
 			System.out.println(s);
 		}
-	}
-
-	/**
-	 * Vector、Collections.synchronizedList(list)、CopyOnWriteArrayList 不同<br>
-	 * 1、原理 <br>
-	 * Vector：通过在方法级别上加入了synchronized关键字实现线程安全性。
-	 * Collections.synchronizedList：生成了特定同步的SynchronizedCollection，生成的集合每个同步操作都是持有mutex
-	 * (new Object())这个锁，所以再进行操作时就是线程安全的集合了。
-	 * CopyOnWriteArrayList：是java.util.concurrent包下面的一个实现线程安全的List,顾名思义，Copy~On~Write~ArrayList在进行写操作(add,remove,set等)时会进行Copy操作，可以推测出在进行写操作时CopyOnWriteArrayList性能应该不会很高。
-	 * 
-	 * 2、性能 <br>
-	 * Vector：对所有操作进行了synchronized关键字修饰，性能应该比较差。
-	 * CopyOnWriteArrayList：在写操作时需要进行数组copy 操作，读性能较好，写性能较差。
-	 * Collections.synchronizedList：性能较均衡，但是迭代操作并未加锁，所以需要时需要额外注意。
-	 * 
-	 * 附测试结果：
-	 */
-	private void testListAll() {
-		ArrayList<String> list1 = new ArrayList<String>();
-		Vector<String> list2 = new Vector<String>();
-		List<String> list4 = Collections.synchronizedList(list1);
-		List<String> list3 = new CopyOnWriteArrayList<String>();
 	}
 
 	/**
@@ -126,8 +111,9 @@ public class TestSafeCollection {
 	}
 
 	/**
-	 * 如何自己实现一个 ConcurrentHashSet，类似 ConcurrentHashMap 借助 ConcurrentHashMap
-	 * 来实现具体功能，伪代码
+	 * juc中提供了 concurrenthashset吗，如果没提供，如何手动实现？<br>
+	 * 如何自己实现一个 ConcurrentHashSet，类似 ConcurrentHashMap 借助
+	 * ConcurrentHashMap来实现具体功能，伪代码
 	 */
 	private static abstract class ConcurrentHashSet<E> implements Set<E> {
 
@@ -178,6 +164,10 @@ public class TestSafeCollection {
 		Map<String, String> map7 = new ConcurrentSkipListMap<String, String>(new HashMap<String, String>());
 	}
 
+//	HashMap 和 Hashtable 区别？
+	
+//	ConcurrentHashMap 和 ConcurrentSkipListMap 各自的优势？
+	
 	/**
 	 * 四、Quque
 	 */
@@ -250,6 +240,10 @@ public class TestSafeCollection {
 		System.out.println("queue = " + queue);
 	}
 
+//	ArrayBlockingQueue 和 LinkedBlockingQueue的区别
+	
+//	LinkedTransferQueue和SynchronousQueue区别
+	
 	/**
 	 * 无界队列 与 有界队列
 	 */
