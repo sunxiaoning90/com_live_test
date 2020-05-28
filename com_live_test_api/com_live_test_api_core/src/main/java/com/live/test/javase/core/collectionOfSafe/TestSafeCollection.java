@@ -29,7 +29,7 @@ public class TestSafeCollection {
 	 */
 
 	/**
-	 * 如何创建线程安全的 list ?<br>
+	 * 1、如何创建线程安全的 list?<br>
 	 * 方式一、Collections 工具类的 synchronizedList <br>
 	 * 方式二、new CopyOnWriteArrayList() <br>
 	 */
@@ -43,7 +43,7 @@ public class TestSafeCollection {
 	}
 
 	/**
-	 * Vector、Collections.synchronizedList、juc包的CopyOnWriteArrayList区别？<br>
+	 * 2、Vector、Collections.synchronizedList、juc包的CopyOnWriteArrayList区别？<br>
 	 * 1)原理 <br>
 	 * Vector通过在方法级别上加入了synchronized关键字实现线程安全性。<br>
 	 * 
@@ -92,7 +92,7 @@ public class TestSafeCollection {
 	 */
 
 	/**
-	 * 如何创建线程安全的 set?<br>
+	 * 1、如何创建线程安全的 set?<br>
 	 * 方式一、Collections 工具类（java.util.Collections）的 synchronizedSet <br>
 	 * 方式二、juc包：new CopyOnWriteArraySet() <br>
 	 * 方式三、juc包：new ConcurrentSkipListSet() <br>
@@ -111,7 +111,7 @@ public class TestSafeCollection {
 	}
 
 	/**
-	 * juc中提供了 concurrenthashset吗，如果没提供，如何手动实现？<br>
+	 *2、juc中是否提供了 concurrenthashset，如果没提供，如何手动实现？<br>
 	 * 如何自己实现一个 ConcurrentHashSet，类似 ConcurrentHashMap 借助
 	 * ConcurrentHashMap来实现具体功能，伪代码
 	 */
@@ -142,7 +142,7 @@ public class TestSafeCollection {
 	 */
 
 	/**
-	 * 如何创建线程安全的 map ?<br>
+	 * 1、如何创建线程安全的 map ?<br>
 	 * 方式一、使用 线程安全的 Hashtable <br>
 	 * 方式二、Collections 工具类（java.util.Collections）的 synchronizedMap <br>
 	 * 方式三、juc包：new ConcurrentHashMap() <br>
@@ -172,7 +172,45 @@ public class TestSafeCollection {
 	 * 四、Quque
 	 */
 
+
 	/**
+	 * 1、PriorityBlockingQueue <br>
+	 * 1. PriorityBlockingQueue put(Object) 方法不阻塞 <br>
+	 * 2. PriorityBlockingQueue offer(Object) 方法不限制 <br>
+	 * 3. PriorityBlockingQueue 插入对象会做排序，默认参照元素 Comparable 实现，或者显示地传递 Comparator
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
+	public void testPriorityBlockingQueue() throws Exception {
+		BlockingQueue<Integer> queue = new PriorityBlockingQueue<>(2);
+
+		queue.put(9);
+		queue.put(1);
+		queue.put(8);
+		System.out.println("queue.size() = " + queue.size());
+		System.out.println("queue.take() = " + queue.take());
+		System.out.println("queue = " + queue);
+	}
+	
+	/**
+	 * 2、SynchronousQueue <br>
+	 * 1. SynchronousQueue 是无空间，offer 永远返回 false <br>
+	 * 2. SynchronousQueue take() 方法会被阻塞，必须被其他线程显示地调用 put(Object);
+	 */
+	private void testSynchronousQueue() {
+		BlockingQueue<Integer> queue = new SynchronousQueue<>();
+		System.out.println("queue.offer(1) = " + queue.offer(1));
+		System.out.println("queue.offer(2) = " + queue.offer(2));
+		System.out.println("queue.offer(3) = " + queue.offer(3));
+		try {
+			System.out.println("queue.take() = " + queue.take());
+		} catch (InterruptedException ignore) {
+		}
+		System.out.println("queue.size = " + queue.size());
+	}
+
+	/* 3、队列的add() 和 offer()、remove() 和 poll()、element() 和 peek() 区别？
 	 * add() 和 offer() <br>
 	 * add() : 添加元素，如果添加成功则返回true，如果队列是满的，则抛出异常; <br>
 	 * offer() : 添加元素，如果添加成功则返回true，如果队列是满的，则返回false; <br>
@@ -203,53 +241,17 @@ public class TestSafeCollection {
 		System.out.println("queue.size() = " + queue.size());
 		System.out.println("queue.take() = " + queue.take());
 	}
-
-	/**
-	 * SynchronousQueue 1. SynchronousQueue 是无空间，offer 永远返回 false <br>
-	 * 2. SynchronousQueue take() 方法会被阻塞，必须被其他线程显示地调用 put(Object);
-	 */
-	private void testSynchronousQueue() {
-		BlockingQueue<Integer> queue = new SynchronousQueue<>();
-		System.out.println("queue.offer(1) = " + queue.offer(1));
-		System.out.println("queue.offer(2) = " + queue.offer(2));
-		System.out.println("queue.offer(3) = " + queue.offer(3));
-		try {
-			System.out.println("queue.take() = " + queue.take());
-		} catch (InterruptedException ignore) {
-		}
-		System.out.println("queue.size = " + queue.size());
-	}
-
-	/**
-	 * PriorityBlockingQueue <br>
-	 * 1. PriorityBlockingQueue put(Object) 方法不阻塞 <br>
-	 * 2. PriorityBlockingQueue offer(Object) 方法不限制 <br>
-	 * 3. PriorityBlockingQueue 插入对象会做排序，默认参照元素 Comparable 实现，或者显示地传递 Comparator
-	 * 
-	 * @param args
-	 * @throws Exception
-	 */
-	public void testPriorityBlockingQueue() throws Exception {
-		BlockingQueue<Integer> queue = new PriorityBlockingQueue<>(2);
-
-		queue.put(9);
-		queue.put(1);
-		queue.put(8);
-		System.out.println("queue.size() = " + queue.size());
-		System.out.println("queue.take() = " + queue.take());
-		System.out.println("queue = " + queue);
-	}
-
-//	ArrayBlockingQueue 和 LinkedBlockingQueue的区别
 	
-//	LinkedTransferQueue和SynchronousQueue区别
+//	4、ArrayBlockingQueue 和 LinkedBlockingQueue的区别
+	
+//	5、LinkedTransferQueue和SynchronousQueue区别
 	
 	/**
-	 * 无界队列 与 有界队列
+	 * 6、无界队列 与 有界队列
 	 */
 
 	/**
-	 * 线程池使用的那种队列？<br>
+	 * 7、线程池使用的那种队列？<br>
 	 * Executors.newFixedThreadPool(2);<br>
 	 * Excutors工具类在newFixedThreadPool()时，使用的是 LinkedBlockingQueue，源码如下：
 	 * 
