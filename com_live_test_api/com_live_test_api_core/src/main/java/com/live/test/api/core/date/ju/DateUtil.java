@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import spzc.module.cdr.together.util.DateUtil;
-
 /**
  * 日期工具类 基于 java.util.Calendar
  * 

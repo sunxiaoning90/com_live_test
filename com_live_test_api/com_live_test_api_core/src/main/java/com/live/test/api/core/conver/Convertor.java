@@ -4,10 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.MarkerManager;
-
 public class Convertor {
 //	private static Logger logger = LogManager.getLogger(Convertor.class);
 //	private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -229,7 +225,7 @@ public class Convertor {
 		try {
 			date =  dateFormat.get().parse(from);
 		} catch (ParseException e) {
-			logger.error(MarkerManager.getMarker("core.mongo"), "Convertor.convert to Date", "错误信息:{}",e);
+			System.out.println("Convertor.convert to Date");
 			e.printStackTrace();
 		}
 		return date;
