@@ -1,4 +1,4 @@
-package com.live.test.javase.core.jmath.testBigDecimal;
+package com.live.test.javase.core.jmath.bigDecimal;
 
 import java.math.BigDecimal;
 
@@ -30,7 +30,7 @@ public class TestBigDecimal {
 	}
 
 	/**
-	 * 测试兴业银行的薪金宝
+	 * 测试薪金宝
 	 * 
 	 * @param dlvOfYear
 	 * @param oneDaylx
