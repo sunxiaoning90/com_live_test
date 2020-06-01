@@ -341,8 +341,16 @@ public class DateUtil {
 	 * @return
 	 * @throws ParseException
 	 */
-	public static Date coverToDate(String str, String format) throws ParseException {
-		return new SimpleDateFormat(format).parse(str);
+	public static Date coverToDate(String str, String format) {
+		if(str == null) {
+			return null;
+		}
+		try {
+			return new SimpleDateFormat(format).parse(str);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
@@ -363,11 +371,24 @@ public class DateUtil {
 					return 0;
 				}
 				return d1.before(d2) ? -1 : 1;
-			} catch (ParseException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		}
 		return 0;
+	}
+	
+	/**
+	 * 判判断 一个日期是否在 两者之间
+	 * @param begin
+	 * @param end
+	 * @param format
+	 * @return
+	 * @throws ParseException
+	 */
+	public static boolean between(String src,String begin, String end, String format) {
+		//TODO
+		return false;
 	}
 
 	/**
@@ -419,7 +440,7 @@ public class DateUtil {
 		Date date = null;
 		try {
 			date = coverToDate(str, format);
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return coverToCalendar(date);
@@ -433,6 +454,23 @@ public class DateUtil {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		return c;
+	}
+	
+	/**
+	 * 判断 一个日期是否在 某个月
+	 * 
+	 * @param str1
+	 * @param str2
+	 * @param format
+	 * @return
+	 * @throws ParseException
+	 */
+	public static boolean inMonth(Date date, int month) {
+		if (date == null) {
+			return false;
+		}
+		int dateMonth = date.getMonth(); //TODO
+		return dateMonth + 1 == month;
 	}
 	
 	public static void main(String[] args) {
