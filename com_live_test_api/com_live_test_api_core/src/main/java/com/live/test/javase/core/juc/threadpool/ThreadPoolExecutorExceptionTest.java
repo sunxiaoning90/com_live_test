@@ -7,9 +7,9 @@ import java.util.concurrent.TimeUnit;
  * 线程池遇到异常，会自动处理，如何捕获异常？
  * 可以重写 ThreadPoolExecutor的 afterExecute方法
  * @author live
- * @2020年5月20日 @下午4:39:53
+ * @2020年5月20日 @下午7:39:53
  */
-public class TestThreadPoolException {
+public class ThreadPoolExecutorExceptionTest {
 	
 	public static void main(String[] args) {
 //		ThreadPoolExecutor poll = new ThreadPoolExecutor(2, 4, 7, TimeUnit.SECONDS, new ArrayBlockingQueue(2));

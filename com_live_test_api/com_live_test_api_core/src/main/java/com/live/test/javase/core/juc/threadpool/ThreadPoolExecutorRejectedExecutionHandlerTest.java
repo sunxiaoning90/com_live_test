@@ -8,20 +8,44 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 线程池拒绝策略
- * 
- * 1、什么情况下拒绝？
- * 当缓冲池满了。
- * 
- * 2、线程池4种拒绝策略  AbortPolicy、DiscardPolicy、DiscardOldestPolicy、CallerRunsPolicy
-   RejectedExecutionHandler rejected1Abort = new ThreadPoolExecutor.AbortPolicy(); //中止 ，报异常
-	RejectedExecutionHandler rejected2Discard = new ThreadPoolExecutor.DiscardPolicy(); //丢弃，不报异常
-	RejectedExecutionHandler rejected3DiscardOldest = new ThreadPoolExecutor.DiscardOldestPolicy(); //丢弃 Oledest，不报异常
-	RejectedExecutionHandler rejected4CallerRuns = new ThreadPoolExecutor.CallerRunsPolicy(); // 直接运行run，不报异常
- * 
- * @author live
- *
+
+	<pre>
+	1、什么情况下拒绝？
+ 		当缓冲池满了。
+	</pre>
+	
+ 	<pre>
+ 	2、线程池4种拒绝策略简单使用
+	   AbortPolicy、DiscardPolicy、DiscardOldestPolicy、CallerRunsPolicy
+	   
+	   RejectedExecutionHandler rejected1Abort = new ThreadPoolExecutor.AbortPolicy(); //中止 ，报异常
+		RejectedExecutionHandler rejected2Discard = new ThreadPoolExecutor.DiscardPolicy(); //丢弃，不报异常
+		RejectedExecutionHandler rejected3DiscardOldest = new ThreadPoolExecutor.DiscardOldestPolicy(); //丢弃 Oledest，不报异常
+		RejectedExecutionHandler rejected4CallerRuns = new ThreadPoolExecutor.CallerRunsPolicy(); // 直接运行run，不报异常
+	</pre>
+	
+	<pre>
+	3、线程池4种拒绝策略 详解
+		1）ThreadPoolExecutor.AbortPolicy: //中止 策略
+		 
+		A handler for rejected tasks that throws a RejectedExecutionException.
+		//一个处理被拒绝任务的处理程序，抛出RejectedExecutionException异常。
+		
+		2）ThreadPoolExecutor.DiscardPolicy: //丢弃 策略
+		A handler for rejected tasks that silently discards the rejected task.
+		//一个处理被拒绝任务的处理程序，它无声地丢弃被拒绝的任务。
+		
+		3）ThreadPoolExecutor.DiscardOldestPolicy: //丢弃最老的 策略
+		A handler for rejected tasks that discards the oldest unhandled request and then retries execute, unless the executor is shut down, in which case the task is discarded.
+		//一个处理被拒绝任务的处理程序，它丢弃最旧的未处理请求，然后重试执行，除非执行程序关闭，在这种情况下任务被丢弃。
+		
+		4）ThreadPoolExecutor.CallerRunsPolicy: //直接执行策略 直接调用任务的Run方法
+		A handler for rejected tasks that runs the rejected task directly in the calling thread of the execute method, unless the executor has been shut down, in which case the task is discarded.
+		//一个处理被拒绝任务的处理程序，它直接在execute方法的调用线程中运行拒绝任务，除非executor已经关闭，在这种情况下任务被丢弃。
+	</pre>
  */
-public class RejectedExecutionHandlerTest {
+
+public class ThreadPoolExecutorRejectedExecutionHandlerTest {
 
 //	static volatile int i = 0;
 	static volatile AtomicInteger count = new AtomicInteger(0);

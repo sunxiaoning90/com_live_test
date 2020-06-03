@@ -17,12 +17,13 @@ import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 public class ThreadPoolExecutorTest {
 
 	/**
-	 * 一、线程池简介
-	 * 1、线程池是什么
-	 * 2、线程池优点
-	 * 3、线程池实现原理
-	 * 4、java中有几种创建线程池的方式
-	 * 
+	 <pre>
+	  一、线程池简介
+	  1、线程池是什么
+	  2、线程池优点
+	  3、线程池实现原理
+	  4、java中有几种创建线程池的方式
+	 </pre>
 	 */
 	
 	/**
@@ -68,17 +69,19 @@ public class ThreadPoolExecutorTest {
 	}
 	
 	/**
-	 * 2、ThreadPoolExecutor 参数详解
-	 * int corePoolSize, 核心线程数
-	 * int maximumPoolSize, 最大线程数
-	 * long keepAliveTime, TimeUnit unit, 存活时间
-	 * BlockingQueue<Runnable> workQueue, 队列
-	 * ThreadFactory threadFactory, 线程工厂
-	 * RejectedExecutionHandler handler 拒绝策略
+	 * <pre>
+	  2、ThreadPoolExecutor 参数详解
+		  int corePoolSize, 核心线程数
+		  int maximumPoolSize, 最大线程数
+		  long keepAliveTime, TimeUnit unit, 存活时间
+		  BlockingQueue<Runnable> workQueue, 队列
+		  ThreadFactory threadFactory, 线程工厂
+		  RejectedExecutionHandler handler 拒绝策略
+	 * </pre>
 	 */
 	
 	/**
-	 * 3、线程工厂
+	 * 3、线程工厂 ThreadFactory
 	 */
 	private void testThreadFactory() {
 		//准备 ThreadFactory
@@ -97,13 +100,20 @@ public class ThreadPoolExecutorTest {
 	}
 	
 	/**
-	 * 4、线程池拒绝策略
+	 * <pre>
+	 * 线程池的拒绝策略有哪些？
+	  	AbortPolicy：（默认策略）
+	  	DiscardPolicy
+	  	DiscardOldestPolicy
+		CallerRunsPolicy
+	 	RejectedExecutionHandler
+	 * </pre>
 	 */
 	private void testRejectedExecutionHandler() {
 		RejectedExecutionHandler rejected1 = new ThreadPoolExecutor.AbortPolicy(); //中止
-		RejectedExecutionHandler rejected2 = new ThreadPoolExecutor.DiscardPolicy(); //丢弃
+		RejectedExecutionHandler rejected2 = new ThreadPoolExecutor.DiscardPolicy(); //丢弃新来的
 		RejectedExecutionHandler rejected3 = new ThreadPoolExecutor.DiscardOldestPolicy(); //丢弃 Oledest
-		RejectedExecutionHandler rejected4 = new ThreadPoolExecutor.CallerRunsPolicy(); // 直接运行run
+		RejectedExecutionHandler rejected4 = new ThreadPoolExecutor.CallerRunsPolicy(); // 直接运行run，串行化
 	}
 	
 	/**
@@ -112,10 +122,11 @@ public class ThreadPoolExecutorTest {
 	 */
 	
 	/**
-	 * Executors 是什么？
-	 * 1、读JDK源码：
+	 * <pre>
+	 Executors 是什么？
+	 1、读JDK源码：
 	 java.util.concurrent.Executors
-
+	
 	Factory and utility methods for Executor, ExecutorService, ScheduledExecutorService, ThreadFactory, and Callable classes defined in this package. 
 	This class supports the following kinds of methods:
 		Methods that create and return an ExecutorService set up with commonly useful configuration settings.
@@ -123,14 +134,17 @@ public class ThreadPoolExecutorTest {
 		Methods that create and return a "wrapped" ExecutorService, that disables reconfiguration by making implementation-specific methods inaccessible.
 		Methods that create and return a ThreadFactory that sets newly created threads to a known state.
 		Methods that create and return a Callable out of other closure-like forms, so they can be used in execution methods requiring Callable.
+	 * </pre>
 	 */
 	
 	/**
-	 * 2、juc 的 Executors,提供了哪些线程池？
-	 * 1）Executors.newFixedThreadPool
-	 * 2）Executors.newCachedThreadPool
-	 * 3）Executors.newSingleThreadExecutor
-	 * 4）Executors.newScheduledThreadPool
+	 * <pre>
+		2、juc 的 Executors,提供了哪些线程池？
+		  1）Executors.newFixedThreadPool
+		  2）Executors.newCachedThreadPool
+		  3）Executors.newSingleThreadExecutor
+		  4）Executors.newScheduledThreadPool
+	 * </pre>
 	 */
 	private void testExecutorService() {
 		// 1）newFixedThreadPool
@@ -147,53 +161,12 @@ public class ThreadPoolExecutorTest {
 	}
 
 	/**
-	 * 2、测试线程池拒绝策略
+	 <pre>
+	 juc 的 Executors,采用那种策略作为默认策略?
+	 	juc 的 Executors,默认策略都是：AbortPolicy 。源码：private static final RejectedExecutionHandler defaultHandler = new AbortPolicy();
+	 * </pre>
 	 */
-	private void testRejectedExecutionHandler(ExecutorService pool) {
-		for (int i = 0;; i++) {
-			System.out.println(i);
-			pool.submit(() -> {
-				System.out.println("run	" + Thread.currentThread().getId());
-		});
-		}
-	}
-
-	/**
-	 * RejectedExecutionHandler
-	 * 		 CallerRunsPolicy
-	 * AbortPolicy
-	 * DiscardOldestPolicy
-	 * DiscardPolicy
-	 */
-	
-	
-	/**
-	 * 1、AbortPolicy （默认策略）
-	 * private static final RejectedExecutionHandler defaultHandler = new AbortPolicy();
-	 */
-	
-	/**
-	 * 1、  CallerRunsPolicy
-	 */
-	
-	/**
-	 * 1、DiscardOldestPolicy
-	 */
-	
-	/**
-	 * 1、DiscardPolicy
-	 */
-	
 	
 	public static void main(String[] args) {
-
-		ExecutorService fixedPool = Executors.newFixedThreadPool(2); //AbortPolicy ，源码：private static final RejectedExecutionHandler defaultHandler = new AbortPolicy();
-		ExecutorService cachedPool = Executors.newCachedThreadPool();
-		ExecutorService singleExecutor = Executors.newSingleThreadExecutor();
-		ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(2);
-		
-		ThreadPoolExecutorTest test = new ThreadPoolExecutorTest();
-		test.testRejectedExecutionHandler(fixedPool);
-//		
 	}
 }

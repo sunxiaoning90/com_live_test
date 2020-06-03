@@ -1,4 +1,4 @@
-package com.live.test.javaNewFeature;
+package com.live.test.javaNewFeature.java9;
 
 import java.util.List;
 import java.util.Map;
