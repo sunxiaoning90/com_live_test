@@ -1,9 +1,6 @@
 package com.live.test.javase.core.juc.threadpool;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -11,8 +8,8 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
+import java.util.concurrent.TimeUnit;
 
 public class ThreadPoolExecutorTest {
 
@@ -102,11 +99,10 @@ public class ThreadPoolExecutorTest {
 	/**
 	 * <pre>
 	 * 线程池的拒绝策略有哪些？
-	  	AbortPolicy：（默认策略）
-	  	DiscardPolicy
-	  	DiscardOldestPolicy
-		CallerRunsPolicy
-	 	RejectedExecutionHandler
+	   RejectedExecutionHandler rejected1Abort = new ThreadPoolExecutor.AbortPolicy(); //中止 ，报异常
+		RejectedExecutionHandler rejected2Discard = new ThreadPoolExecutor.DiscardPolicy(); //丢弃，不报异常
+		RejectedExecutionHandler rejected3DiscardOldest = new ThreadPoolExecutor.DiscardOldestPolicy(); //丢弃 Oledest，不报异常
+		RejectedExecutionHandler rejected4CallerRuns = new ThreadPoolExecutor.CallerRunsPolicy(); // 直接运行run，不报异常
 	 * </pre>
 	 */
 	private void testRejectedExecutionHandler() {
