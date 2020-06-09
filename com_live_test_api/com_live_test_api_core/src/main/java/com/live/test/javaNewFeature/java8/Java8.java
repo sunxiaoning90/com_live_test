@@ -1,8 +1,5 @@
 package com.live.test.javaNewFeature.java8;
 
-import java.util.HashMap;
-import java.util.stream.Stream;
-
 /**
  * Java8新特性
  * 
@@ -10,47 +7,10 @@ import java.util.stream.Stream;
  * @2020年5月27日 @上午10:15:35
  * 
  *             <pre>
-1.stream中间与最终操作的区别
  *             </pre>
  */
 public class Java8 {
 
-	/**
-	 * lumbda
-	 */
-	public void test1() {
-		Thread t = new Thread(() -> {
-			System.out.println("run...");
-		});
-
-		t.start();
-	}
-
-	/**
-	 * lumbda ::
-	 */
-	public void test2() {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("k1", "v1");
-		map.put("k2", "v2");
-		map.forEach(System.out::printf);
-	}
-
-	public void test3() {
-		Thread mainThread = Thread.currentThread();
-
-		ThreadGroup mainThreadGroup = mainThread.getThreadGroup();
-
-		int count = mainThreadGroup.activeCount();
-		Thread[] threads = new Thread[count];
-		mainThreadGroup.enumerate(threads, true);
-
-		Stream.of(threads).filter(Thread::isAlive).forEach(thread -> {
-			System.out.println("线程 : " + thread);
-		});
-	}
-
 	public static void main(String[] args) {
-		new Java8().test1();
 	}
 }

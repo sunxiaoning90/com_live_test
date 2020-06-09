@@ -2,6 +2,7 @@ package com.live.test.javaNewFeature.java8;
 
 import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import org.junit.Test;
 
@@ -30,5 +31,19 @@ public class TestStream {
 			}
 		};
 		s.forEach(action);
+	}
+	
+	public void test3() {
+		Thread mainThread = Thread.currentThread();
+
+		ThreadGroup mainThreadGroup = mainThread.getThreadGroup();
+
+		int count = mainThreadGroup.activeCount();
+		Thread[] threads = new Thread[count];
+		mainThreadGroup.enumerate(threads, true);
+
+		Stream.of(threads).filter(Thread::isAlive).forEach(thread -> {
+			System.out.println("线程 : " + thread);
+		});
 	}
 }
