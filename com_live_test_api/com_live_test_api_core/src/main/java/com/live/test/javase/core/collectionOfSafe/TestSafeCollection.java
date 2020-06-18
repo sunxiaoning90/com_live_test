@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -18,7 +19,6 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
@@ -366,6 +366,22 @@ public class TestSafeCollection {
 		System.out.println("遍历修改后，list大小：" + safeList.size());
 	}
 
+	private void testLoop() {
+		Map<String, String> map = null;
+		Set<Entry<String, String>> entrySet = map.entrySet();
+		Iterator<Entry<String, String>> iterator = entrySet.iterator();
+		while (iterator.hasNext()) {
+			Entry<String, String> next = iterator.next();
+			System.out.println(next.getKey() + " --" + next.getValue());
+		}
+		
+		///
+		List list = null;
+		Iterator<String> it = list.iterator();
+		while (it.hasNext()) {
+				it.remove();
+		}
+	}
 	public static void main(String[] args) {
 		TestSafeCollection c = new TestSafeCollection();
 		c.iteratorAndAddOfSafeList();
