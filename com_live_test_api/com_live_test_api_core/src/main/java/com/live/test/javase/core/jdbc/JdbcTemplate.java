@@ -1,4 +1,4 @@
-package com.live.test.api.core.jdbc;
+package com.live.test.javase.core.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
