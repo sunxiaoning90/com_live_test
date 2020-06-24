@@ -1,12 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
   <groupId>com_live_test_javaweb</groupId>
-  <artifactId>sso</artifactId>
+  <artifactId>webservice</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>com_live_test_javaweb_sso</name>
-  
+  <name>com_live_test_javaweb_webservice</name>
   <description/>
   <properties>
     <webVersion>4.0</webVersion>
@@ -23,6 +21,26 @@
       <groupId>org.glassfish.web</groupId>
       <artifactId>javax.servlet.jsp.jstl</artifactId>
       <version>1.2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>2.27</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.inject</groupId>
+      <artifactId>jersey-hk2</artifactId>
+      <version>2.27</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.media</groupId>
+      <artifactId>jersey-media-moxy</artifactId>
+      <version>2.27</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.containers</groupId>
+      <artifactId>jersey-container-servlet-core</artifactId>
+      <version>2.27</version>
     </dependency>
   </dependencies>
   <build>
