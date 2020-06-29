@@ -1,4 +1,4 @@
-package com.live.test.mq.rocketmq.example2;
+package com.live.test.distributed.mq.recoketmq.example2;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;

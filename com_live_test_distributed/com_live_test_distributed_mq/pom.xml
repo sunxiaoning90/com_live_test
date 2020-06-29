@@ -3,14 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.live.test.mq</groupId>
-	<artifactId>javase</artifactId>
+	<groupId>com.live.test.distributed</groupId>
+	<artifactId>mq</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>com_live_test_mq</name>
+	<name>com_live_test_distributed_mq</name>
 
 	<modules>
-		<module>com_live_test_mq</module>
+		<module>com_live_test_distributed_mq_recoketmq</module>
 	</modules>
 
 	<build>
