@@ -480,4 +480,25 @@ public class DateUtil {
 		long i = getBetweenWithNow(date);
 		System.out.println(i);
 	}
+	
+	/**
+	 * 2020-07-02
+	 * 需求来自：saas平台：1、域授权增加字段：“授权开始时间”，计算授权时，忽略未开始的授权
+	 */
+	/**
+	 * 
+	 * @param timestamp1
+	 * @param timestamp2
+	 * @return
+	 */
+	public static boolean before(long timestamp1, long timestamp2) {
+		return timestamp1 < timestamp2;
+	}
+
+	public static boolean beforeOrequals(long timestamp1, long timestamp2) {
+		if (timestamp1 == timestamp2) {
+			return true;
+		}
+		return before(timestamp1, timestamp2);
+	}
 }
