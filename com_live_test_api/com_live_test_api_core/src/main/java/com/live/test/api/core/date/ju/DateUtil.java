@@ -433,7 +433,7 @@ public class DateUtil {
 	 * 获取指定时间相差的毫秒数
 	 */
 	public static long getBetween(Date d1, Date d2) {
-		return d2.getTime() - d1.getTime();
+		return d1.getTime() - d2.getTime();
 	}
 
 	public static Calendar coverToCalendar(String str, String format) {
@@ -500,5 +500,28 @@ public class DateUtil {
 			return true;
 		}
 		return before(timestamp1, timestamp2);
+	}
+	
+		/**
+	 * 2020-07-03
+	 * 需求来自：saas平台：1、展示全部域的授权过期信息（授权总数、三天过期个数、五天过期个数、七天过期个数、十五天过期个数）
+	 */
+	/**
+	 * 获取指定时间相差的天数
+	 */
+	public static long getBetweenForDay(Date d1, Date d2) {
+			Float f = (float)getBetween(d1, d2) / MILLISECOND_OF_DAY;
+			long l = (long) Math.ceil(f);
+			return l;
+		}
+	
+//	@Test
+	public void testgetBetweenForDay() {
+		Date d1 = new Date();
+		System.out.println(d1);
+		d1.setDate(5);
+		System.out.println(d1);
+		long i = getBetweenForDay(d1, new Date());
+		System.out.println(i);
 	}
 }
