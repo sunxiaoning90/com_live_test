@@ -20,7 +20,16 @@
 		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
 			<version>3.8.1</version> <scope>test</scope> </dependency> -->
 		<!-- junit5 -->
+		
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- <dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-launcher</artifactId>
 			<version>1.0.1</version>
@@ -37,7 +46,7 @@
 			<artifactId>junit-vintage-engine</artifactId>
 			<version>4.12.1</version>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- fastjson -->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->

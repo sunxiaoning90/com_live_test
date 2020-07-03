@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import com.live.test.api.core.flowstatistics.common.DomainST;
 import com.live.test.api.core.flowstatistics.common.IFilterChain;
@@ -18,7 +17,8 @@ import com.live.test.api.core.povo.entity.MongoEntity;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
 public class Test1 {
-	@BeforeEach
+	//@BeforeEach
+	
 	public void before() {
 		initCreatorST();
 		initStatusST();
