@@ -4,7 +4,6 @@ import java.util.Date;
 
 import spzc.module.systemhelp.util.flowstatistics.util.FlatData;
 
-
 public class DomainAuthSTDataFactroy {
 	public static FlatData build(String type) {
 
@@ -32,7 +31,7 @@ public class DomainAuthSTDataFactroy {
 	private static FlatData buildSUM() {
 		FlatData data = new FlatData();
 		data.set("startTime", new Date());
-		data.set("authSum", 0);
+		data.set("auth.sum", 0);
 		//
 		return data;
 	}

@@ -6,6 +6,7 @@ import spzc.module.systemhelp.util.flowstatistics.common.IFilterChain;
 import spzc.module.systemhelp.util.flowstatistics.domainAuthStatistics.DomainAuthSTDataFactroy;
 import spzc.module.systemhelp.util.flowstatistics.domainAuthStatistics.DomainAuthSTManager;
 import spzc.module.systemhelp.util.flowstatistics.domainAuthStatistics.filter.DomainAuthSumFilter;
+import spzc.module.systemhelp.util.flowstatistics.domainAuthStatistics.filter.DomainAuthSumInfoFilter;
 import spzc.module.systemhelp.util.flowstatistics.util.FlatData;
 
 public class DomainAuthSumFilterChain implements IFilterChain<Entity, FlatData> {
@@ -24,6 +25,7 @@ public class DomainAuthSumFilterChain implements IFilterChain<Entity, FlatData> 
 		this.setData(data);
 
 		IFilter<Entity, FlatData> headFilter = new DomainAuthSumFilter(this.getData());
+		headFilter.setNext(new DomainAuthSumInfoFilter(data));
 		this.setHeadFilter(headFilter);
 	}
 

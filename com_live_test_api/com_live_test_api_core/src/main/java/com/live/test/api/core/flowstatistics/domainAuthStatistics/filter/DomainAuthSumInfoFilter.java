@@ -7,15 +7,15 @@ import spzc.module.systemhelp.util.flowstatistics.common.IFilter;
 import spzc.module.systemhelp.util.flowstatistics.util.Filter;
 import spzc.module.systemhelp.util.flowstatistics.util.FlatData;
 
-public class DomainAuthSumFilter extends Filter implements IFilter<Entity, FlatData> {
+public class DomainAuthSumInfoFilter extends Filter implements IFilter<Entity, FlatData> {
 	private FlatData data;
 	IFilter<Entity, FlatData> next;
 
-	private DomainAuthSumFilter() {
-		super("sum");
+	private DomainAuthSumInfoFilter() {
+		super("info");
 	}
 
-	public DomainAuthSumFilter(FlatData data) {
+	public DomainAuthSumInfoFilter(FlatData data) {
 		this();
 		this.setData(data);
 	}
@@ -32,19 +32,16 @@ public class DomainAuthSumFilter extends Filter implements IFilter<Entity, FlatD
 
 	@Override
 	public Object parse(String value) {
-		return "auth.sum" + value;
+		return value;
 	};
 
 	@Override
 	public FlatData handle(Entity source) throws Exception {
-		Object authCountObj = source.getValue("authCount");
+		Object affiliatedCompany = source.getValue("affiliatedCompany");
 		// FlatData d = (FlatData)data;
 		// this.parse(data, authCount);
-		if (authCountObj != null) {
-			String.valueOf(authCountObj);
-			if (authCountObj != null) {
-				data.set("auth.sum", authCountObj);
-			}
+		if (affiliatedCompany != null) {
+			data.set("company", affiliatedCompany);
 		}
 		data.set("modifiyTime", new Date());
 		if (this.getNext() != null) {

@@ -28,7 +28,7 @@ public class DomainAuthSTManager {
 	public static final String ST_DOMAINAUTH_357 = "ST_DOMAINAUTH_357";
 
 	public static void iniDomainAuthST() {
-		log.info("iniDomainAuthST all");
+		log.info("iniDomainAuthST all start...");
 		List<Domain> domains = DomainManager.getInstance().getAll().getAllAsList();
 		if (domains != null) {
 			for (Domain domain : domains) {
@@ -55,11 +55,12 @@ public class DomainAuthSTManager {
 		DomainST.getInstance().getSTManager(domain).putFilterChain(DomainAuthSTManager.ST_DOMAINAUTH_SUM, csum);
 		DomainST.getInstance().getSTManager(domain).putFilterChain(DomainAuthSTManager.ST_DOMAINAUTH_357, c357);
 	}
-	
+
 	public static FlatData getDomainAuthSTData(String domain) {
 //		String domain = "spzc";
 		log.info("N：" + domain);
-		return DomainST.getInstance().getSTManager(domain).getFilterChain(DomainAuthSTManager.ST_DOMAINAUTH_SUM).getData();
+		return DomainST.getInstance().getSTManager(domain).getFilterChain(DomainAuthSTManager.ST_DOMAINAUTH_SUM)
+				.getData();
 	}
 
 	public static void doDomainAuthST(Entity entity) {
@@ -75,41 +76,42 @@ public class DomainAuthSTManager {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void doDomainAuthST(String domain, Entity entity) {
 		doDomainAuthSTSUM(domain, entity);
-		
+
 		Object authHistory = entity.getValue("authHistory");
-		if(authHistory == null) {
+		if (authHistory == null) {
 			return;
 		}
-		
-		String expiresTimeTag = "expiresTime", validTimeTag = "validTime",authCountTag = "authCount";
+
+		String expiresTimeTag = "expiresTime", validTimeTag = "validTime", authCountTag = "authCount";
 		Consumer<? super JSONObject> action = new Consumer<JSONObject>() {
 
 			@Override
 			public void accept(JSONObject t) {
-				Entity enity = new MongoEntity("Auth");
-				if(t.containsKey(expiresTimeTag)) {
-					enity.setValue(expiresTimeTag, t.getString(expiresTimeTag));
+				Entity e = new MongoEntity("Auth");
+				if (t.containsKey(expiresTimeTag)) {
+					e.setValue(expiresTimeTag, t.getString(expiresTimeTag));
 				}
-				
-				if(t.containsKey(validTimeTag)) {
-					enity.setValue(validTimeTag, t.getString(validTimeTag));
+
+				if (t.containsKey(validTimeTag)) {
+					e.setValue(validTimeTag, t.getString(validTimeTag));
 				}
-				
-				if(t.containsKey(authCountTag)) {
-					enity.setValue(authCountTag, t.getString(authCountTag));
+
+				if (t.containsKey(authCountTag)) {
+					e.setValue(authCountTag, t.getString(authCountTag));
 				}
-				
-				doDomainAuthST357(domain, entity);
+
+				doDomainAuthST357(domain, e);
 			}
 		};
-		
+
 		JSONArray array = JSONArray.parseArray((String) authHistory);
-		if(array != null) {
-			array.forEach((Consumer<? super Object>) action );
+		if (array != null) {
+			array.forEach((Consumer<? super Object>) action);
 		}
-		
+
 	}
 
 	public static void doDomainAuthSTSUM(String domain, Entity entity) {
