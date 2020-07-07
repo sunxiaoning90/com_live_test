@@ -4,7 +4,7 @@ public class SnowFlakeGenerator {
 	/**
 	 * 起始的时间戳
 	 */
-	private final static long START_STMP = 1594110191703L;//2020-07-07
+	private final static long START_STMP = 1594110191703L;// 2020-07-07
 
 	/**
 	 * 每一部分占用的位数
