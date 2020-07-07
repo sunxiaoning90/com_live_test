@@ -1,4 +1,4 @@
-package com.live.test.api.core.idcreator.ju.idcreator;
+package com.live.test.api.core.idcreator;
 
 /**
  * id生成器

@@ -3,7 +3,7 @@ package com.live.test.api.core.idcreator.ju.idcreator.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.live.test.api.core.idcreator.ju.idcreator.IIDCreator;
+import com.live.test.api.core.idcreator.IIDCreator;
 /**
  * 生成ID(不保证全局唯一)
  * 日期

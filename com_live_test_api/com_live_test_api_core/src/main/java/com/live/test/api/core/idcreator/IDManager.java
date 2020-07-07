@@ -1,6 +1,6 @@
-package com.live.test.api.core.idcreator.ju.idcreator;
+package com.live.test.api.core.idcreator;
 
-import com.live.test.api.core.idcreator.ju.idcreator.impl.DateAndUuidIDCreator;
+import com.live.test.api.core.idcreator.snowflake.SnowFlakeGeneratorAdapter;
 
 /**
  * id管理器,用于生成全局唯一id
@@ -10,7 +10,8 @@ import com.live.test.api.core.idcreator.ju.idcreator.impl.DateAndUuidIDCreator;
 public class IDManager {
 	IIDCreator idCreator;
 	private IDManager() {
-		idCreator = new DateAndUuidIDCreator();
+//		idCreator = new DateAndUuidIDCreator();
+		idCreator = new SnowFlakeGeneratorAdapter();
 	}
 
 	public static IDManager getInstance() {
@@ -23,5 +24,9 @@ public class IDManager {
 
 	public String getNext() {
 		return this.idCreator.getNext();
+	}
+	
+	public String getLast() {
+		return this.idCreator.getLast();
 	}
 }
