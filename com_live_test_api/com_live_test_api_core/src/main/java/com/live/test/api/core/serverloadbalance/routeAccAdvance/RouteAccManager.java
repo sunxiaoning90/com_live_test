@@ -1,4 +1,4 @@
-package com.live.test.api.core.serverloadbalance.routeAcc;
+package com.live.test.api.core.serverloadbalance.routeAccAdvance;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -11,37 +11,6 @@ import com.alibaba.fastjson.JSONObject;
 
 /**
  * 路由命中管理
- * eg:
- * {
-    "date(开始时间)": "Dec 10, 2019 5:25:18 PM",
-    "routeAccs": [
-        {
-            "Knowledge.KnowledgeDataService.findKnowledgeData": {
-                "route(路由)": "Knowledge.KnowledgeDataService.findKnowledgeData",
-                "count(命中总数)": 10000,
-                "keepCount(最高连续命中计数器)": 0,
-                "routeNodeAcc": [
-                    {
-                        "Knowledge.KnowledgeDataService.findKnowledgeData.192168152": {
-                            "keepCount(最高连续命中计数器)": 0,
-                            "routeNode(路由节点)": "Knowledge.KnowledgeDataService.findKnowledgeData.192168152",
-                            "count(命中总数数计数器)": 5000,
-                            "keepCountTmp(临时连续命中计数器)": 0
-                        }
-                    },
-                    {
-                        "Knowledge.KnowledgeDataService.findKnowledgeData.SXN": {
-                            "keepCount(最高连续命中计数器)": 0,
-                            "routeNode(路由节点)": "Knowledge.KnowledgeDataService.findKnowledgeData.SXN",
-                            "count(命中总数数计数器)": 5000,
-                            "keepCountTmp(临时连续命中计数器)": 0
-                        }
-                    }
-                ]
-            }
-        }
-    ]
-}
  * 
  * @author live
  * @2019年12月3日 @上午11:01:56
@@ -89,7 +58,7 @@ public class RouteAccManager {
 	public JSONObject toJson() {
 		JSONObject json = new JSONObject();
 		json.put("date(开始时间)", this.getDate().toLocaleString());
-		
+
 		JSONArray routeAccArray = new JSONArray();
 		Iterator<Entry<String, RouteAcc>> iterator = this.accPoMap.entrySet().iterator();
 		while (iterator.hasNext()) {
@@ -101,5 +70,51 @@ public class RouteAccManager {
 
 		json.put("routeAccs", routeAccArray);
 		return json;
+	}
+
+	/**
+	 * <pre>
+	 * * eg:
+	* {
+	"date(开始时间)": "Dec 10, 2019 5:25:18 PM",
+	"routeAccs": [
+	    {
+	        "Knowledge.KnowledgeDataService.findKnowledgeData": {
+	            "route(路由)": "Knowledge.KnowledgeDataService.findKnowledgeData",
+	            "count(命中总数)": 10000,
+	            "keepCount(最高连续命中计数器)": 0,
+	            "routeNodeAcc": [
+	                {
+	                    "Knowledge.KnowledgeDataService.findKnowledgeData.192168152": {
+	                        "keepCount(最高连续命中计数器)": 0,
+	                        "routeNode(路由节点)": "Knowledge.KnowledgeDataService.findKnowledgeData.192168152",
+	                        "count(命中总数数计数器)": 5000,
+	                        "keepCountTmp(临时连续命中计数器)": 0
+	                    }
+	                },
+	                {
+	                    "Knowledge.KnowledgeDataService.findKnowledgeData.SXN": {
+	                        "keepCount(最高连续命中计数器)": 0,
+	                        "routeNode(路由节点)": "Knowledge.KnowledgeDataService.findKnowledgeData.SXN",
+	                        "count(命中总数数计数器)": 5000,
+	                        "keepCountTmp(临时连续命中计数器)": 0
+	                    }
+	                }
+	            ]
+	        }
+	    }
+	]
+	}
+	 * </pre>
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		String route = "route" + "." + "im";
+		for (int i = 0; i < 10; i++) {
+			String routeNode = route + "." + i;
+			RouteAccManager.getInstance().put(routeNode);
+			System.out.println(RouteAccManager.getInstance().toJson());
+		}
 	}
 }
