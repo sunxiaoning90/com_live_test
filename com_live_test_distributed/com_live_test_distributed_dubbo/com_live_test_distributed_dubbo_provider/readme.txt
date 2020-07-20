@@ -54,7 +54,7 @@ public class DemoServiceImpl implements DemoService {
 
 }
 
-4、编写启动类（启动服务）
+4、编写启动类（启动服务提供者）
 public class Provider {
 	public static void main(String[] args) throws Exception {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
@@ -68,5 +68,3 @@ public class Provider {
 		System.out.println("dubbo stop");
 	}
 }
-
-

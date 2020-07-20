@@ -11,7 +11,7 @@ public class Provider {
 		context.start();
 		
 		System.in.read(); // 按任意键退出
-		context.stop();
+		context.close();
 		System.out.println("dubbo stop");
 	}
 }
