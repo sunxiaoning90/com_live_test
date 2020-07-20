@@ -1,8 +1,10 @@
 Dubbo开发笔记：consumer,服务消费者
 
 *我的github源代码地址： 
-
+	https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_distributed/com_live_test_distributed_dubbo
+	
 *我的csdn地址：
+	https://blog.csdn.net/Sunxn1991/article/details/107458812
 
  一、demo
  1、配置Spring.xml
