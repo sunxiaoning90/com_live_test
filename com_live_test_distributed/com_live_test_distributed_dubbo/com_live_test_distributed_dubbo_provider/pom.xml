@@ -40,22 +40,16 @@
 
 		<!-- https://mvnrepository.com/artifact/com.alibaba/dubbo -->
 		<!-- 添加dubbo的依赖 -->
-		<!-- <dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>dubbo</artifactId>
-			<version>2.6.8</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>dubbo</artifactId> 
+			<version>2.6.8</version> </dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-rpc-api -->
 		<!-- <dependency> <groupId>org.apache.dubbo</groupId> <artifactId>dubbo-rpc-api</artifactId> 
 			<version>2.7.7</version> </dependency> -->
 
 		<!-- zk的依赖 -->
-		<dependency>
-			<groupId>com.github.sgroschupf</groupId>
-			<artifactId>zkclient</artifactId>
-			<version>0.1</version>
-		</dependency>
+		<!-- <dependency> <groupId>com.github.sgroschupf</groupId> <artifactId>zkclient</artifactId> 
+			<version>0.1</version> </dependency> -->
 
 		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>dubbo</artifactId> 
 			<version>2.5.3</version> <exclusions> <exclusion> <artifactId>spring</artifactId> 
@@ -68,6 +62,34 @@
 			<version>2.7.7</version>
 		</dependency>
 
+		<!-- zk -->
+		<!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+
+		<!-- slf4j -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.0-alpha1</version>
+		</dependency>
 
 	</dependencies>
 </project>

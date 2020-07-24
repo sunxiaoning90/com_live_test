@@ -29,14 +29,20 @@
 	<dubbo:application name="hello-world-app" />
 
 	<!-- 使用multicast广播注册中心暴露服务地址 -->
-	<dubbo:registry address="multicast://224.5.6.7:1234" />
-
+	<!--  即：dubbo这个服务所要暴露的服务地址所对应的注册中心-->
+	<!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
+	
+    <!--<dubbo:registry address="N/A"/>-->
+    <!-- zk单机版 -->
+<!-- 	<dubbo:registry address="zookeeper://192.168.1.52:2181" check="false"/>
+ -->	
+ 	<dubbo:registry address="zookeeper://localhost:2181" check="false"/>
 	<!-- 用dubbo协议在20880端口暴露服务 -->
 	<dubbo:protocol name="dubbo" port="20880" />
 
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service
-		interface="dubbo.provider.service.DemoService" ref="demoService" />
+		interface="dubbo.provider.service.DemoService" ref="demoService" protocol="dubbo"/>
 
 	<!-- 和本地bean一样实现服务 -->
 	<bean id="demoService"
