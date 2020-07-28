@@ -54,7 +54,7 @@ public class HttpUtil implements java.io.Serializable {
 			if (!param.equals(""))
 				param = param.concat("&");
 			param = param.concat(entry.getKey()).concat("=")
-					.concat(entry.getValue());
+					.concat(entry != null ? entry.getValue() : "");
 		}
 		
 		return httpRequest(url, _POST, param);
