@@ -285,6 +285,22 @@ public class DateUtil {
 	public static long getDateMillis(Date date) {
 		return date.getTime();
 	}
+	
+	/**
+	 * 获取 Date 的时间戳
+	 * 
+	 * @return 毫秒
+	 */
+	public static long getDateMillis(String dateStr) {
+		Date date = null;
+		try {
+			date = new SimpleDateFormat(FORMAT_yyyy_MM_dd_HH_mm_ss).parse(dateStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return date.getTime();
+	}
 
 	/**
 	 * 获取 次日0点0分0秒 的时间戳
