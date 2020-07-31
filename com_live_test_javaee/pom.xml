@@ -15,6 +15,7 @@
 		<module>com_live_test_javaee_springmvc</module>
 		<module>com_live_test_javaee_integration_springmvcAndmybatis</module>
 		<module>com_live_test_javaee_springboot</module>
+		<module>com_live_test_javaee_springboot_webflux</module>
 	</modules>
 
 	<build>

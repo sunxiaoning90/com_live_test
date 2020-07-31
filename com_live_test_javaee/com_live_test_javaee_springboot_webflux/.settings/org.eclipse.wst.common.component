@@ -3,7 +3,7 @@
     
     
     
-    <wb-module deploy-name="springboot-0.0.1-SNAPSHOT">
+    <wb-module deploy-name="webflux-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
                                         
         
@@ -33,10 +33,7 @@
         
         
         <property name="java-output-path" value="/com_live_test_javaee_springboot/target/classes"/>
-                                
-        
-        
-        <property name="context-root" value="springboot"/>
+        <property name="context-root" value="webflux"/>
                                     
     
     

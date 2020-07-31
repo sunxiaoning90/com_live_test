@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.live.test.javaee.springboot</groupId>
+	<artifactId>webflux</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>com_live_test_javaee_springboot_webflux</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<!-- 1、设置spring boot的parent -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.6.RELEASE</version>
+	</parent>
+
+	<dependencies>
+	
+	<!-- 2、引入依赖：spring boot的web支持,两种：1、Servlet Web（Tomcat、Jetty、undertow） 2、Reactive Web（webflux）-->
+	<!-- 一、servlet 容器 ，当我们引用的是 Servlet Web 功能模块时，它会自动集成 Tomcat ，里面包含了 Tomcat 的 Maven 依赖包，也就是说 Tomcat 是默认的 Servlet Web 容器。Servlet Web 模块的 Maven 依赖如下：-->
+		<!-- 配置springBoot的启动web服务器，starter默认是Tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+	<!-- 配置springBoot的启动web服务器，starter默认自带Tomcat,剔除自带Tomcat依赖，更换为jetty -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- 1、tomcat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+		
+	<!-- 2、jetty -->
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jetty</artifactId>
+		</dependency> -->
+		
+		
+		<!-- undertow -->
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency> -->
+
+<!-- 二、如果引用的是 Reactive Web 功能模块时，则会默认集成 netty Web Server 。Reactive Web 模块的依赖如下： -->
+
+	<!-- <dependency>
+	   <groupId>org.springframework.boot</groupId>
+	   <artifactId>spring-boot-starter-webflux</artifactId>
+	</dependency> -->
+
+<!-- netty Web Server -->
+	<!-- <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-reactor-netty</artifactId>
+	    <version>1.0.0</version>
+	</dependency> -->
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- 3、添加 SpringBoot 插件 -->
+			<!-- Spring Boot的Maven插件（Spring Boot Maven plugin）能够以Maven的方式为应用提供Spring 
+				Boot的支持，即为Spring Boot应用提供了执行Maven操作的可能。 Spring Boot Maven plugin能够将Spring 
+				Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用。 -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
