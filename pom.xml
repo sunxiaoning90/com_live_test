@@ -18,6 +18,7 @@
 		<module>com_live_test_mq</module>
 		<module>com_live_test_db</module>
         <module>com_live_test_distributed</module>
+        <module>com_live_test_MicroService</module>
         
 	</modules>
 

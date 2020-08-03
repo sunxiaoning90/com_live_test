@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import com.live.test.javaee.springboot.controller.HelloController;
 
 @SpringBootApplication 
-@ComponentScan(value = {"com.live.test.javaee.springboot.controller" })
+@ComponentScan(value = {"com.live.test.javaee.springboot.*" })
 public class App {
 	public static void main(String[] args) {
 //		SpringApplication.run(HelloSpringBoot.class, args);
