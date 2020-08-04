@@ -10,9 +10,7 @@
 	<name>com_live_test_MicroService</name>
 
 	<modules>
-		<!--<module>com_live_test_distributed_mq</module>
-		<module>com_live_test_distributed_dubbo</module>
-		<module>com_live_test_distributed_zookeeper</module>-->
+		<module>com_live_test_MicroService_SpringBoot</module>
 	</modules>
 
 	<build>
