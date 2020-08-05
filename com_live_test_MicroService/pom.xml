@@ -11,6 +11,8 @@
 
 	<modules>
 		<module>com_live_test_MicroService_SpringBoot</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba</module>
+		<module>com_live_test_MicroService_SpringCloudNetflix</module>
 	</modules>
 
 	<build>
