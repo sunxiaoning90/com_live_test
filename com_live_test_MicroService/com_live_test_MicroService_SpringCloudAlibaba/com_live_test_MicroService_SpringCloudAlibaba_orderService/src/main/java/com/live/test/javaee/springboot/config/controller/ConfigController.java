@@ -2,15 +2,14 @@ package com.live.test.javaee.springboot.config.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
 
-@ComponentScan
+@Component
 @Controller
 @RequestMapping("config")
 public class ConfigController {

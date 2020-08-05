@@ -9,6 +9,7 @@ import com.live.test.javaee.springboot.controller.HelloController;
 
 @SpringBootApplication 
 @ComponentScan(value = {"com.live.test.javaee.springboot.*" })
+//@SpringBootApplication = @Configuration + @EnableAutoConfiguration + @ComponentScan
 public class App {
 	public static void main(String[] args) {
 //		SpringApplication.run(HelloSpringBoot.class, args);
