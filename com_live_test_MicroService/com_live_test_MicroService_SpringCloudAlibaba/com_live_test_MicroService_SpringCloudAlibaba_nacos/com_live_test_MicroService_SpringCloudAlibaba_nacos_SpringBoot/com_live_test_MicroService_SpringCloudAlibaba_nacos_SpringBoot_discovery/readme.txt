@@ -31,11 +31,12 @@ public class NacosDiscoveryApplication {
         SpringApplication.run(NacosDiscoveryApplication.class, args);
     }
 }
-3、启动 NacosDiscoveryApplication，调用 curl http://localhost:8080/discovery/get?serviceName=example，此时返回为空 JSON 数组[]。
+3、启动 NacosDiscoveryApplication，调用 curl http://localhost:8080/discovery/get?serviceName=example，此时返回为空 JSON 数组:
+[]。
 
 4、通过调用 Nacos Open API 向 Nacos server 注册一个名称为 example 服务
-
 curl -X PUT 'http://127.0.0.1:8848/nacos/v1/ns/instance?serviceName=example&ip=127.0.0.1&port=8080'
+
 5、再次访问 curl http://localhost:8080/discovery/get?serviceName=example，此时返回内容为：
 [
     {
