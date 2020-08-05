@@ -6,7 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
-import com.live.test.javaee.springboot.controller.HelloController;
+import com.live.test.javaee.springboot.discovery.controller.DiscoveryController;
 
 @SpringBootApplication 
 @ComponentScan(value = {"com.live.test.javaee.springboot.*" })
@@ -15,7 +15,7 @@ public class App {
 	public static void main(String[] args) {
 //		SpringApplication.run(HelloSpringBoot.class, args);
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
-		HelloController bean = context.getBean(HelloController.class);
+		DiscoveryController bean = context.getBean(DiscoveryController.class);
 		System.out.println(bean);
 	}
 }
