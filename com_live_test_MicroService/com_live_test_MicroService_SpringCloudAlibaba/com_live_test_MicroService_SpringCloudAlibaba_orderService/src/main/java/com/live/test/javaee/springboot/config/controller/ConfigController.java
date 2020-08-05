@@ -1,5 +1,8 @@
 package com.live.test.javaee.springboot.config.controller;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +15,15 @@ import com.alibaba.nacos.api.config.annotation.NacosValue;
 @RequestMapping("config")
 public class ConfigController {
 
-	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
-    private boolean useLocalCache;
+	// useLocalCache=true
+	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true) //@NacosValue，是nacos提供的注解，支持自动刷新
+//	@Value(value="${useLocalCache:false}") //@Value 是Spring提供的， 不支持自动刷新
+	private boolean useLocalCache;
 
-    @RequestMapping(value = "/get")
-    @ResponseBody
-    public boolean get() {
-        return useLocalCache;
-    }
-    
+	@RequestMapping(value = "/get", method = GET)
+	@ResponseBody
+	public boolean get() {
+		return useLocalCache;
+	}
+
 }
