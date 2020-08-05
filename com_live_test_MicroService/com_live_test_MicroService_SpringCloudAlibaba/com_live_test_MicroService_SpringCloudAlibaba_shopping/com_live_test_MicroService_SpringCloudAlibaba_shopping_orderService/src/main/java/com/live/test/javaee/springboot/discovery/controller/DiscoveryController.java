@@ -20,13 +20,12 @@ import com.alibaba.nacos.api.naming.pojo.Instance;
 public class DiscoveryController {
 
 	@NacosInjected
-	private NamingService namingService;
+    private NamingService namingService;
 
-	@RequestMapping(value = "/get", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Instance> get(@RequestParam String serviceName) throws NacosException {
-		System.out.println("<<<serviceName:" + serviceName);
-		return namingService.getAllInstances(serviceName);
-	}
-
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Instance> get(@RequestParam String serviceName) throws NacosException {
+        return namingService.getAllInstances(serviceName);
+    }
+    
 }
