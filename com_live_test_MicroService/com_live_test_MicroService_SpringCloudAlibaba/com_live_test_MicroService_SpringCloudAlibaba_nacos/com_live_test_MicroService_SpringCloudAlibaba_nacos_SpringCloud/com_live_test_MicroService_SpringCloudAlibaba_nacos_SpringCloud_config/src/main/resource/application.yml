@@ -14,10 +14,3 @@ mybatis:
 nacos:  
   config: 
     server-addr: 192.168.1.52:8848
-  discovery: 
-    server-addr: 192.168.1.52:8848
-  application: 
-    name: nacos-example
-    
-#spring.cloud.nacos.config.file-extension=properties
-#spring.cloud.nacos.config.file-extension=yaml

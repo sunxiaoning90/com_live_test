@@ -4,15 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>SpringCloudAlibaba-nacos</artifactId>
+	<artifactId>SpringCloudAlibaba-nacos-SpringCloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>com_live_test_MicroService_SpringCloudAlibaba_nacos</name>
+	<name>com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud</name>
 
 	<modules>
-        <module>com_live_test_MicroService_SpringCloudAlibaba_nacos_spring</module>
-		<module>com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringBoot</module>
-		<module>com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud_config</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud_discovery</module>
 	</modules>
 
 	<build>
