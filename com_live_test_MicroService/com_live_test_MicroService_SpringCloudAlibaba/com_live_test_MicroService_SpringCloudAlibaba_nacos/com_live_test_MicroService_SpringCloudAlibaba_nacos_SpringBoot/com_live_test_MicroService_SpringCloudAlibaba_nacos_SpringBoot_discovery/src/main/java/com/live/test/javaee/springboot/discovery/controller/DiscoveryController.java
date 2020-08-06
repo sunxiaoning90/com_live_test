@@ -26,7 +26,10 @@ public class DiscoveryController {
 	@ResponseBody
 	public List<Instance> get(@RequestParam String serviceName) throws NacosException {
 		System.out.println("<<<serviceName:" + serviceName);
-		return namingService.getAllInstances(serviceName);
+
+		List<Instance> instances = namingService.getAllInstances(serviceName);
+		System.out.println("instance:" + instances); // instance:[{"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceId":"127.0.0.1#8080#DEFAULT#DEFAULT_GROUP@@example","instanceIdGenerator":"simple","ip":"127.0.0.1","ipDeleteTimeout":30000,"metadata":{},"port":8080,"serviceName":"DEFAULT_GROUP@@example","weight":1.0}]
+		return instances;
 	}
 
 }
