@@ -1,4 +1,4 @@
-<SpringBoot 使用Nacos 启动【配置管理】>
+《通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-config 实现配置的动态变更。》
 
 1、添加依赖。
 <dependency>

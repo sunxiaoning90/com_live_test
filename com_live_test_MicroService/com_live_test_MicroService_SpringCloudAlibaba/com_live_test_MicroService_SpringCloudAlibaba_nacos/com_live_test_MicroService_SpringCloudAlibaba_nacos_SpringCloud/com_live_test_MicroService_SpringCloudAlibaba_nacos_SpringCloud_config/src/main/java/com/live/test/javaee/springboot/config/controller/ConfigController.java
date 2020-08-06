@@ -15,6 +15,7 @@ public class ConfigController {
 	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
     private boolean useLocalCache;
 
+	// 8081/config/get
     @RequestMapping(value = "/get")
     @ResponseBody
     public boolean get() {
