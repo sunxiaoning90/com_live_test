@@ -4,13 +4,6 @@ import java.text.NumberFormat;
 
 public class DecimalsUtil {
 
-	public static void main(String[] args) {
-		int sum = 3;
-		int a = 1;
-		String percent = getPercent(a, sum, 2);
-		System.out.println(percent);
-	}
-
 	/**
 	 * 获取百分比
 	 * 
@@ -44,6 +37,13 @@ public class DecimalsUtil {
 		}
 
 		return percent;
+	}
+	
+	public static void main(String[] args) {
+		int sum = 3;
+		int a = 1;
+		String percent = getPercent(a, sum, 2);
+		System.out.println(percent);
 	}
 
 }
