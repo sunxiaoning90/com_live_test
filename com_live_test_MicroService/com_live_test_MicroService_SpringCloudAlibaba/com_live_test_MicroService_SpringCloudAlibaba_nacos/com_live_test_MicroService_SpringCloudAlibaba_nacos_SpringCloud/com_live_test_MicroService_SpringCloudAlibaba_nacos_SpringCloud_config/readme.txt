@@ -148,16 +148,18 @@ management.endpoint.health.show-details=always
 #spring.profiles.active=dev
 
 3、使用@Value 注解为字段赋值，并开启自动更新：
+v
+
+4、通过 Nacos 的 @NacosValue 注解设置属性值。
 @ComponentScan
 @Controller
-@RequestMapping("config")
-//@RefreshScope
-@ResponseBody
 @RefreshScope // Nacos 配置页改动数据时，自动刷新
+@RequestMapping("config")
+@ResponseBody
 public class ConfigController {
 
-//  @Value("${useLocalCache:false}")
-	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+//	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+	@Value("${useLocalCache:false}")
 	private boolean useLocalCache;
 
 	@Value(value = "${test}")
@@ -174,25 +176,7 @@ public class ConfigController {
 	}
 }
 
-4、通过 Nacos 的 @NacosValue 注解设置属性值。
 
-@Component
-@Controller
-@RequestMapping("config")
-public class ConfigController {
-
- // useLocalCache=true
- @NacosValue(value = "${useLocalCache:false}", autoRefreshed = true) //@NacosValue，是nacos提供的注解，支持自动刷新
-//	@Value(value="${useLocalCache:false}") //@Value 是Spring提供的， 不支持自动刷新
- private boolean useLocalCache;
-
- @RequestMapping(value = "/get", method = GET)
- @ResponseBody
- public boolean get() {
-  return useLocalCache;
- }
-
-}
 5、启动 NacosConfigApplication，调用 curl http://localhost:8080/config/get，返回内容是 false。
 
 6、通过调用 Nacos Open API 向 Nacos server 发布配置：dataId 为example，内容为useLocalCache=true

@@ -7,18 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
-
 @ComponentScan
 @Controller
-@RequestMapping("config")
-//@RefreshScope
-@ResponseBody
 @RefreshScope // Nacos 配置页改动数据时，自动刷新
+@RequestMapping("config")
+@ResponseBody
 public class ConfigController {
 
-//  @Value("${useLocalCache:false}")
-	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+//	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+	@Value("${useLocalCache:false}")
 	private boolean useLocalCache;
 
 	@Value(value = "${test}")
