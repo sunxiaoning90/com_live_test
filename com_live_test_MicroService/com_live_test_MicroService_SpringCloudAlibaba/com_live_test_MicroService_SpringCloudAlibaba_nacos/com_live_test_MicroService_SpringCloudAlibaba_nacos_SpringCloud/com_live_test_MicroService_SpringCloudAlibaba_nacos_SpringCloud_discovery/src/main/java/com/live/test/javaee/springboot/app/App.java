@@ -5,17 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.live.test.javaee.springboot.discovery.controller.DiscoveryController;
+import com.live.test.javaee.springboot.config.controller.ConfigController;
 
 @SpringBootApplication
 @ComponentScan(value = { "com.live.test.javaee.springboot.*" })
-//@NacosPropertySource(dataId = "example", autoRefreshed = true)
 public class App {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
-		DiscoveryController bean = context.getBean(DiscoveryController.class);
-		System.out.println(bean);
+		ConfigController bean = context.getBean(ConfigController.class);
+		System.out.println("尝试获取bean：" + bean);
 	}
-
 }
