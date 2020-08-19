@@ -42,9 +42,9 @@ public class SentinelTestController {
 	@RequestMapping("/helloWorld")
 	public String helloWorld() {
 
-		// 1.5.0 版本开始可以直接利用 try-with-resources 特性，自动 exit entry
+		// 直接利用 try-with-resources 特性，自动 释放 entry 资源
 		try (Entry entry = SphU.entry("HelloWorld")) {
-			// 被保护的逻辑
+			// 正常业务逻辑
 			System.out.println("hello world");
 			return "hello world";
 		} catch (BlockException ex) {
@@ -60,14 +60,16 @@ public class SentinelTestController {
 	 */
 	// @RequestMapping("/initFlowRules")
 	private void initFlowRules() {
-		List<FlowRule> rules = new ArrayList<>();
 		FlowRule rule = new FlowRule();
 		rule.setResource("HelloWorld");
 		rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
 		// Set limit QPS to 20.
 //		rule.setCount(20);
 		rule.setCount(1);
+		
+		List<FlowRule> rules = new ArrayList<>();
 		rules.add(rule);
+		
 		FlowRuleManager.loadRules(rules);
 	}
 }
