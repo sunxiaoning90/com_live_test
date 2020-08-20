@@ -72,4 +72,9 @@ public class SentinelTestController {
 		
 		FlowRuleManager.loadRules(rules);
 	}
+	
+	// Spring WebFlux
+//	public Mono<String> mono(){
+//		return Mono.just("test");
+//	}
 }

@@ -89,17 +89,16 @@
 			<version>1.7.2</version>
 		</dependency>
 
+		<!-- 客户短接入控制台 -->
 		<!-- java -Dserver.port=8088 -Dcsp.sentinel.dashboard.server=localhost:8088 
 			-Dproject.name=sentinel-dashboard -jar target/sentinel-dashboard.jar 上面其实是把控制台自己接入进来了，如果要接入我们实际工作中的项目，该怎么接入？ 
 			客户端需要引入 Transport 模块来与 Sentinel 控制台进行通信。您可以通过 pom.xml 引入 JAR 包: 同样的增加JVM启动参数指定控制台的地址： 
 			-Dcsp.sentinel.dashboard.server=localhost:8333 -->
-
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-transport-simple-http</artifactId>
-			<version>1.4.1</version>
+			<version>1.7.2</version>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
