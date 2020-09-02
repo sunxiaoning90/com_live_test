@@ -58,7 +58,7 @@ public class SentinelTestController {
 	/**
 	 * 使用代码设置sentinel，也可以在sentinel-Dashboard控制台设置
 	 */
-	// @RequestMapping("/initFlowRules")
+	@RequestMapping("/initFlowRules")
 	private void initFlowRules() {
 		FlowRule rule = new FlowRule();
 		rule.setResource("HelloWorld");

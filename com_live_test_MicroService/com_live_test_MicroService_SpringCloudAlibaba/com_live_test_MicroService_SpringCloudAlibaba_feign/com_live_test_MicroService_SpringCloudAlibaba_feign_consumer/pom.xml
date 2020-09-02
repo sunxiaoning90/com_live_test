@@ -1,19 +1,14 @@
-一般限流/降级/熔断 控制在客户端（服务消费端），不在服务提供端
-
-《通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现 服务发现 -ribbon负载均衡 - 服务提供1》
-
-1、添加依赖。
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>SpringCloudAlibaba-nacos-SpringCloud-config</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_feign_consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud_config</name>
+	<name>com_live_test_MicroService_SpringCloudAlibaba_feign_consumer</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -26,8 +21,6 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
-	<!-- 1)parent：定义spring boot的版本 2)dependencyManagement：spring cloud的版本以及spring 
-		cloud alibaba的版本，由于spring cloud alibaba还未纳入spring cloud的主版本管理中，所以需要自己加入 3)dependencies：当前应用要使用的依赖内容。这里主要新加入了Nacos的配置客户端模块：spring-cloud-starter-alibaba-nacos-config。由于在dependencyManagement中已经引入了版本，所以这里就不用指定具体版本了。 -->
 	<!-- 1) SpringBoot -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -75,9 +68,6 @@
 			<version>0.2.1.RELEASE</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>com.alibaba.nacos</groupId> <artifactId>nacos-client</artifactId> 
-			<version>${version}</version> </dependency> -->
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -85,14 +75,41 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+			<!-- <groupId>com.alibaba.cloud</groupId> -->
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			<!-- <version>2.2.1.RELEASE</version> -->
+		</dependency>
+
+		<!-- 引入 Sentinel 依赖 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-core</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<!-- 客户短接入控制台 -->
+		<!-- java -Dserver.port=8088 -Dcsp.sentinel.dashboard.server=localhost:8088 
+			-Dproject.name=sentinel-dashboard -jar target/sentinel-dashboard.jar 上面其实是把控制台自己接入进来了，如果要接入我们实际工作中的项目，该怎么接入？ 
+			客户端需要引入 Transport 模块来与 Sentinel 控制台进行通信。您可以通过 pom.xml 引入 JAR 包: 同样的增加JVM启动参数指定控制台的地址： 
+			-Dcsp.sentinel.dashboard.server=localhost:8333 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-transport-simple-http</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+	<!-- feign -->
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-openfeign</artifactId>
+	</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- 3、添加 SpringBoot 插件 -->
-			<!-- Spring Boot的Maven插件（Spring Boot Maven plugin）能够以Maven的方式为应用提供Spring 
-				Boot的支持，即为Spring Boot应用提供了执行Maven操作的可能。 Spring Boot Maven plugin能够将Spring 
-				Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用。 -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -120,30 +137,3 @@
 		</plugins>
 	</build>
 </project>
-
-2、bootstrap.properties 配置 Nacos
-server.port=8081
-
-spring.application.name=service-provider
-
-# nacos 作为注册中心
-spring.cloud.nacos.discovery.server-addr=192.168.1.x:8848
-
-3、通过 Nacos 的 @EnableDiscoveryClient 注解 开启服务发现
-@Component
-//@Controller
-@RestController
-@RequestMapping("discovery/provider")
-@EnableDiscoveryClient
-public class DiscoveryProviderController {
-
-	@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
-	public String echo(@PathVariable String str) {
-		System.out.println(str);
-		return "hello" + str;
-	}
-
-}
-
-
-5、测试访问 controller
