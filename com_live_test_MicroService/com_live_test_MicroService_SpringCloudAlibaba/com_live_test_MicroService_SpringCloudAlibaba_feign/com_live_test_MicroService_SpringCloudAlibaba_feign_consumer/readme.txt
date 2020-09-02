@@ -52,3 +52,7 @@ public class FeignConsumerController {
 	public String echoByFeign(@PathVariable String str) {
 		return service1.echo(str);
 	}
+	
+测试：
+
+http://localhost:8082/feign/echoByFeign/hello123
