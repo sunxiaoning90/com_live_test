@@ -1,4 +1,13 @@
-《SpringBoot 使用Nacos 启动【服务发现】》
+Nacos:	SpringBoot项目 使用Nacos 做为 注册中心/服务发现中心
+
+一、使用流程简介
+1）application.yum 配置 Nacos的地址（nacos:   config:  server-addr）
+2）Java程序 使用@NacosInjected注解注入 Nacos的 注册中心对象 NamingService
+	@NacosInjected
+	private NamingService namingService;
+3）增减服务，注册中心可以感知，健康检查默认5秒一次，默认3次均失败则剔除该服务
+	
+二、使用流程详解
 1、添加依赖。
 <dependency>
     <groupId>com.alibaba.boot</groupId>
