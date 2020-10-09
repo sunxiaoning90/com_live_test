@@ -1,7 +1,7 @@
 Nacos:	SpringBoot项目 使用Nacos 做为 注册中心/服务发现中心
 
 一、使用流程简介
-1）application.yum 配置 Nacos的地址（nacos:   config:  server-addr）
+1）application.yml 配置 Nacos的地址（nacos:   config:  server-addr）
 2）Java程序 使用@NacosInjected注解注入 Nacos的 注册中心对象 NamingService
 	@NacosInjected
 	private NamingService namingService;
