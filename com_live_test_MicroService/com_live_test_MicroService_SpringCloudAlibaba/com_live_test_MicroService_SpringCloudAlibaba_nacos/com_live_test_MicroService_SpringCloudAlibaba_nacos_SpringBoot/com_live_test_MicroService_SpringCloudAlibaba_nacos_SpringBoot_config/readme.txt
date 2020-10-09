@@ -1,9 +1,11 @@
 Nacos：SpringBoot项目 使用Nacos 做为 配置管理中心
 
 一、使用流程简介
-1）application.yum 配置 Nacos的地址（nacos:   config:  server-addr）
+1）application.yml 配置 Nacos的地址（nacos:   config:  server-addr）
 2.1）Java程序 指定Nacos的 dataId（@NacosPropertySource(dataId = "example", autoRefreshed = true)）
 2.2）Java程序 获取某个配置值@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+
+dataId -> k1=v1 k2=v2
 
 二、使用流程详解
 1、添加依赖。
