@@ -16,6 +16,7 @@
 		<module>com_live_test_MicroService_SpringCloudAlibaba_shopping</module>
 <!-- 		<module>com_live_test_MicroService_SpringCloudAlibaba_feign_consumer</module> -->
 		<module>com_live_test_MicroService_SpringCloudAlibaba_feign</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_gateway</module>
 	</modules>
 
 	<build>

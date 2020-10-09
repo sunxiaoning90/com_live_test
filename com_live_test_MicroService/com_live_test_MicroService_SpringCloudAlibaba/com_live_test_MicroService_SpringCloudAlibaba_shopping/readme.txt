@@ -1,6 +1,6 @@
-微服务 开发笔记：
-三、SpringCloudAlibaba
 
+各个组件串联
+com_live_test_MicroService_SpringCloudAlibaba_orderService
 
 order：订单服务
 stock：库存

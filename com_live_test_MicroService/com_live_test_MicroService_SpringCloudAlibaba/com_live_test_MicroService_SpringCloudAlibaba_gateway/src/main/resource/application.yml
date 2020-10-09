@@ -1,0 +1,12 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: gateway-service1
+          uri: https://blog.csdn.net
+          predicates:
+            - Path=/a
