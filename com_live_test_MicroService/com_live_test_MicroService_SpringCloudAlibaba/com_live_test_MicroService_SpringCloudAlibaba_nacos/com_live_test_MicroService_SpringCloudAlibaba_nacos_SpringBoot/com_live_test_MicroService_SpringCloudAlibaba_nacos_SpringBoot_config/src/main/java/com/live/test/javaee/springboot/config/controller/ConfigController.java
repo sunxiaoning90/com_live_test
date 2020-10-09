@@ -12,6 +12,7 @@ import com.alibaba.nacos.api.config.annotation.NacosValue;
 @RequestMapping("config")
 public class ConfigController {
 
+//	@NacosValue(value = "${useLocalCache2:false}", autoRefreshed = true)
 	@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
     private boolean useLocalCache;
 

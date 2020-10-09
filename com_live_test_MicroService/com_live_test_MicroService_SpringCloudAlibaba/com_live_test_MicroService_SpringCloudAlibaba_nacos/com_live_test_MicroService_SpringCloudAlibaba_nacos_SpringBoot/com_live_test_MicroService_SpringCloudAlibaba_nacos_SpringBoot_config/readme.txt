@@ -1,5 +1,11 @@
-<SpringBoot 使用Nacos 启动【配置管理】>
+Nacos：SpringBoot项目 使用Nacos 做为 配置管理中心
 
+一、使用流程简介
+1）application.yum 配置 Nacos的地址（nacos:   config:  server-addr）
+2.1）Java程序 指定Nacos的 dataId（@NacosPropertySource(dataId = "example", autoRefreshed = true)）
+2.2）Java程序 获取某个配置值@NacosValue(value = "${useLocalCache:false}", autoRefreshed = true)
+
+二、使用流程详解
 1、添加依赖。
 <dependency>
     <groupId>com.alibaba.boot</groupId>
@@ -46,5 +52,6 @@ public class ConfigController {
 5、启动 NacosConfigApplication，调用 curl http://localhost:8080/config/get，返回内容是 false。
 
 6、通过调用 Nacos Open API 向 Nacos server 发布配置：dataId 为example，内容为useLocalCache=true
-curl -X POST "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=example&group=DEFAULT_GROUP&content=useLocalCache=true"
+curl -X POST "http://127.0.0.1:8848/nacos/v1/cs/configs?dataId=example&group=DEFAULT_GROUP&content=useLocalCache=true"\
+
 7、再次访问 http://localhost:8080/config/get，此时返回内容为true，说明程序中的useLocalCache值已经被动态更新了。
