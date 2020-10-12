@@ -93,8 +93,110 @@ nacos
 				return restTemplate.getForObject("http://service-provider/discovery/provider/echo/" + str, String.class);
 
 
-feign
-ribbon
-sentinel
+Ribbon
+	1.准备远程服务，供Ribbon负载均衡调用测试
+	1.1、com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud_provider1
+		ribbon：Spring Cloud项目 使用ribbon 实现负载均衡（使用Nacos 做为 注册中心（服务提供1-服务：service-provider，端口：8081））
+		
+	1.2、com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud_provider2
+		ribbon：Spring Cloud项目 使用ribbon 实现负载均衡（使用Nacos 做为 注册中心（服务提供2-服务：service-provider，端口：8082））
+	
+	2、	ribbon：Spring Cloud项目 使用ribbon 实现负载均衡（@LoadBalanced）（使用Nacos 做为 注册中心（服务消费））
+
+	一、简介
+	nocas 默认集成了ribbon（负载均衡，使用@LoadBance即可）
+	
+	ribbon原理：拦截器:为RestTemplate增加了@LoanBalanced 注解后，实际上通过配置，为RestTemplate注入负载均衡拦截器，让负载均衡器选择根据其对应的策略选择合适的服务后，再发送请求。
+	
+	《通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现 服务发现 - 服务消费 - ribbon负载均衡》
+	
+	1)	通过 Spring Cloud 原生注解 @EnableDiscoveryClient 开启服务注册发现功能。给 RestTemplate 实例添加 @LoadBalanced 注解，开启 @LoadBalanced 与 Ribbon 的集成：
+	@SpringBootApplication
+	@ComponentScan(value = { "com.live.test.javaee.springboot.*" })
+	public class App {
+	
+	//	通过 Spring Cloud 原生注解 @EnableDiscoveryClient 开启服务注册发现功能。给 RestTemplate 实例添加 @LoadBalanced 注解，开启 @LoadBalanced 与 Ribbon 的集成：
+		@LoadBalanced
+		@Bean
+		public RestTemplate restTemplate() {
+			return new RestTemplate();
+		}
+	
+		public static void main(String[] args) {
+			ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
+			ConfigController bean = context.getBean(ConfigController.class);
+			System.out.println("尝试获取bean：" + bean);
+		}
+	}
+	
+	2)	通过 Nacos 的 @EnableDiscoveryClient 注解 开启服务发现
+	@Component
+	@RestController
+	@RequestMapping("discovery/consumer")
+	@EnableDiscoveryClient
+	public class DiscoveryConsumerController {
+	
+	//	@NacosInjected
+	//	@Autowired
+	//	private NamingService namingService;
+		private final RestTemplate restTemplate;
+	
+		@Autowired
+		public DiscoveryConsumerController(RestTemplate restTemplate) {
+			this.restTemplate = restTemplate;
+		}
+	
+		@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
+		public String echo(@PathVariable String str) {
+			return restTemplate.getForObject("http://service-provider/discovery/provider/echo/" + str, String.class);
+		}
+	}
+	
+OpenFeign/Feign
+	1、com_live_test_MicroService_SpringCloudAlibaba_feign_provider
+		feign：Spring Cloud项目 使用feign 实现远程服务接口调用（使用Nacos 做为 注册中心（服务提供-服务：service-provider，端口：8082））
+	
+	2、com_live_test_MicroService_SpringCloudAlibaba_feign_consumer
+		OpenFeign/Feign：Spring Cloud项目 使用feign 实现远程服务接口调用(@FeignClient)
+
+			一、简介
+			SpringCloud 通过 OpenFeign/Feign 服务调用方式
+			OpenFeign：类似于Dubbo，像调用本地方法一样调用远程服务
+			feign原理：代理.
+			ribbon原理：拦截器:为RestTemplate增加了@LoanBalanced 注解后，实际上通过配置，为RestTemplate注入负载均衡拦截器，让负载均衡器选择根据其对应的策略选择合适的服务后，再发送请求。
+			
+			在微服务架构开发时，常常会在一个项目中调用其他服务，其实使用Spring Cloud Ribbon就能实现这个需求，利用RestTemplate 的请求拦截来实现对依赖服务的接口调用， 但是实际项目中对服务依赖的调用可能不止于 一 处，往往 一 个接口会被多处调用，所以我们通常都会针对各个微服务自行封装 一 些客户端类来包装这些依赖服务的调用。 这个时候我们会发现，由于 RestTemplate 的封装，几乎每 一 个调用都是简单的模板化内容。
+			
+			Spring Cloud Feign 在此基础上做了进 一 步封装，由它来帮助我们定义和实现依赖服务接口的定义。在 Spring Cloud Feign 的实现下， 我们只需创建 一 个接口并用注解（@FeignClient）的方式来配置它， 即可完成对服务提供方的接口绑定，简化了在使用 Spring Cloud Ribbon 时自行封装服务调用客户端的开发量。 
+			
+			1）使用@FeignClient， 定义一个 服务接口 ：FeignTestServcie
+			
+			/**
+			 * 定义接口
+			 * 调用远程服务
+			 * 
+			 * @author live
+			 */
+			@FeignClient(name = "service-provider")
+			public interface FeignTestServcie {
+			
+				@GetMapping("discovery/provider/echo/{str}")
+			//	String echo(@PathVariable String str) ; //此写法错误，必须使用value指定 @PathVariable(value="str"）String str
+				String echo(@PathVariable(value = "str") String str);
+			}
+			2）注入后，直接调用 该Service 的方法
+			/**
+				 * 通过 Feign 服务调用方式
+				 */
+				@Autowired
+				FeignTestServcie service1;
+			
+				@RequestMapping(value = "/echoByFeign/{str}", method = RequestMethod.GET)
+				public String echoByFeign(@PathVariable String str) {
+					return service1.echo(str);
+				}
+				
+Sentinel
+
 gateway
 
