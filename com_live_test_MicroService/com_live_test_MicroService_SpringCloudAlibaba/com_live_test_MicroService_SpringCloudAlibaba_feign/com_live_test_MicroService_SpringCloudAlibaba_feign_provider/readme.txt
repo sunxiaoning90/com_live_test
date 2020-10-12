@@ -1,1 +1,1 @@
-《配合 feign》
+feign：Spring Cloud项目 使用feign 实现远程服务接口调用（使用Nacos 做为 注册中心（服务提供-服务：service-provider，端口：8082））
