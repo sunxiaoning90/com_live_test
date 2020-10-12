@@ -1,7 +1,11 @@
-feign：Spring Cloud项目 使用feign 实现远程服务接口调用(@FeignClient)
+OpenFeign/Feign：Spring Cloud项目 使用feign 实现远程服务接口调用(@FeignClient)
 
 一、简介
-SpringCloud 通过 Feign 服务调用方式
+SpringCloud 通过 OpenFeign/Feign 服务调用方式
+OpenFeign：类似于Dubbo，像调用本地方法一样调用远程服务
+feign原理：代理.
+ribbon原理：拦截器:为RestTemplate增加了@LoanBalanced 注解后，实际上通过配置，为RestTemplate注入负载均衡拦截器，让负载均衡器选择根据其对应的策略选择合适的服务后，再发送请求。
+
 
 在微服务架构开发是，我们常常会在一个项目中调用其他服务，其实使用Spring Cloud Rbbon就能实现这个需求，利用RestTemplate 的请求拦截来实现对依赖服务的接口调用， 但是实际项目中对服务依赖的调用可能不止于 一 处，往往 一 个接口会被多处调用，所以我们通常都会针对各个微服务自行封装 一 些客户端类来包装这些依赖服务的调用。 这个时候我们会发现，由于 RestTemplate 的封装，几乎每 一 个调用都是简单的模板化内容。
 

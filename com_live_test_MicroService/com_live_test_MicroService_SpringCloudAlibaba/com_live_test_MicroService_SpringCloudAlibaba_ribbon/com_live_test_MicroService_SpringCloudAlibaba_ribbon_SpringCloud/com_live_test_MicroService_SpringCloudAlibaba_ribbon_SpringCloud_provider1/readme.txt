@@ -1,5 +1,10 @@
+ribbon：Spring Cloud项目 使用ribbon 实现负载均衡（使用Nacos 做为 注册中心（服务提供1-服务：service-provider，端口：8081））
+
+一、简介
 《通过 Nacos Server 和 spring-cloud-starter-alibaba-nacos-discovery 实现 服务发现 -ribbon负载均衡 - 服务提供1》
 
+
+二、详解
 1、添加依赖。
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -145,3 +150,5 @@ public class DiscoveryProviderController {
 
 
 5、测试访问 controller
+
+
