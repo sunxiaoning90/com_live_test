@@ -1,7 +1,7 @@
 微服务 开发笔记：
 SpringCloudAlibaba
 
-nacos
+Nacos：配置中心 & 注册中心
 	1、com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringBoot_config	
 		//Nacos：SpringBoot项目 使用Nacos 做为 配置管理中心
 		
@@ -93,7 +93,7 @@ nacos
 				return restTemplate.getForObject("http://service-provider/discovery/provider/echo/" + str, String.class);
 
 
-Ribbon
+Ribbon：负载均衡
 	1.准备远程服务，供Ribbon负载均衡调用测试
 	1.1、com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud_provider1
 		ribbon：Spring Cloud项目 使用ribbon 实现负载均衡（使用Nacos 做为 注册中心（服务提供1-服务：service-provider，端口：8081））
@@ -152,9 +152,9 @@ Ribbon
 		}
 	}
 	
-OpenFeign/Feign
+OpenFeign/Feign：服务接口调用
 	1、com_live_test_MicroService_SpringCloudAlibaba_feign_provider
-		feign：Spring Cloud项目 使用feign 实现远程服务接口调用（使用Nacos 做为 注册中心（服务提供-服务：service-provider，端口：8082））
+		feign：Spring Cloud项目 使用 feign 实现远程服务接口调用（使用Nacos 做为 注册中心（服务提供-服务：service-provider，端口：8082））
 	
 	2、com_live_test_MicroService_SpringCloudAlibaba_feign_consumer
 		OpenFeign/Feign：Spring Cloud项目 使用feign 实现远程服务接口调用(@FeignClient)
@@ -196,7 +196,102 @@ OpenFeign/Feign
 					return service1.echo(str);
 				}
 				
-Sentinel
+Sentinel：限流/降级/熔断
+	1、com_live_test_MicroService_SpringCloudAlibaba_sentinel_provider
+		该项目仅仅负责提供服务，一般限流/降级/熔断 控制在客户端（服务消费端），不在服务提供端做任何支持
+	
+	2、com_live_test_MicroService_SpringCloudAlibaba_sentinel_consumer
+		Sentinel：Spring Cloud项目 使用 Sentinel实现 限流/降级/熔断
 
-gateway
+		一、简介
+		一般 限流/降级/熔断 控制在客户端（服务消费端），不在服务提供端做任何支持
+		
+		1）准备资源限流规则 FlowRule
+			/**
+			 * 使用代码设置sentinel，也可以在sentinel-Dashboard控制台设置
+			 */
+			// @RequestMapping("/initFlowRules")
+			private void initFlowRules() {
+				List<FlowRule> rules = new ArrayList<>();
+				FlowRule rule = new FlowRule();
+				rule.setResource("HelloWorld");
+				rule.setGrade(RuleConstant.FLOW_GRADE_QPS);
+				// Set limit QPS to 20.
+		//		rule.setCount(20);
+				rule.setCount(1);
+				rules.add(rule);
+				FlowRuleManager.loadRules(rules);
+			}
+			
+		2）为某个资源设置准备好的规则	：@SentinelResource("xxx")
+			@SentinelResource("HelloWorld")
+				@RequestMapping("/helloWorld")
+				public String helloWorld() {
+			
+					// 1.5.0 版本开始可以直接利用 try-with-resources 特性，自动 exit entry
+					try (Entry entry = SphU.entry("HelloWorld")) {
+						// 被保护的逻辑
+						System.out.println("hello world");
+						return "hello world";
+					} catch (BlockException ex) {
+						// 处理被流控的逻辑
+						System.out.println("blocked!");
+					}
+			
+					return "blocked";
+				}
+				
+		3）访问被限流的请求
+	
+GateWay：微服务网关
 
+1、com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile
+Gateway：Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦截、转发 (通过配置文件的方式)
+
+一、简介
+
+1）引入依赖 spring-cloud-starter-gateway
+2）配置application.yml
+cloud:
+    gateway:
+      discovery: 
+        locator: 
+              #开启以服务id去注册中心上获取转发地址
+            enabled: true
+            
+        #路由策略
+      routes:
+        - id: gateway-service1
+            #转发到目的地址 http://realUrl.userApi001.com
+          uri: http://realUrl.userApi001.com
+          #uri: https://www.baidu.com/
+            #匹配规则
+          predicates:
+            - Path=/userApi/**
+            ## 最终拦截效果 http://localhost:8081/userApi  转发到 http://realUrl.userApi001.com
+ 3、测试
+ 浏览器访问：http://192.168.1.50:8081/userApi/get?id=1
+ 跳转到了           http://realUrl.userApi001.com/userApi/get?id=1
+
+2、com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile_withNacos
+Gateway：Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦截、转发 (通过配置文件的方式) --整合Nacos
+
+一、简介
+
+在 《Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦截、转发 (通过配置文件的方式)》基础上，整合Nacos，实现服务负载均衡
+
+1）配置 pom， 
+	新增 Nacos依赖
+2）配置 application.yml
+	 #注意：转发的目的地址 从 Nacos 注册中心 获取
+          uri: lb://service-provider
+            # filters不可少
+          filters:
+            - StripPrefix=1
+
+
+filex
+服务注册和服务发现-Eureka
+负载均衡-Ribbon的使用
+声明式REST客户端-Feign的使用
+断路器-Hystrix的认识

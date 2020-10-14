@@ -1,9 +1,30 @@
+com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile
 Gateway：Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦截、转发 (通过配置文件的方式)
 
 一、简介
-《com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile》
 
-最终拦截效果 http://localhost:8081/userApi  转发到 http://realUrl.userApi001.com[:8082]/userApi
+1）引入依赖 spring-cloud-starter-gateway
+2）配置application.yml
+cloud:
+    gateway:
+      discovery: 
+        locator: 
+              #开启以服务id去注册中心上获取转发地址
+            enabled: true
+            
+        #路由策略
+      routes:
+        - id: gateway-service1
+            #转发到目的地址 http://realUrl.userApi001.com
+          uri: http://realUrl.userApi001.com
+          #uri: https://www.baidu.com/
+            #匹配规则
+          predicates:
+            - Path=/userApi/**
+            ## 最终拦截效果 http://localhost:8081/userApi  转发到 http://realUrl.userApi001.com
+ 3、测试
+ 浏览器访问：http://192.168.1.50:8081/userApi/get?id=1
+ 跳转到了           http://realUrl.userApi001.com/userApi/get?id=1
 
 1、什么是微服务网关
 微服务网关是整个微服务API请求的入口，可以实现过滤Api接口。

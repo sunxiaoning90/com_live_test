@@ -1,7 +1,7 @@
+com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile_withNacos
 Gateway：Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦截、转发 (通过配置文件的方式) --整合Nacos
 
 一、简介
-com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile_withNacos
 
 在 《Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦截、转发 (通过配置文件的方式)》基础上，整合Nacos，实现服务负载均衡
 

@@ -20,7 +20,7 @@
 		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
 			<version>3.8.1</version> <scope>test</scope> </dependency> -->
 		<!-- junit5 -->
-		
+
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -28,25 +28,13 @@
 			<version>4.13</version>
 			<scope>compile</scope>
 		</dependency>
-		
-		<!-- <dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-launcher</artifactId>
-			<version>1.0.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.0.1</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<version>4.12.1</version>
-			<scope>compile</scope>
-		</dependency> -->
+
+		<!-- <dependency> <groupId>org.junit.platform</groupId> <artifactId>junit-platform-launcher</artifactId> 
+			<version>1.0.1</version> <scope>compile</scope> </dependency> <dependency> 
+			<groupId>org.junit.jupiter</groupId> <artifactId>junit-jupiter-engine</artifactId> 
+			<version>5.0.1</version> <scope>compile</scope> </dependency> <dependency> 
+			<groupId>org.junit.vintage</groupId> <artifactId>junit-vintage-engine</artifactId> 
+			<version>4.12.1</version> <scope>compile</scope> </dependency> -->
 
 		<!-- fastjson -->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -150,11 +138,8 @@
 		<!-- poi结束 -->
 
 		<!-- quartz开始 -->
-		<!-- <dependency>
-			<groupId>com.novemberain</groupId>
-			<artifactId>quartz-mongodb</artifactId>
-			<version>2.0.0</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.novemberain</groupId> <artifactId>quartz-mongodb</artifactId> 
+			<version>2.0.0</version> </dependency> -->
 
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -187,26 +172,32 @@
 		<!-- mysql驱动 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>5.1.36</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.36</version>
 		</dependency>
 
 
-	<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-	<dependency>
-	    <groupId>org.slf4j</groupId>
-	    <artifactId>slf4j-api</artifactId>
-	    <version>1.7.25</version>
-	</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
 
-<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-<dependency>
-    <groupId>org.slf4j</groupId>
-    <artifactId>slf4j-log4j12</artifactId>
-    <version>1.7.25</version>
-    <scope>test</scope>
-</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+			<scope>test</scope>
+		</dependency>
 
+		<!-- 想要知道 Object o = new Object();在内存中占用了多少字节，可以使用如下方法直观的看到。 -->
+		<dependency>
+			<groupId>org.openjdk.jol</groupId>
+			<artifactId>jol-core</artifactId>
+			<version>0.9</version>
+		</dependency>
 	</dependencies>
 </project>

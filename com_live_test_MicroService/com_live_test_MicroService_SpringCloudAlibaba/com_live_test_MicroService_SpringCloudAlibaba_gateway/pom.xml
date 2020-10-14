@@ -11,6 +11,7 @@
 
 	<modules>
         <module>com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile</module>
+        <module>com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile_withNacos</module>
         <module>com_live_test_MicroService_SpringCloudAlibaba_gateway_byJava_RouteLocatorBuilder</module>
 	</modules>
 
