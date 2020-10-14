@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>SpringCloudAlibaba-shopping-orderService</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_Gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudAlibaba_shopping_orderService</name>
+	<name>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_Gateway</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
