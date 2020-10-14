@@ -1,12 +1,24 @@
 server:
-  port: 8086
+  port: 8081
+  
 spring:
   application:
-    name: api-gateway
+    name: api-gateway-01
+    
   cloud:
     gateway:
+      discovery: 
+        locator: 
+              #开启以服务id去注册中心上获取转发地址
+            enabled: true
+            
+        #路由策略
       routes:
         - id: gateway-service1
-          uri: https://blog.csdn.net
+            #转发到目的地址 http://realUrl.userApi001.com
+          uri: http://realUrl.userApi001.com
+          #uri: https://www.baidu.com/
+            #匹配规则
           predicates:
-            - Path=/a
+            - Path=/userApi/**
+            ## 最终拦截效果 http://localhost:8081/userApi  转发到 http://realUrl.userApi001.com
