@@ -4,13 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>SpringCloudAlibaba</artifactId>
+	<artifactId>SpringCloudAlibaba-nacos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>com_live_test_MicroService_SpringCloudAlibaba_gateway</name>
 
 	<modules>
-		<module>com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile</module>
+        <module>com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile</module>
+        <module>com_live_test_MicroService_SpringCloudAlibaba_gateway_byJava_RouteLocatorBuilder</module>
 	</modules>
 
 	<build>
