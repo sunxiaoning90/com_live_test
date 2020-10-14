@@ -1,16 +1,39 @@
-server: 
- port: 8081
-
-spring: 
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.13.106:3306/test-spring-boot
-    username: root
-    password: root
-
-mybatis:
-  mapper-locations: classpath:*Mapper.xml
+server:
+  port: 8081
   
-nacos:  
-  config: 
-    server-addr: 192.168.1.52:8848
+spring:
+  application:
+    name: api-gateway-01
+    
+  cloud:
+    gateway:
+      discovery: 
+        locator: 
+              #开启以服务id去注册中心上获取转发地址
+            enabled: true
+            
+        #路由策略
+      routes:
+        - id: gateway-service1
+            #转发到目的地址 http://realUrl.userApi001.com
+          #uri: http://realUrl.userApi001.com/
+          #uri: https://www.baidu.com/
+          
+            #注意：转发的目的地址 从 Nacos 注册中心 获取
+          uri: lb://service-provider
+            # filters不可少
+          filters:
+            - StripPrefix=1
+          
+            #匹配规则
+          predicates:
+            - Path=/userApi/**
+            
+    #nacos做为注册中心           
+    nacos:
+        discovery:
+          server-addr: 192.168.1.52:8848
+            
+            # 网关最终拦截效果 
+            #浏览器访问：http://192.168.1.50:8082/userApi/discovery/provider/echo/abc1
+            #跳转到了         http://service-provider/discovery/provider/echo/abc1 实际地址：  http://192.168.1.50:8082/userApi/discovery/provider/echo/abc1
