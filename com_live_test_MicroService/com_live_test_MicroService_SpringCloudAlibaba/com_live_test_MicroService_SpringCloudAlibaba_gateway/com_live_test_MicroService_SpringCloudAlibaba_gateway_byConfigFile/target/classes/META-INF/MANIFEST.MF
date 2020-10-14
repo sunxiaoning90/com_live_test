@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Built-By: fan
+Build-Jdk: 10.0.1
+Implementation-Title: com_live_test_MicroService_SpringCloudAlibaba_ga
+ teway_byConfigFile
+Implementation-Version: 0.1.0
+Implementation-Vendor-Id: com.live.test.MicroService
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/com_live_test_MicroService_SpringCloudAlibaba_gatew
+ ay_byConfigFile
+Created-By: Maven Integration for Eclipse
+
