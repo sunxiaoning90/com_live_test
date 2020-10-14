@@ -16,7 +16,7 @@ spring:
       routes:
         - id: gateway-service1
             #转发到目的地址 http://realUrl.userApi001.com
-          uri: http://realUrl.userApi001.com
+          uri: http://realUrl.userApi001.com/
           #uri: https://www.baidu.com/
             #匹配规则
           predicates:

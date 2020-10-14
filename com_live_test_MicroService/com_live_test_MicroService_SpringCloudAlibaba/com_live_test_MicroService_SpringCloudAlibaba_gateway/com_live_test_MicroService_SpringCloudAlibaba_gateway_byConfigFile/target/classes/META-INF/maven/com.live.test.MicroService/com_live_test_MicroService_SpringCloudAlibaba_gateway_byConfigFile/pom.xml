@@ -7,6 +7,7 @@
 	<groupId>com.live.test.MicroService</groupId>
 	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile</artifactId>
 	<version>0.1.0</version>
+	<packaging>jar</packaging>
 
 	<!-- -->
 	<!-- <parent> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-parent</artifactId> 
@@ -28,10 +29,12 @@
 
 	<build>
 		<plugins>
-			<plugin>
+
+			<!-- 注释spring-boot-maven-plugin原因：因为这个插件会重新打包(repackage),打包成spring-boot可通过-jar形式运行的jar或war包，并且把原来maven打包重名称成.war.original结尾 -->
+			<!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
@@ -40,7 +43,8 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.0.RELEASE</version>
 	</parent>
-	
+
+	<!-- 微服务网关 -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -48,24 +52,16 @@
 			<version>2.0.0.RELEASE</version>
 		</dependency>
 
-		<!--
-			注意：不需要web依赖
-			***************************
-			APPLICATION FAILED TO START
-			***************************
-			Description:
-			Parameter 0 of method modifyRequestBodyGatewayFilterFactory in org.springframework.cloud.gateway.config.GatewayAutoConfiguration required a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' that could not be found.
-			
-			Action:
-			Consider defining a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' in your configuration.
-		  -->
-		  
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency> -->
+		<!-- 注意：不需要web依赖 *************************** APPLICATION FAILED TO START 
+			*************************** Description: Parameter 0 of method modifyRequestBodyGatewayFilterFactory 
+			in org.springframework.cloud.gateway.config.GatewayAutoConfiguration required 
+			a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' that 
+			could not be found. Action: Consider defining a bean of type 'org.springframework.http.codec.ServerCodecConfigurer' 
+			in your configuration. -->
+
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-web</artifactId> 
+			</dependency> -->
 
 	</dependencies>
-
 
 </project>
