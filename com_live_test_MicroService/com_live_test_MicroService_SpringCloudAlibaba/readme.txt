@@ -1,6 +1,17 @@
 微服务 开发笔记：
 SpringCloudAlibaba
 
+一、项目目录
+Nacos：配置中心 & 注册中心
+Ribbon：负载均衡
+OpenFeign/Feign：服务接口调用
+Sentinel：限流/降级/熔断
+GateWay：微服务网关
+
+一个小项目（待）
+
+二、项目清单
+
 Nacos：配置中心 & 注册中心
 	1、com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringBoot_config	
 		//Nacos：SpringBoot项目 使用Nacos 做为 配置管理中心
@@ -288,10 +299,3 @@ Gateway：Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦
             # filters不可少
           filters:
             - StripPrefix=1
-
-
-filex
-服务注册和服务发现-Eureka
-负载均衡-Ribbon的使用
-声明式REST客户端-Feign的使用
-断路器-Hystrix的认识

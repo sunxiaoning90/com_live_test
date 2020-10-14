@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>SpringCloudAlibaba-nacos-SpringCloud</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud</name>
