@@ -1,6 +1,7 @@
-《网关：com_live_test_MicroService_SpringCloudAlibaba_gateway》
+Gateway：Spring Cloud项目使用Gateway作为网关,实现服务拦截、转发
 
 一、简介
+《网关：com_live_test_MicroService_SpringCloudAlibaba_gateway》
 
 最终拦截效果 http://localhost:8081/userApi  转发到 http://realUrl.userApi001.com[:8082]/userApi
 
