@@ -10,7 +10,7 @@ import com.live.test.javaee.springboot.order.OrderController;
 @SpringBootApplication
 @ComponentScan(value = { "com.live.test.javaee.springboot.*" })
 public class App {
-	public static final String APP_NAME_ALIAS = "订单服务-ticketShopping_order1";
+	public static final String APP_NAME_ALIAS = "订单服务-ticketShopping_order2_provider01";
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);

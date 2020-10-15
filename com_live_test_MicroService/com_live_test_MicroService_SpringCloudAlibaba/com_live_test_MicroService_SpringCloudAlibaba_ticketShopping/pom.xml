@@ -13,6 +13,8 @@
 		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_gateway</module>
 		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order</module>
 		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2_provider01</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2_provider02</module>
 	</modules>
 
 	<build>

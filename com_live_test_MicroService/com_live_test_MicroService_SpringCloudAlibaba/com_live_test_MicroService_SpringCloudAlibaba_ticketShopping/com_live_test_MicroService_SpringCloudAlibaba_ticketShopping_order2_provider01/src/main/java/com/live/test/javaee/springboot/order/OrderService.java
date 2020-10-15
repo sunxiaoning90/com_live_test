@@ -20,8 +20,8 @@ public class OrderService {
 				.append(",ticketId:").append(ticketId).append(",pcs:").append(pcs).toString();
 		System.out.println(r);
 		return r;
-		
-		//rpc调用远端服务
+
+		// rpc调用远端服务
 	}
 
 }

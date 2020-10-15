@@ -50,10 +50,14 @@ public class OrderController {
 //				.append(",ticketId:").append(ticketId).append(",pcs:").append(pcs).toString();
 //		System.out.println(r);
 //		return r;
-		
-		//调用远端服务
-//		return restTemplate.getForObject("http://ticketShopping-order/order/createOrder", String.class);
-		return restTemplate.getForObject("http://ticketShopping-order/order/createOrder", String.class, map);
+
+		// 调用远端服务
+		// http get方式：
+//		return restTemplate.getForObject("http://ticketShopping-order2Lb-provider/order/createOrder", String.class, map);
+
+		// http post方式：
+		return restTemplate.postForObject("http://ticketShopping-order2Lb-provider/order/createOrder", map,
+				String.class, map);
 	}
 
 }
