@@ -12,7 +12,7 @@ order：订单服务(controller + service)
 
 stock：库存 (service)
 
-crediits：积分(service)
+credits：积分(service)
 
 通知notice
 

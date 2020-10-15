@@ -1,9 +1,9 @@
 server:
-  port: 8081
+  port: 8080
   
 spring:
   application:
-    name: api-gateway-01
+    name: apiGteway-ticketShopping
     
   cloud:
     gateway:
@@ -14,20 +14,61 @@ spring:
             
         #路由策略
       routes:
-        - id: gateway-service1
+          ##路由1
+        - id: apiGteway-ticketShopping-order
             #转发到目的地址 http://realUrl.userApi001.com
           #uri: http://realUrl.userApi001.com/
           #uri: https://www.baidu.com/
           
             #注意：转发的目的地址 从 Nacos 注册中心 获取
-          uri: lb://service-provider
-            # filters不可少
+          uri: lb://ticketShopping-order/
+            # filters不可少 ,StripPrefix网关过滤器工厂采用一个参数StripPrefix。 StripPrefix参数表示在将请求发送到下游之前从请求中剥离的路径个数。
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
           
             #匹配规则
           predicates:
-            - Path=/userApi/**
+            - Path=/apiGteway/ticketShopping/order/**
+            
+          ##路由2
+        - id: apiGteway-ticketShopping-stock
+            #转发到目的地址
+            #注意：转发的目的地址 从 Nacos 注册中心 获取
+          uri: lb://ticketShopping-stock
+            # filters不可少
+          filters:
+            - StripPrefix=2
+          
+            #匹配规则
+          predicates:
+            - Path=/apiGteway/ticketShopping/stock/**
+            
+          ##路由3
+        - id: apiGteway-ticketShopping-credits
+            #转发到目的地址 
+            #注意：转发的目的地址 从 Nacos 注册中心 获取
+          uri: lb://ticketShopping-credits
+            # filters不可少
+          filters:
+            - StripPrefix=2
+          
+            #匹配规则
+          predicates:
+            - Path=/apiGteway/ticketShopping/credits/**
+            
+          ##路由4
+        - id: apiGteway-ticketShopping-notice
+            #转发到目的地址 
+            #注意：转发的目的地址 从 Nacos 注册中心 获取
+          uri: lb://ticketShopping-notice
+            # filters不可少
+          filters:
+            - StripPrefix=2
+          
+            #匹配规则
+          predicates:
+            - Path=/apiGteway/ticketShopping/notice/**
+            
             
     #nacos做为注册中心           
     nacos:

@@ -11,7 +11,7 @@ public class App {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
-		System.out.println("context：" + context);
+		System.out.println("gateway启动成功：8080，context：" + context);
 		
 		//ConfigController bean = context.getBean(ConfigController.class);
 		//System.out.println("尝试获取bean：" + bean);
