@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_stock</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order</name>
+	<name>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_stock</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -86,24 +86,6 @@
 			<!-- <version>2.2.1.RELEASE</version> -->
 		</dependency>
 
-<!-- 引入 Sentinel 依赖 -->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-core</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-
-		<!-- 控制台 -->
-		<!-- java -Dserver.port=8088 -Dcsp.sentinel.dashboard.server=localhost:8088 
-			-Dproject.name=sentinel-dashboard -jar target/sentinel-dashboard.jar 上面其实是把控制台自己接入进来了，如果要接入我们实际工作中的项目，该怎么接入？ 
-			客户端需要引入 Transport 模块来与 Sentinel 控制台进行通信。您可以通过 pom.xml 引入 JAR 包: 同样的增加JVM启动参数指定控制台的地址： 
-			-Dcsp.sentinel.dashboard.server=localhost:8333 -->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-transport-simple-http</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		
 	</dependencies>
 
 	<build>

@@ -56,8 +56,23 @@ public class OrderController {
 //		return restTemplate.getForObject("http://ticketShopping-order2Lb-provider/order/createOrder", String.class, map);
 
 		// http post方式：
-		return restTemplate.postForObject("http://ticketShopping-order2Lb-provider/order/createOrder", map,
+		 String createOrderResult = restTemplate.postForObject("http://ticketShopping-order2Lb-provider/order/createOrder", map,
 				String.class, map);
+		 System.out.println(createOrderResult);
+		 
+		 String createStockResult = restTemplate.postForObject("http://ticketShopping-stock/stock/createStock", map,
+					String.class, map);
+		 System.out.println(createStockResult);
+		 
+		 String createCreditsResult = restTemplate.postForObject("http://ticketShopping-credit/credits/createCredits", map,
+				 String.class, map);
+		 System.out.println(createCreditsResult);
+		 
+		 String noticeResult = restTemplate.postForObject("http://ticketShopping-notice/notice/createNotice", map,
+				 String.class, map);
+		 System.out.println(noticeResult);
+		 
+		 return createOrderResult;
 	}
 
 }

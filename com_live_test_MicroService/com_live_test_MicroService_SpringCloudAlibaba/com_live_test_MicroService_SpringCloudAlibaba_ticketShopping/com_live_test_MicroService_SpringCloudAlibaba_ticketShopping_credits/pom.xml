@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_credits</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order</name>
+	<name>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_credits</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -86,11 +86,11 @@
 			<!-- <version>2.2.1.RELEASE</version> -->
 		</dependency>
 
-<!-- 引入 Sentinel 依赖 -->
+		<!-- 引入 Sentinel 依赖 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-core</artifactId>
-			<version>1.7.2</version>
+			<!-- <version>1.7.2</version> -->
 		</dependency>
 
 		<!-- 控制台 -->
@@ -101,9 +101,9 @@
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-transport-simple-http</artifactId>
-			<version>1.7.2</version>
+			<!-- <version>1.7.2</version> -->
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
