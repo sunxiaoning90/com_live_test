@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider01</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider01</name>
+	<name>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_consumer</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -86,6 +86,24 @@
 			<!-- <version>2.2.1.RELEASE</version> -->
 		</dependency>
 
+		<!-- 引入 Sentinel 依赖 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-core</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
+		<!-- 控制台 -->
+		<!-- java -Dserver.port=8088 -Dcsp.sentinel.dashboard.server=localhost:8088 
+			-Dproject.name=sentinel-dashboard -jar target/sentinel-dashboard.jar 上面其实是把控制台自己接入进来了，如果要接入我们实际工作中的项目，该怎么接入？ 
+			客户端需要引入 Transport 模块来与 Sentinel 控制台进行通信。您可以通过 pom.xml 引入 JAR 包: 同样的增加JVM启动参数指定控制台的地址： 
+			-Dcsp.sentinel.dashboard.server=localhost:8333 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-transport-simple-http</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+
 		<!-- dubbo 服务接口 -->
 		<dependency>
 			<groupId>com.live.test.MicroService</groupId>
@@ -93,20 +111,54 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
-
-        <dependency>        
-            <!--<groupId>com.alibaba.cloud</groupId>-->
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-dubbo</artifactId>
-        </dependency>
-
-<!--  Field dubboMetadata in org.apache.dubbo.spring.boot.actuate.endpoint.DubboMetadataEndpoint required a bean of type 'org.apache.dubbo.spring.boot.actuate.endpoint.metadata.DubboMetadata' that could not be found.
- -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>        
+		<!-- <dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-dubbo</artifactId>
+		</dependency> -->
 		
+		<!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo -->
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+
+		<!-- zk -->
+		<!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.curator/curator-framework -->
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-framework</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+
+		<!-- slf4j -->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.0-alpha1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>29.0-jre</version>
+		</dependency>
 	</dependencies>
 
 	<build>

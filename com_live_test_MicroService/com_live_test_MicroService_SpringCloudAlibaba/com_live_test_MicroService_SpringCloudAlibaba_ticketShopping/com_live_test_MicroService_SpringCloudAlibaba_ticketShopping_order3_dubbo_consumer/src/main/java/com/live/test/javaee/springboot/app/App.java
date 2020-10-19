@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.live.test.javaee.springboot.order.IOrderService;
 import com.live.test.javaee.springboot.order.OrderController;
 
 @SpringBootApplication

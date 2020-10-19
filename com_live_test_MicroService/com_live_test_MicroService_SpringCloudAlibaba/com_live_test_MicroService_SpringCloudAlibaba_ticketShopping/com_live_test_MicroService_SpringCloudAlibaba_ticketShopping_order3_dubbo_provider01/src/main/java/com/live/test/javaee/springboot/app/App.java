@@ -15,8 +15,8 @@ public class App {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
 		
-		OrderService bean = context.getBean(OrderService.class);
-		System.out.println("尝试获取bean：" + bean);
+		//OrderService bean = context.getBean(OrderService.class);
+		//System.out.println("尝试获取bean：" + bean);
 		
 		System.out.println(APP_NAME_ALIAS + "启动成功...");
 

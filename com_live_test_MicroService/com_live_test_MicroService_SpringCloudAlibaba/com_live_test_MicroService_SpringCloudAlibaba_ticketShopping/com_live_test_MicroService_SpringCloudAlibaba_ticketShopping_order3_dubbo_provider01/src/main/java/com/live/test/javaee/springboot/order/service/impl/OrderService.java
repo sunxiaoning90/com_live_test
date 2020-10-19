@@ -2,13 +2,11 @@ package com.live.test.javaee.springboot.order.service.impl;
 
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
-
 import com.live.test.javaee.springboot.app.App;
 import com.live.test.javaee.springboot.order.IOrderService;
 
-//@com.alibaba.dubbo.config.annotation.Service
-@Service
+//@Service
+@com.alibaba.dubbo.config.annotation.Service
 public class OrderService implements IOrderService {
 
 	public String createOrder(Map<String, String> map) {
