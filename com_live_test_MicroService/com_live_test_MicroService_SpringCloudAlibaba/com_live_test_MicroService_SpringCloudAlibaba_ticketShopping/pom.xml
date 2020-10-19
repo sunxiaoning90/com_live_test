@@ -17,6 +17,11 @@
 		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2_provider01</module>
 		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2_provider02</module>
         
+        <module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_orderServiceAPI</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_consumer</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider01</module>
+		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider02</module>
+        
 		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_stock</module>
         
         <module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_credits</module>

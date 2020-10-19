@@ -2,7 +2,6 @@ package com.live.test.javaee.springboot.order;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,7 @@ public class OrderController {
 	//OrderService orderService;
 	
 	//dubbo远端服务
-//	@Autowired
+	@org.apache.dubbo.config.annotation.Reference
 	IOrderService orderService;
 
 	/**
@@ -34,7 +33,7 @@ public class OrderController {
 //	@RequestMapping(value = "/createOrder", method = RequestMethod.POST)
 	@PostMapping(value = "/createOrder")
 	public String createOrder(@RequestBody Map<String, String> map) {
-
+		System.out.println("orderService："+orderService);
 //		String userId = map.get("userId");
 //		String ticketId = map.get("ticketId");
 //		String pcs = map.get("pcs");
