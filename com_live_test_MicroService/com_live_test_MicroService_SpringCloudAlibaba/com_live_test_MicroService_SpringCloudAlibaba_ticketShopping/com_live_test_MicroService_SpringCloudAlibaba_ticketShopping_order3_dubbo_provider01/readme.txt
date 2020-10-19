@@ -1,0 +1,7 @@
+com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order
+订单服务
+
+1、服务名
+spring.application.name=ticketShopping-order2
+
+2、controller访问Service 的方式： 直接访问本地Service
