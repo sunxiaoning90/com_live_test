@@ -2,13 +2,13 @@ package com.live.test.javaee.springboot.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.live.test.javaee.springboot.order.service.impl.OrderService;
-
 @SpringBootApplication
 @ComponentScan(value = { "com.live.test.javaee.springboot.*" })
+@EnableDiscoveryClient
 public class App {
 	public static final String APP_NAME_ALIAS = "订单服务-ticketShopping_order3_dubbo_provider01";
 

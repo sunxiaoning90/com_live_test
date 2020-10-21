@@ -20,7 +20,7 @@ public class OrderController {
 	//OrderService orderService;
 	
 	//dubbo远端服务
-	@org.apache.dubbo.config.annotation.Reference
+	@org.apache.dubbo.config.annotation.Reference(version="2020.10")
 	IOrderService orderService;
 
 	/**

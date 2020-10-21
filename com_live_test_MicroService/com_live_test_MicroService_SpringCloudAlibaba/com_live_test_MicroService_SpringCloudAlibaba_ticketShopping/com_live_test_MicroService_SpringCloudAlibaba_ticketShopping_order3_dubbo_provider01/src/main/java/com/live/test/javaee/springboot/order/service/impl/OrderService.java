@@ -6,7 +6,7 @@ import com.live.test.javaee.springboot.app.App;
 import com.live.test.javaee.springboot.order.IOrderService;
 
 //@Service
-@com.alibaba.dubbo.config.annotation.Service
+@com.alibaba.dubbo.config.annotation.Service(version="2020.10")
 public class OrderService implements IOrderService {
 
 	public String createOrder(Map<String, String> map) {
