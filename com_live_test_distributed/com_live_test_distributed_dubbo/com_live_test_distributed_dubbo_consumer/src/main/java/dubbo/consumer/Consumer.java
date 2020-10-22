@@ -15,7 +15,7 @@ public class Consumer {
 		DemoService demoService = (DemoService) context.getBean("demoService"); // 获取远程服务代理
 		System.out.println("demoService:" + demoService); // demoService:org.apache.dubbo.common.bytecode.proxy0@26a529dc
 		String hello = demoService.sayHello("world"); // 执行远程方法
-		System.out.println(hello); // 显示调用结果
+		System.out.println("RPC结果："+hello); // 调用结果
 
 		context.close();
 	}
