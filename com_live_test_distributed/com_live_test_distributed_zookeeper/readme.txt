@@ -62,6 +62,9 @@ Step5：检测是否成功启动，用zookeeper客户端连接下服务端
 ZooKeeper JMX enabled by default
 Using config: /opt/zk/apache-zookeeper-3.6.1-bin/bin/../conf/zoo.cfg
 Starting zookeeper ... STARTED
+
+*指定ip， 参数是clientPortAddress，而不是clientPortBindAddress，官方文档有误。
+
 2、查看zk状态（查看单机ZooKeeper是leader还是follower)
 [root@localhost apache-zookeeper-3.6.1-bin]# sh bin/zkServer.sh status
 ZooKeeper JMX enabled by default
@@ -91,3 +94,22 @@ my_data
 6、 deleteall 删除非空节点
 三、使用Java API操作zookeeper
 zookeeper 实现分布式配置中心：
+
+public static void main(String[] args) throws Exception {
+		// zookeeper配置数据存放路径
+		String path = "/n1";
+		// 连接zookeeper并且注册一个默认的监听器
+		zk = new ZooKeeper("192.168.1.52:2181", 5000, //
+				new ZooKeeperClientSync());
+		System.out.println("zk:" + zk);
+
+		// 等待zk连接成功的通知
+		connectedSemaphore.await();
+
+		// 获取path目录节点的配置数据，并注册默认的监听器
+		System.out.println(new String(zk.getData(path, true, stat)));
+
+		System.out.println("按任意键退出");
+		System.in.read();
+		System.out.println("end");
+	}
