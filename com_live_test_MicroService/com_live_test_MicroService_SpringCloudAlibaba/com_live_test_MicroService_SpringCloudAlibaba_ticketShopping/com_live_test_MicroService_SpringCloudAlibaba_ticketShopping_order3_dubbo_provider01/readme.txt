@@ -165,4 +165,7 @@ Caused by: java.lang.IllegalStateException: Failed to check the status of the se
 ===
 2020-10-20 16:42:23.736  INFO 52370 --- [           main] f.a.ReferenceAnnotationBeanPostProcessor : class org.apache.dubbo.config.spring.beans.factory.annotation.ReferenceAnnotationBeanPostProcessor was destroying!
 
+
+===
+org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
 	
