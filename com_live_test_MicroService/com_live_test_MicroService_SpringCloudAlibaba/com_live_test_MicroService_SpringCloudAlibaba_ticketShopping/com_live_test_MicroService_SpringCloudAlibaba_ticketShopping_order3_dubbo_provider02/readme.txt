@@ -1,12 +1,12 @@
 
-com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider01
-订单服务的服务提供者（基于Dubbo，注册中心是Nacos，也可以是zk）
+com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider02
+订单服务的服务提供者2（基于Dubbo，注册中心是Nacos）
 
 
 启动后，访问nacos OpenAPI：
 	http://192.168.1.52:8848/nacos/v1/ns/instance/list?serviceName=ticketShopping_order2Lb_provider
 
-结果：
+结果()：
 	{
     "hosts": [
         {
@@ -26,13 +26,31 @@ com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provid
             "clusterName": "DEFAULT",
             "serviceName": "ticketShopping_order2Lb_provider",
             "ephemeral": true
+        },
+        {
+            "ip": "192.168.1.50",
+            "port": 8018,
+            "valid": true,
+            "healthy": true,
+            "marked": false,
+            "instanceId": "192.168.1.50#8018#DEFAULT#DEFAULT_GROUP@@ticketShopping_order2Lb_provider",
+            "metadata": {
+                "dubbo.metadata-service.urls": "[ \"dubbo://192.168.1.50:20881/org.springframework.cloud.alibaba.dubbo.service.DubboMetadataService?anyhost=true&application=ticketShopping_order2Lb_provider&bind.ip=192.168.1.50&bind.port=20881&deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&group=ticketShopping_order2Lb_provider&interface=org.springframework.cloud.alibaba.dubbo.service.DubboMetadataService&methods=getAllServiceKeys,getServiceRestMetadata,getExportedURLs,getAllExportedURLs&pid=43887&qos.enable=false&release=2.7.5&revision=0.2.2.RELEASE&side=provider&timestamp=1603437430228&version=1.0.0\" ]",
+                "dubbo.protocols.dubbo.port": "20881",
+                "preserved.register.source": "SPRING_CLOUD"
+            },
+            "enabled": true,
+            "weight": 1.0,
+            "clusterName": "DEFAULT",
+            "serviceName": "ticketShopping_order2Lb_provider",
+            "ephemeral": true
         }
     ],
     "dom": "ticketShopping_order2Lb_provider",
     "name": "DEFAULT_GROUP@@ticketShopping_order2Lb_provider",
     "cacheMillis": 3000,
-    "lastRefTime": 1603437313203,
-    "checksum": "62cc17e64f952e8ade5838b8de0a8223",
+    "lastRefTime": 1603437524237,
+    "checksum": "1fa174936c8afecf4dd23b02bd14021d",
     "useSpecifiedURL": false,
     "clusters": "",
     "env": "",
@@ -57,6 +75,19 @@ dubbo.metadata-service.urls=[ "dubbo://192.168.1.50:20880/org.springframework.cl
 dubbo.protocols.dubbo.port=20880
 
 preserved.register.source=SPRING_CLOUD
+
+192.168.1.50
+8018
+true
+1
+true
+dubbo.metadata-service.urls=[ "dubbo://192.168.1.50:20881/org.springframework.cloud.alibaba.dubbo.service.DubboMetadataService?anyhost=true&application=ticketShopping_order2Lb_provider&bind.ip=192.168.1.50&bind.port=20881&deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&group=ticketShopping_order2Lb_provider&interface=org.springframework.cloud.alibaba.dubbo.service.DubboMetadataService&methods=getAllServiceKeys,getServiceRestMetadata,getExportedURLs,getAllExportedURLs&pid=43887&qos.enable=false&release=2.7.5&revision=0.2.2.RELEASE&side=provider&timestamp=1603437430228&version=1.0.0" ]
+
+dubbo.protocols.dubbo.port=20881
+
+preserved.register.source=SPRING_CLOUD
+
+
 
 
 遇到的问题

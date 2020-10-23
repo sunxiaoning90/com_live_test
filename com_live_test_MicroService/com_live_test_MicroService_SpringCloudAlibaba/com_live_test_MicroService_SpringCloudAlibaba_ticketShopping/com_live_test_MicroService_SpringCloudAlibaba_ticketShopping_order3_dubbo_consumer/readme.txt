@@ -1,13 +1,33 @@
-com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order
-订单服务
+com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_consumer
+订单服务提供者，基于Dubbo的rpc接口
 
-基于http的rest接口，也可以基于dubbo的rpc接口。
 
-1、服务名
-spring.application.name=ticketShopping-order
+controller访问Service 的方式：rpc,Dubbo 
 
-2、controller访问Service 的方式：rpc,Dubbo 
+测试：
+浏览器访问：
+	http://{{host}}:8016/order/createOrder
+连续请求两次，响应是负载均衡的：
+	响应来自:订单服务-ticketShopping_order3_dubbo_provider01,购票成功：userId:1,ticketId:1,pcs:2
+	响应来自:订单服务-ticketShopping_order3_dubbo_provider02,购票成功：userId:1,ticketId:1,pcs:2
+	
+观察服务日志：
 
+1）orderService 是由 dubbo代理而来
+com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_consumer中的接口实例：
+orderService：org.apache.dubbo.common.bytecode.proxy1@52348112
+
+2）执行orderService.orderService.createOrder(map); 已经调用到远端服务
+com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider01
+响应来自:订单服务-ticketShopping_order3_dubbo_provider01,购票成功：userId:1,ticketId:1,pcs:2
+
+
+观察Nacos的服务注册
+dubbo.metadata-service.urls=[ "dubbo://192.168.1.50:20880/org.springframework.cloud.alibaba.dubbo.service.DubboMetadataService?anyhost=true&application=ticketShopping_order2Lb_provider&bind.ip=192.168.1.50&bind.port=20880&deprecated=false&dubbo=2.0.2&dynamic=true&generic=false&group=ticketShopping_order2Lb_provider&interface=org.springframework.cloud.alibaba.dubbo.service.DubboMetadataService&methods=getAllServiceKeys,getServiceRestMetadata,getExportedURLs,getAllExportedURLs&pid=42787&qos.enable=false&release=2.7.5&revision=0.2.2.RELEASE&side=provider&timestamp=1603436506820&version=1.0.0" ]
+
+dubbo.protocols.dubbo.port=20880
+
+preserved.register.source=SPRING_CLOUD
 
 
 遇到的问题：

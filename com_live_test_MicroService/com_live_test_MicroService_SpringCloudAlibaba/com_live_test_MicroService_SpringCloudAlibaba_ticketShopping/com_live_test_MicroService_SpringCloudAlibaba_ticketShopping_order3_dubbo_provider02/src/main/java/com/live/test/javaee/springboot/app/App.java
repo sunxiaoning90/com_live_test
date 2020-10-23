@@ -13,7 +13,7 @@ import com.live.test.javaee.springboot.order.service.impl.OrderService;
 @ComponentScan(value = { "com.live.test.javaee.springboot.*" })
 @EnableDiscoveryClient
 public class App {
-	public static final String APP_NAME_ALIAS = "订单服务-ticketShopping_order3_dubbo_provider01";
+	public static final String APP_NAME_ALIAS = "订单服务-ticketShopping_order3_dubbo_provider02";
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);

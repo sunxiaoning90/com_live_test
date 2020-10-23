@@ -1,5 +1,6 @@
 package com.live.test.javaee.springboot.order;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("order")
 @EnableDiscoveryClient
-public class OrderController {
+public class OrderController implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1234555811399902162L;
 	//本地服务
 	//@Autowired
 	//OrderService orderService;
