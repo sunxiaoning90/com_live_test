@@ -53,6 +53,10 @@ com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provid
 
 订单服务-order2启动成功...
 
+订单服务-ticketShopping_order3_dubbo_consumer启动成功...
+订单服务-ticketShopping_order3_dubbo_provider01启动成功...
+订单服务-ticketShopping_order3_dubbo_provider02启动成功...
+
 2）stock：库存服务 (controller + service)
 
 3）credits：积分服务(controller + service)
@@ -78,17 +82,26 @@ http://{{host}}:8080/apiGteway/ticketShopping/order/createOrder
 响应来自:通知服务-ticketShopping_notice,购票成功：userId:1,ticketId:1,pcs:2
 
 2、测试负载均衡
+两个角度的负载均衡：
+1）http请求的负载均衡:order1项目 和 order2项目
+2）rpc（Dubbo）请求的负载均衡：order3项目、dubbo_provider01项目、dubbo_provider02项目
+
 响应来自:订单服务-ticketShopping_order1,购票成功：userId:1,ticketId:1,pcs:2
 响应来自:订单服务-ticketShopping_order2_provider01,购票成功：userId:1,ticketId:1,pcs:2
 
 响应来自:订单服务-ticketShopping_order1,购票成功：userId:1,ticketId:1,pcs:2
 响应来自:ticketShopping_order2_provider02,购票成功：userId:1,ticketId:1,pcs:2
 
+	响应来自:订单服务-ticketShopping_order3_dubbo_provider01,购票成功：userId:1,ticketId:1,pcs:2
+	
 响应来自:订单服务-ticketShopping_order1,购票成功：userId:1,ticketId:1,pcs:2
 响应来自:订单服务-ticketShopping_order2_provider01,购票成功：userId:1,ticketId:1,pcs:2
 
 响应来自:订单服务-ticketShopping_order1,购票成功：userId:1,ticketId:1,pcs:2
 响应来自:ticketShopping_order2_provider02,购票成功：userId:1,ticketId:1,pcs:2
+
+	响应来自:订单服务-ticketShopping_order3_dubbo_provider02,购票成功：userId:1,ticketId:1,pcs:2
+
 
 3、测试服务降级
 1）将 积分服务-ticketShopping_credits 服务关闭

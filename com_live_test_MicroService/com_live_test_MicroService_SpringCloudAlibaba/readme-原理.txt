@@ -1,4 +1,4 @@
-待
+计划2：
 netflix
 服务注册和服务发现-Eureka
 负载均衡-Ribbon的使用
@@ -29,14 +29,3 @@ live:
 
 live:
 copyonwrite：写时复制
-
-1、亿级流量电商网站微服务架构详解
-2、Nacos注册中心实现电商微服务拆分实战
-3、Ribbon多实例服务负载均衡调用实战
-4、Sentinel服务高可用限流熔断降级实战
-5、微服务架构下的分布式事务Seata实战
-6、路由&限流&安全认证网关Gateway实战
-7、Nacos分布式配置中心详解
-8、微服务调用链路追踪Pinpoint详解
-9、微服务自动化监控Prometheus&Grafana详解
-10、阿里京东后端微服务中台架构实战

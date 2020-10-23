@@ -3,12 +3,13 @@ SpringCloudAlibaba
 
 一、项目目录
 Nacos：配置中心 & 注册中心
+RestTemplate：服务调用客户端
 Ribbon：负载均衡
-OpenFeign/Feign：服务接口调用
+OpenFeign/Feign：声明式服务调用
 Sentinel：限流/降级/熔断
 GateWay：微服务网关
 
-一个小项目（待）
+com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order：一个基于SpringCloudAlibaba实现的微服务小项目(网络购票项目，包括订单模块、库存模块、积分模块、提醒模块、网关，使用的技术：Nacos、RestTemplate、Ribbon、OpenFeign、GateWay、Sentinel。。。）
 
 二、项目清单
 
@@ -299,3 +300,8 @@ Gateway：Spring Cloud项目使用Gateway作为 微服务网关 ,实现服务拦
             # filters不可少
           filters:
             - StripPrefix=1
+
+*一个基于SpringCloudAlibaba实现的微服务小项目(网络购票项目）
+
+
+            
