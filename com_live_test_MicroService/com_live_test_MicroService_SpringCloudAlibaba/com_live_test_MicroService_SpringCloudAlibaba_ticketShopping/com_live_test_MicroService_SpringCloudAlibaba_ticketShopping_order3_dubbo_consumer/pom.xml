@@ -122,6 +122,23 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo-spring-boot-starter</artifactId>
+			<version>2.7.5</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>org.apache.dubbo</artifactId>
+					<groupId>dubbo</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.7.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
