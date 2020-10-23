@@ -1,10 +1,3 @@
-计划2：
-netflix
-服务注册和服务发现-Eureka
-负载均衡-Ribbon的使用
-声明式REST客户端-Feign的使用
-断路器-Hystrix的认识
-
 live:
 1、服务注册 http：//服务名/具体请求方法
 
