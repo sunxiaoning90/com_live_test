@@ -1,4 +1,4 @@
-微服务 开发笔记：
+微服务 开发笔记（完结）：
 SpringCloudAlibaba
 
 一、项目目录
