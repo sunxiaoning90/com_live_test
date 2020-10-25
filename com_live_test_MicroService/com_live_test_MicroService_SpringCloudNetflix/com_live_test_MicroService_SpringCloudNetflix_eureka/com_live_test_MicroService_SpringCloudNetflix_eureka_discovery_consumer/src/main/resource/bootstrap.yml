@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_consumer
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}

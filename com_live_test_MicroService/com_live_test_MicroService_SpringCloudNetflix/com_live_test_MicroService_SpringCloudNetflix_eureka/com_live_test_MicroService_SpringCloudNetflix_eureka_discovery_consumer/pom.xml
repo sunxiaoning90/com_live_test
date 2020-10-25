@@ -1,35 +1,14 @@
-Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册
-
-
-一、简介
-1）配置pom依赖
-		<!-- netflix-eureka-client -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		
-2）配置yml文件
-
-3）2、java启动类
-2、java启动类
-使用注解开启服务发现/注册@EnableEurekaClient 
-如果注册中心只有Eureka时，也可以使用 @EnableDiscoveryClient
-（是Spring cloud的注解，不是Eureka的 org.springframework.cloud.client.discovery.EnableDiscoveryClient）
-
-二、详解
-1、配置pom依赖
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider</name>
+	<name>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_consumer</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -132,44 +111,3 @@ Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册
 		</plugins>
 	</build>
 </project>
-
-
-1、配置yml文件
-server:
-  port: 8082
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-
-2）bootstrap.yml
-spring:
-  application:
-    name: com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider
-  cloud:
-    config:
-      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
-      
-2、java启动类
-使用注解开启服务发现/注册 @EnableDiscoveryClient （是Spring cloud的注解，不是Eureka的 org.springframework.cloud.client.discovery.EnableDiscoveryClient）
-
-@Component
-@RestController
-@RequestMapping("discovery/provider")
-@EnableDiscoveryClient
-public class DiscoveryProviderController {
-
-	@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
-	public String echo(@PathVariable String str) {
-		System.out.println(str);
-		return "hello" + str;
-	}
-
-}
-
-3、启动Eureka Server 和 服务提供者
-
-4、浏览器测试
-http://{{host}}:8761/：Home page (HTML UI) listing service registrations
-http://{{host}}:8761/eureka/apps：Raw registration metadata

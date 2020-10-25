@@ -13,9 +13,7 @@ Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册
 
 3）2、java启动类
 2、java启动类
-使用注解开启服务发现/注册@EnableEurekaClient 
-如果注册中心只有Eureka时，也可以使用 @EnableDiscoveryClient
-（是Spring cloud的注解，不是Eureka的 org.springframework.cloud.client.discovery.EnableDiscoveryClient）
+使用注解开启服务发现/注册 @EnableDiscoveryClient （是Spring cloud的注解，不是Eureka的 org.springframework.cloud.client.discovery.EnableDiscoveryClient）
 
 二、详解
 1、配置pom依赖
@@ -25,11 +23,11 @@ Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider</name>
+	<name>com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_consumer</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -136,7 +134,7 @@ Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册
 
 1、配置yml文件
 server:
-  port: 8082
+  port: 8083
 
 eureka:
   client:
@@ -146,30 +144,49 @@ eureka:
 2）bootstrap.yml
 spring:
   application:
-    name: com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider
+    name: spring:
+  application:
+    name: com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_consumer
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
   cloud:
     config:
       uri: ${CONFIG_SERVER_URL:http://localhost:8888}
       
 2、java启动类
 使用注解开启服务发现/注册 @EnableDiscoveryClient （是Spring cloud的注解，不是Eureka的 org.springframework.cloud.client.discovery.EnableDiscoveryClient）
-
 @Component
 @RestController
-@RequestMapping("discovery/provider")
+@RequestMapping("discovery/discoveryClient")
 @EnableDiscoveryClient
-public class DiscoveryProviderController {
+//@EnableEurekaClient
+public class DiscoveryConsumerGetDiscoveryClientController {
 
-	@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
-	public String echo(@PathVariable String str) {
-		System.out.println(str);
-		return "hello" + str;
+	@Autowired
+	private EurekaClient discoveryClient;
+
+	@RequestMapping(value = "/getDiscoveryClient", method = RequestMethod.GET)
+	public String getDiscoveryClient() {
+		//InstanceInfo instance = discoveryClient.getNextServerFromEureka("STORES", false);
+//		return instance.getHomePageUrl();
+		
+//		discoveryClient.getAllKnownRegions(); //[us-east-1]
+		
+//		List instancesById = discoveryClient.getInstancesById("com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider");
+//		for (Object obj : instancesById) {
+//			System.out.println(obj);
+//		}
+		
+		Applications applications = discoveryClient.getApplications();
+		List<Application> registeredApplications = applications.getRegisteredApplications();
+		
+		return Arrays.toString(registeredApplications.toArray());
 	}
-
 }
 
-3、启动Eureka Server 和 服务提供者
+3、启动Eureka Server 、服务提供者、服务消费者
 
 4、浏览器测试
-http://{{host}}:8761/：Home page (HTML UI) listing service registrations
-http://{{host}}:8761/eureka/apps：Raw registration metadata
+http://{{host}}:8083/discovery/discoveryClient/getDiscoveryClient
+
