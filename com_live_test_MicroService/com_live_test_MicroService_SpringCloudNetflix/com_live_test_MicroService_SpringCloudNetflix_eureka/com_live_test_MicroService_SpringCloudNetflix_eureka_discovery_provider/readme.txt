@@ -1,4 +1,4 @@
-Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册
+Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册-服务提供方
 
 
 一、简介

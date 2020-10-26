@@ -9,6 +9,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(value = { "com.live.test.javaee.springboot.*" })
 public class App {
 
+	public static final String APP_NAME_ALIAS = "服务提供方：SpringCloudNetflix_eureka_discovery_provider";
+	
 	public static void main(String[] args) {
 //		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
 		ConfigurableApplicationContext context  = new SpringApplicationBuilder(App.class).web(true).run(args);

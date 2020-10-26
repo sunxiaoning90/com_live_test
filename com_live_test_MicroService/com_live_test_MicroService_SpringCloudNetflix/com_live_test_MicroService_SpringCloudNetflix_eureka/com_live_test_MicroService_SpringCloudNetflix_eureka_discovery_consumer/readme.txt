@@ -1,7 +1,7 @@
 Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册-服务消费方
 
 // RestTemplate 缺点：使用 RestTemplate 进行http调用时，服务地址是固定的，虽然可以指定域名，可以修改ngxin的配置文件来修改真实服务器地址，但是还是很繁琐不方便
-		String serverAddress = "http://192.168.1.50:8082";
+		String serverAddress = "http://localhost:8082";
 		String url = serverAddress + "/discovery/provider/echo/" + str;
 		return restTemplate.getForObject(url, String.class);
 
