@@ -4,14 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>SpringCloudNetflix</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_feign</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>com_live_test_MicroService_SpringCloudNetflix</name>
+	<name>com_live_test_MicroService_SpringCloudNetflix_ribbon</name>
 
 	<modules>
-		<module>com_live_test_MicroService_SpringCloudNetflix_eureka</module>
-		<module>com_live_test_MicroService_SpringCloudNetflix_ribbon</module>
+		<module>com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_server</module>
+		<module>com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_consumer</module>
+		<module>com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider1</module>
+		<module>com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider2</module>
 	</modules>
 
 	<build>
