@@ -212,6 +212,7 @@ hystrix:
 
 
 2、配置yml文件
+1)application.yml
 server:
   port: 8083
 
@@ -219,38 +220,85 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      
+      
+hystrix: 
+  command: 
+    default: 
+      execution: 
+        isolation: 
+          strategy: SEMAPHORE
+          
+# 核心的两个设置，允许并发量 的请求，默认情况下下面两个值都是10，也就是超过10个的并发会直接进入fallback方法，不会去真正请求
+          semaphore: 
+            maxConcurrentRequests: 1
+
+      fallback: 
+        isolation: 
+          strategy: SEMAPHORE
+          semaphore: 
+            maxConcurrentRequests: 1
+      
 
 2）bootstrap.yml
 spring:
   application:
-    name: spring:
-  application:
+    #注意：name 避免使用下划线：_
     name: com-live-test-MicroService-SpringCloudNetflix-feign-eureka-discovery-consumer
   cloud:
     config:
       uri: ${CONFIG_SERVER_URL:http://localhost:8888}
       
-2、java
-@Autowired
-	FeignTestServcie service1;
+2、使用 hystrix
+1）开启断路器
+@EnableCircuitBreaker（作用在Java类上）
 
-	@HystrixCommand(fallbackMethod = "failFast1") // 指定应急处理方法
+2）指定保护资源
+ @HystrixCommand(fallbackMethod = "defaultStores")（作用在Java方法上）
+    public Object getStores(Map<String, Object> parameters) {
+        //do stuff that might fail
+    }
+
+    public Object defaultStores(Map<String, Object> parameters) {
+        return /* something useful */;
+    }
+    
+3）为资源指定保护规则 
+3.1）方式一：通过注解的方式
+// 指定应急处理方法,并指定具体规则
+	//官方文档 https://github.com/Netflix/Hystrix/wiki
+	/**
+	 * @param str
+	 * @return
+	 */
+	@HystrixCommand(fallbackMethod = "failFast1"
+			
+			,commandProperties = {
+								@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "100"),//指定多久超时，单位毫秒。超时进fallback
+								@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),//判断熔断的最少请求数，默认是10；只有在一个统计窗口内处理的请求数量达到这个阈值，才会进行熔断与否的判断
+								@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10"),//判断熔断的阈值，默认值50，表示在一个统计窗口内有50%的请求处理失败，会触发熔断
+//								@HystrixProperty(name = "hystrix.collapser.HystrixCollapserKey.maxRequestsInBatch", value = "2")//
+							}
+					
+			,threadPoolProperties = {
+	                        @HystrixProperty(name = "coreSize", value = "30"),
+	                        @HystrixProperty(name = "maxQueueSize", value = "101"),
+	                        @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+	                        @HystrixProperty(name = "queueSizeRejectionThreshold", value = "15"),
+	                        @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+	                        @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1440")
+	                        }
+	) 
 	@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
 	public String echoByFeign(@PathVariable String str) {
 		System.out.println("by Hystrix:正常处理");
 		return service1.echo(str);
 	}
-
-//	public String failFast1(@PathVariable String str) {
-	public String failFast1(String str) {
-		String r = "by Hystrix:应急处理";
-		System.out.println(r);
-		return r;
-	}
 	
 3、启动Eureka Server 、服务提供者、服务消费者
 
 4、浏览器测试
+1)测试 Hystrix 服务降级、熔断
 请求1：http://{{host}}:8083/discovery/consumer/echo/test123
 结果1：*响应来自：服务提供方：SpringCloudNetflix_ribbon_eureka_discovery_provider1,响应结果：test123
 
@@ -261,3 +309,11 @@ spring:
 
 请求3：http://{{host}}:8083/discovery/consumer/echo/test123
 结果3：*响应来自：服务消费方：SpringCloudNetflix_hystrix_consumer; by Hystrix:应急处理
+
+2)测试 Hystrix 最大并发量控制
+使用 PostMan 开启多个Runner，每个请求10次
+请求：http://{{host}}:8083/discovery/consumer/echo/test123
+结果：
+	*响应来自：服务提供方：SpringCloudNetflix_ribbon_eureka_discovery_provider1,响应结果：test123
+	or
+	*响应来自：服务消费方：SpringCloudNetflix_hystrix_consumer; by Hystrix:应急处理
