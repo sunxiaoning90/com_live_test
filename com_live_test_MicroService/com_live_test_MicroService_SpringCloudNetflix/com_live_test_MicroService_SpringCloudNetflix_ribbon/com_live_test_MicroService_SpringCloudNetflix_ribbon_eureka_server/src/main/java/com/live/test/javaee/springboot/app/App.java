@@ -17,6 +17,6 @@ public class App {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
 		System.out.println("尝试获取context：" + context);
 		System.out.println("APPlication启动成功：" + APP_NAME_ALIAS);
-
 	}
+	
 }
