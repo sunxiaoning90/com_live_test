@@ -4,12 +4,20 @@
 
 Spring Cloud Nexflix 提供的组件包括：
 
-服务注册和服务发现：Eureka
-服务调用客户端：RestTemplate
-客户端负载均衡：Ribbon
-声明式REST客户端：Feign
-断路器 限流/降级/熔断：Hystrix
+OK 服务注册和服务发现：Eureka
+OK (服务调用客户端：RestTemplate)
+OK 客户端负载均衡：Ribbon
+OK 声明式REST客户端：Feign
+OK 断路器 限流/降级/熔断：Hystrix
 微服务网关/智能路由：Zuul
+
+官网：
+Eureka官网资料：https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/#service-discovery-eureka-clients
+Ribbon官网资料：https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/#spring-cloud-ribbon
+
+hystrix官网资料：https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/#circuit-breaker-spring-cloud-circuit-breaker-with-hystrix
+Zuul官网资料：https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/#router-and-filter-zuul
+Archaius官网资料：https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/#external-configuration-archaius
 
 com_live_test_MicroService_SpringCloudNexflix_ticketShopping_order：一个基于 Spring Cloud Nexflix 实现的微服务小项目(网络购票项目，包括订单模块、库存模块、积分模块、提醒模块、网关，使用的技术：Eureka、RestTemplate、Ribbon、Feign、Zull、Hystrix。。。）
 二、项目清单
@@ -91,7 +99,39 @@ Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册-服�
 
 	
 【3】OpenFeign/Feign：服务接口调用
+	Spring Cloud Netfix 项目： 使用 Feign 实现 服务接口调用
 
+	使用 Feign 实现 服务接口调用
+	前提：使用Eureka 作为 注册中心(Eureka Server、服务提供方、服务消费方）
+	
+	二、项目清单：
+	1、com_live_test_MicroService_SpringCloudNetflix_feign_eureka_discovery_consumer
+	
+	2、复用项目
+	com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider1
+	com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider2
+
+	三、测试 Feign 实现 服务接口调用
+	1、启动 项目
+	1）APPlication启动成功：Eureka Server
+	
+	2.1）APPlication启动成功：服务提供方：SpringCloudNetflix_ribbon_eureka_discovery_provider1
+	
+	2.2）APPlication启动成功：服务提供方：SpringCloudNetflix_ribbon_eureka_discovery_provider2
+	
+	3）APPlication启动成功：服务消费方：SpringCloudNetflix_feign_eureka_discovery_consumer
+
+【4】 Hystrix: 断路器，服务限流、降级、熔断...
+		一、简介
+		Spring Cloud Netfix 项目： 使用 Hystrix 实现 服务限流、降级、熔断-服务消费方
+		Spring Cloud Netfix 项目： 使用 Hystrix Dashboard
+		
+		二、项目清单
+		1、com_live_test_MicroService_SpringCloudNetflix_hystrix_consumer
+		Spring Cloud Netfix 项目： 使用 Hystrix 实现 服务限流、降级、熔断-服务消费方
+		
+		2、com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard
+		Spring Cloud Netfix 项目： 使用 Hystrix Dashboard
 
 【*】(网络购票项目）
 com_live_test_MicroService_SpringCloudNexflix_ticketShopping_order：一个基于 Spring Cloud Nexflix 实现的微服务小项目(网络购票项目，包括订单模块、库存模块、积分模块、提醒模块、网关，使用的技术：Eureka、RestTemplate、Ribbon、Feign、Zull、Hystrix。。。）
