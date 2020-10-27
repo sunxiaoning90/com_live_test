@@ -19,8 +19,10 @@ Spring Cloud Netfix 项目： 使用 Ribbon 实现 负载均衡（ 客户端）-
 		String url = serverAddress + "/discovery/provider/echo/" + str;
 		
 		String r = restTemplate.getForObject(url, String.class);
-		
-一、简介
+
+spring-cloud-starter-netflix-ribbon
+	
+二、详解
 1）配置pom依赖
 		<!-- netflix-eureka-client -->
 		<dependency>
@@ -119,6 +121,12 @@ Spring Cloud Netfix 项目： 使用 Ribbon 实现 负载均衡（ 客户端）-
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+		<!-- netflix-ribbon -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
