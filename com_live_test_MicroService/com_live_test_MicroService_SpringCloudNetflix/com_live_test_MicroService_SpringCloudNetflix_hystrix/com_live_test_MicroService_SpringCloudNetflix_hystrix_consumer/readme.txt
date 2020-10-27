@@ -4,16 +4,80 @@ Spring Cloud Netfix 项目： 使用 Hystrix 实现 服务限流、降级、熔�
 一、简介
 Spring Cloud Netfix 项目： 使用 Hystrix 实现 服务限流、降级、熔断-服务消费方
 
-一、简介
+资料：https://github.com/Netflix/Hystrix/wiki/Configuration
+
 1）配置pom依赖
 		<!-- hystrix -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
-2、
-为资源指定保护规则
+		
+2、使用 hystrix
+1）开启断路器
+@EnableCircuitBreaker（作用在Java类上）
 
+2）指定保护资源
+ @HystrixCommand(fallbackMethod = "defaultStores")（作用在Java方法上）
+    public Object getStores(Map<String, Object> parameters) {
+        //do stuff that might fail
+    }
+
+    public Object defaultStores(Map<String, Object> parameters) {
+        return /* something useful */;
+    }
+    
+3）为资源指定保护规则 
+3.1）方式一：通过注解的方式
+// 指定应急处理方法,并指定具体规则
+	//官方文档 https://github.com/Netflix/Hystrix/wiki
+	/**
+	 * @param str
+	 * @return
+	 */
+	@HystrixCommand(fallbackMethod = "failFast1"
+			
+			,commandProperties = {
+								@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "100"),//指定多久超时，单位毫秒。超时进fallback
+								@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),//判断熔断的最少请求数，默认是10；只有在一个统计窗口内处理的请求数量达到这个阈值，才会进行熔断与否的判断
+								@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10"),//判断熔断的阈值，默认值50，表示在一个统计窗口内有50%的请求处理失败，会触发熔断
+//								@HystrixProperty(name = "hystrix.collapser.HystrixCollapserKey.maxRequestsInBatch", value = "2")//
+							}
+					
+			,threadPoolProperties = {
+	                        @HystrixProperty(name = "coreSize", value = "30"),
+	                        @HystrixProperty(name = "maxQueueSize", value = "101"),
+	                        @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+	                        @HystrixProperty(name = "queueSizeRejectionThreshold", value = "15"),
+	                        @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+	                        @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1440")
+	                        }
+	) 
+	@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
+	public String echoByFeign(@PathVariable String str) {
+		System.out.println("by Hystrix:正常处理");
+		return service1.echo(str);
+	}
+
+3.2）方式一：通过 配置文件的方式 application.yml
+以配置最大并发量为例：
+hystrix: 
+  command: 
+    default: 
+      execution: 
+        isolation: 
+          strategy: SEMAPHORE
+          
+# 核心的两个设置，允许并发量 的请求，默认情况下下面两个值都是10，也就是超过10个的并发会直接进入fallback方法，不会去真正请求
+          semaphore: 
+            maxConcurrentRequests: 1
+
+      fallback: 
+        isolation: 
+          strategy: SEMAPHORE
+          semaphore: 
+            maxConcurrentRequests: 1
+            
 二、详解
 1、配置pom依赖
 <project xmlns="http://maven.apache.org/POM/4.0.0"

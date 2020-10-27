@@ -3,6 +3,7 @@ package com.live.test.javaee.springboot.hystrix;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.live.test.javaee.springboot.app.App;
 import com.live.test.javaee.springboot.feign.service.FeignTestServcie;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @Component
 @RestController
@@ -60,8 +62,39 @@ public class DiscoveryConsumerController {
 
 	@Autowired
 	FeignTestServcie service1;
-
-	@HystrixCommand(fallbackMethod = "failFast1") // 指定应急处理方法
+	
+// 指定应急处理方法
+//	@HystrixCommand(fallbackMethod = "failFast1") 
+//	@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
+//	public String echoByFeign(@PathVariable String str) {
+//		System.out.println("by Hystrix:正常处理");
+//		return service1.echo(str);
+//	}
+	
+	// 指定应急处理方法,并指定具体规则
+	//官方文档 https://github.com/Netflix/Hystrix/wiki
+	/**
+	 * @param str
+	 * @return
+	 */
+	@HystrixCommand(fallbackMethod = "failFast1"
+			
+			,commandProperties = {
+								@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "100"),//指定多久超时，单位毫秒。超时进fallback
+								@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),//判断熔断的最少请求数，默认是10；只有在一个统计窗口内处理的请求数量达到这个阈值，才会进行熔断与否的判断
+								@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "10"),//判断熔断的阈值，默认值50，表示在一个统计窗口内有50%的请求处理失败，会触发熔断
+//								@HystrixProperty(name = "hystrix.collapser.HystrixCollapserKey.maxRequestsInBatch", value = "2")//
+							}
+					
+			,threadPoolProperties = {
+	                        @HystrixProperty(name = "coreSize", value = "30"),
+	                        @HystrixProperty(name = "maxQueueSize", value = "101"),
+	                        @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+	                        @HystrixProperty(name = "queueSizeRejectionThreshold", value = "15"),
+	                        @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+	                        @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1440")
+	                        }
+	) 
 	@RequestMapping(value = "/echo/{str}", method = RequestMethod.GET)
 	public String echoByFeign(@PathVariable String str) {
 		System.out.println("by Hystrix:正常处理");
@@ -75,4 +108,12 @@ public class DiscoveryConsumerController {
 		return r;
 	}
 
+	
+//	@Bean
+//	public Customizer<HystrixCircuitBreakerFactory> defaultConfig() {
+//	    return factory -> factory.configureDefault(id -> HystrixCommand.Setter
+//	            .withGroupKey(HystrixCommandGroupKey.Factory.asKey(id))
+//	            .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
+//	            .withExecutionTimeoutInMilliseconds(4000)));
+//	}
 }

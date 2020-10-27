@@ -5,3 +5,22 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      
+      
+hystrix: 
+  command: 
+    default: 
+      execution: 
+        isolation: 
+          strategy: SEMAPHORE
+          
+# 核心的两个设置，允许并发量 的请求，默认情况下下面两个值都是10，也就是超过10个的并发会直接进入fallback方法，不会去真正请求
+          semaphore: 
+            maxConcurrentRequests: 1
+
+      fallback: 
+        isolation: 
+          strategy: SEMAPHORE
+          semaphore: 
+            maxConcurrentRequests: 1
+      
