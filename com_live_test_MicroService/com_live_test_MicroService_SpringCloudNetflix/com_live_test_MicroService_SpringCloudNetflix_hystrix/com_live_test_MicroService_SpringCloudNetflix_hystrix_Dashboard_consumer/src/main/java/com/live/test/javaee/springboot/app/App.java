@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableHystrixDashboard //Hystrix 控制台仪表盘
 public class App {
 
-	public static final String APP_NAME_ALIAS = "Hystrix Dashboard: SpringCloudNetflix_hystrix_Dashboard";
+	public static final String APP_NAME_ALIAS = "服务消费方：SpringCloudNetflix_hystrix_consumer";
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);

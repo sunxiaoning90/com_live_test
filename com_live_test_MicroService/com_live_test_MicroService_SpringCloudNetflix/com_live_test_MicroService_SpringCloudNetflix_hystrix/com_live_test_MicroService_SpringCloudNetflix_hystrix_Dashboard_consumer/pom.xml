@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard_consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard</name>
+	<name>com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard_consumer</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
