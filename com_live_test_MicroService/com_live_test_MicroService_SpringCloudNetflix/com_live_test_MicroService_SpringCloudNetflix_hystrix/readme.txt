@@ -3,4 +3,11 @@ Spring Cloud Netfix 项目： 使用 Hystrix 实现 服务限流、降级、熔�
 
 一、简介
 Spring Cloud Netfix 项目： 使用 Hystrix 实现 服务限流、降级、熔断-服务消费方
-前提：使用Eureka 作为 注册中心(Eureka Server、服务提供方、服务消费方）
+Spring Cloud Netfix 项目： 使用 Hystrix Dashboard
+
+二、项目清单
+1、com_live_test_MicroService_SpringCloudNetflix_hystrix_consumer
+Spring Cloud Netfix 项目： 使用 Hystrix 实现 服务限流、降级、熔断-服务消费方
+
+2、com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard
+Spring Cloud Netfix 项目： 使用 Hystrix Dashboard
