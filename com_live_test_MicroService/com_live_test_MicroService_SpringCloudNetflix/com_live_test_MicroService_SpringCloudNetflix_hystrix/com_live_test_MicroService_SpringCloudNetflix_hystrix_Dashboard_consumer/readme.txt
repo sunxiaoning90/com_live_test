@@ -1,4 +1,4 @@
-Spring Cloud Netfix 项目： 使用 Hystrix Dashboard
+Spring Cloud Netfix 项目： 使用 Hystrix Dashboard(监控者控制台视图 和 被监控者）
 
 
 一、简介
