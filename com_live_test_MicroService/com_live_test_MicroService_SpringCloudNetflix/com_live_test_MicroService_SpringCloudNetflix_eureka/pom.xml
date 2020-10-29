@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.MicroService</groupId>
-	<artifactId>com_live_test_MicroService_SpringCloudAlibaba_feign</artifactId>
+	<artifactId>com_live_test_MicroService_SpringCloudNetflix_eureka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>com_live_test_MicroService_SpringCloudNetflix_eureka</name>

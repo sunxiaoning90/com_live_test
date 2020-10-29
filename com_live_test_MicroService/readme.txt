@@ -1,4 +1,71 @@
 微服务 开发笔记：
-一、SpringBoo
-二、SpringCloud
-三、SpringCloudAlibaba
+一、Spring Boot
+二、Spring Cloud Netflix
+三、Spring Cloud Alibaba
+
+项目清单：
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ MicroService ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] com_live_test_MicroService_SpringBoot .............. SUCCESS [  0.385 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_spring SUCCESS [  0.099 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringBoot_config SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringBoot_discovery SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringBoot SUCCESS [  0.008 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud_config SUCCESS [  0.262 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud_discovery_consumer SUCCESS [  0.010 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud_discovery_provider SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos_SpringCloud SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_nacos  SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud_consumer SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud_provider1 SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud_provider2 SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ribbon_SpringCloud SUCCESS [  0.001 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ribbon SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_feign_consumer SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_feign_provider SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_feign  SUCCESS [  0.001 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_sentinel_consumer SUCCESS [  0.008 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_sentinel_provider SUCCESS [  0.005 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_sentinel SUCCESS [  0.008 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile 0.1.0 SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_gateway_byConfigFile_withNacos 0.1.0 SUCCESS [  0.007 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_gateway_byJava_RouteLocatorBuilder 0.1.0 SUCCESS [  0.005 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_gateway SUCCESS [  0.007 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_gateway 0.1.0 SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2 SUCCESS [  0.009 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2_provider01 SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order2_provider02 SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_orderServiceAPI SUCCESS [  0.007 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_consumer SUCCESS [  0.006 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider01 SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_order3_dubbo_provider02 SUCCESS [  0.010 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_stock SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_credits SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_notice SUCCESS [  0.011 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba_ticketShopping SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudAlibaba ...... SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_eureka_server SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_consumer SUCCESS [  0.013 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_eureka_discovery_provider SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_eureka SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_server SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_consumer SUCCESS [  0.007 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider1 SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider2 SUCCESS [  0.002 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_ribbon SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_feign_eureka_discovery_consumer SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_feign  SUCCESS [  0.006 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_hystrix_consumer SUCCESS [  0.006 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard SUCCESS [  0.011 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_hystrix_Dashboard_consumer SUCCESS [  0.004 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_hystrix SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_zuul_byConfigFile SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_zuul_byJavaAndAnnotation SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix_zuul . SUCCESS [  0.003 s]
+[INFO] com_live_test_MicroService_SpringCloudNetflix ...... SUCCESS [  0.001 s]
+[INFO] com_live_test_MicroService 0.0.1-SNAPSHOT .......... SUCCESS [  0.002 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
