@@ -1,67 +1,21 @@
-Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(java类实现RefreshableRouteLocator并重写locateRoutes方法）
+package com.live.test.javaee.springboot.zuulRouteConfig;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-一、简介
-动态配置路由规则：
-Zuul会自动定时刷新路由规则（实现RefreshableRouteLocator）。
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.zuul.filters.RefreshableRouteLocator;
+import org.springframework.cloud.netflix.zuul.filters.SimpleRouteLocator;
+import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
+import org.springframework.cloud.netflix.zuul.filters.ZuulProperties.ZuulRoute;
 /**
  * 自定义了 三种路由规则
  * url // 路由01:	http://{{host}}:8088/testToGithub/ ==> https://github.com
  * url //路由02:	http://{{host}}:8088/testToProvider2/echo/1 ==》 http://192.168.1.50:8088/zuulTest/echo/1
  * serviceId 负载均衡//路由03:	http://{{host}}:8088/testToProvider3/zuulTest/echo/1 ==》 http://192.168.1.50:8088/zuulTest/echo/1
+ * @author live
  */
-
-我们会经常添加一些新的路由规则，每次静态添加不仅多而且麻烦，还会重新启动网关，这时就需要动态配置路由规则了，可以使用代码实现。
-
-在zuul中，默认使用的路径类是：SimpleRouteLocator.java
-
-在它的bean配置类：ZuulServerAutoConfiguration.java中是这样配置的
-
-	@Bean
-    @ConditionalOnMissingBean(SimpleRouteLocator.class)
-    public SimpleRouteLocator simpleRouteLocator() {
-        return new SimpleRouteLocator(this.server.getServlet().getServletPrefix(),
-                this.zuulProperties);
-    }
-它表示当没有此类型SimpleRouteLocator.class的实现时，使用这个bean,所以我们要实现自己的路由配置，只需要重新实现相关的方法即可。
-
-二、详解
-1、配置pom依赖
-		
-		<!-- zuul -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-		</dependency>
-		
-2）配置application.yml
-
-server:
-  port: 8088
-    
-zuul:  略
-
-3）Java类
-
-启动类开启 Zuul ：@EnableZuulProxy
-
-3.1）
-@Configuration
-public class BeanConfig {
-    @Autowired
-    ZuulProperties zuulProperties;
-    
-    @Autowired
-    ServerProperties server;
-
-    @Bean
-    public LogServerRouteLocator getRouteLocator() {
-        return new LogServerRouteLocator(this.server.getServlet().getServletPrefix(), this.zuulProperties);
-    }
-}
-
-3.2）public class LogServerRouteLocator extends SimpleRouteLocator implements RefreshableRouteLocator {
+public class LogServerRouteLocator extends SimpleRouteLocator implements RefreshableRouteLocator {
 	@Autowired
 	private RouteConfigService routeConfigService;
 
@@ -127,11 +81,5 @@ public class BeanConfig {
 
 		return routesMap;
 	}
+
 }
-
-3、浏览器访问 
-http://{{host}}:8088/testToGithub/  ==> https://github.com
-
-http://{{host}}:8088/testToProvider2/echo/1 ==》 http://192.168.1.50:8088/zuulTest/echo/1
-遇到的问题：
-1、Forwarding error

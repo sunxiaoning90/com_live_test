@@ -11,12 +11,25 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableZuulProxy
 public class App {
 
-	public static final String APP_NAME_ALIAS = "微服务网关：zuul";
+	public static final String APP_NAME_ALIAS = "微服务网关：zuul(测试通过两种方式配置 路由)";
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
 		System.out.println("尝试获取context：" + context);
 		System.out.println("APPlication启动成功：" + APP_NAME_ALIAS);
 	}
+	
+	/**
+	 * 重写 Location 头
+	 *
+	 * @return
+	 */
+//	@Bean
+//	public LocationRewriteFilter locationRewriteFilter() {
+//		LocationRewriteFilter filter = new LocationRewriteFilter();
+//		boolean filterDisabled = filter.isFilterDisabled();
+//		System.out.println(filterDisabled);
+//		return filter;
+//	}
 	
 }
