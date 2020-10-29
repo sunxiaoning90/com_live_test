@@ -1,6 +1,11 @@
 server:
   port: 8088
 
+#不进行配置，访问route filter会报没有权限访问。
+management:
+  security:
+    enabled: false  # 默认值是 true, 为true的话那么页面上可能会报没有权限访问
+    
 zuul: 
      
    #路由策略
@@ -20,7 +25,7 @@ zuul:
       #serviceId: http://realUrl.userApi001.com/
           
         #简洁写法
-      userApi: https://www.baidu.com/**
+      #userApi: https://www.baidu.com/**
         
        #匹配规则
       #predicates:
@@ -33,11 +38,25 @@ zuul:
         #- /**/zuulTest/
           
       ignoredServices: '*'
+
+ #路由策略2
+    gateway-service02: 
+    
+        #被拦截的路由
+      path: /baiduOrGoogle/**
+        
+        #转发到目的地址
       
-myusers-service:
+      #serviceId 用于指定服务
+      serviceId: serviceId-baiduOrGoogle-service
+          
+        #简洁写法
+      #userApi: serviceId-baiduOrGoogle-service/**    
+
+serviceId-baiduOrGoogle-service: 
   ribbon:
     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
-    listOfServers: https://example1.com,http://example2.com
+    listOfServers: https://google.com,https://www.baidu.com
     ConnectTimeout: 1000
     ReadTimeout: 3000
     MaxTotalHttpConnections: 500
