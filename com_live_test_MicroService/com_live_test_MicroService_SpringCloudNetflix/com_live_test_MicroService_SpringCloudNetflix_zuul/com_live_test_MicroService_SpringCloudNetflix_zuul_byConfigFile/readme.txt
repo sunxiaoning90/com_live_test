@@ -1,4 +1,4 @@
-Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(通过配置文件yml的方式）
+Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(通过配置文件yml的方式,静态配置文件修改需要重启服务)
 
 
 一、简介

@@ -9,7 +9,7 @@ OK (服务调用客户端：RestTemplate)
 OK 客户端负载均衡：Ribbon
 OK 声明式REST客户端：Feign
 OK 断路器 限流/降级/熔断：Hystrix
-微服务网关/智能路由：Zuul
+OK 微服务网关/智能路由：Zuul （静态路由 & 动态路由）
 
 官网：
 Eureka官网资料：https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/#service-discovery-eureka-clients
@@ -146,8 +146,11 @@ Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关
 
 二、项目清单
 1、
-com_live_test_MicroService_SpringCloudNetflix_zuul_byConfigFile
-com_live_test_MicroService_SpringCloudNetflix_zuul_byJavaAndAnnotation
+com_live_test_MicroService_SpringCloudNetflix_zuul_byConfigFile（静态配置文件）
+Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(通过配置文件yml的方式,静态配置文件修改需要重启服务)
+
+com_live_test_MicroService_SpringCloudNetflix_zuul_byJavaAndAnnotation (自定义动态路由)
+Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(动态路由，自动刷新，java类实现RefreshableRouteLocator并重写locateRoutes方法）
 
 2、服务提供方、服务消费方：
 com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider1

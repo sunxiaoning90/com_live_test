@@ -1,4 +1,4 @@
-Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(java类实现RefreshableRouteLocator并重写locateRoutes方法）
+Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(动态路由，自动刷新，java类实现RefreshableRouteLocator并重写locateRoutes方法）
 
 
 一、简介
