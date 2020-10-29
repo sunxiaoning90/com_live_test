@@ -138,6 +138,23 @@ Spring Cloud Netfix 项目： 使用 Eureka 作为注册中心-服务注册-服�
 			Spring Cloud Netfix 项目： 使用 Hystrix Dashboard(监控者控制台视图 和 被监控者）
 
 
+Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关
+
+
+一、简介
+
+
+二、项目清单
+1、
+com_live_test_MicroService_SpringCloudNetflix_zuul_byConfigFile
+com_live_test_MicroService_SpringCloudNetflix_zuul_byJavaAndAnnotation
+
+2、服务提供方、服务消费方：
+com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider1
+com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider2
+
+com_live_test_MicroService_SpringCloudNetflix_feign_eureka_discovery_consumer
+ 
 【*】(网络购票项目）
 com_live_test_MicroService_SpringCloudNexflix_ticketShopping_order：一个基于 Spring Cloud Nexflix 实现的微服务小项目(网络购票项目，包括订单模块、库存模块、积分模块、提醒模块、网关，使用的技术：Eureka、RestTemplate、Ribbon、Feign、Zull、Hystrix。。。）
 
