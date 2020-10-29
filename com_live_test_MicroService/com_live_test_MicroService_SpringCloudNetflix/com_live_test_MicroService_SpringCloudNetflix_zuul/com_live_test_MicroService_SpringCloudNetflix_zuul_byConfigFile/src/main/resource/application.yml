@@ -53,6 +53,7 @@ zuul:
         #简洁写法
       #userApi: serviceId-baiduOrGoogle-service/**    
 
+## 效果：
 serviceId-baiduOrGoogle-service: 
   ribbon:
     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
