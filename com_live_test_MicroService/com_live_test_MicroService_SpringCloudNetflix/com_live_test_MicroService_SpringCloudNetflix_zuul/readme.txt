@@ -5,7 +5,9 @@ Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关
 
 
 二、项目清单
-1、com_live_test_MicroService_SpringCloudNetflix_zuul_byConfigFile
+1、
+com_live_test_MicroService_SpringCloudNetflix_zuul_byConfigFile
+com_live_test_MicroService_SpringCloudNetflix_zuul_byJavaAndAnnotation
 
 2、服务提供方、服务消费方：
 com_live_test_MicroService_SpringCloudNetflix_ribbon_eureka_discovery_provider1

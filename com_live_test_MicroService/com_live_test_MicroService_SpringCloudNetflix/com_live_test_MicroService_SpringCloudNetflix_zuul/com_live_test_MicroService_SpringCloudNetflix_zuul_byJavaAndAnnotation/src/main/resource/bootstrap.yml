@@ -1,0 +1,7 @@
+spring:
+  application:
+    #注意：name 避免使用下划线：_
+    name: api-gateway-byConfigFile
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
