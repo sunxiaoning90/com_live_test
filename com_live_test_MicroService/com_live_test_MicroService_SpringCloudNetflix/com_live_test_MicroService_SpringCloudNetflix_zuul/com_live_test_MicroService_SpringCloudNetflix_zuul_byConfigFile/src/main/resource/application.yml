@@ -1,0 +1,44 @@
+server:
+  port: 8088
+
+zuul: 
+     
+   #路由策略
+  routes:
+       
+    #路由策略1
+    gateway-service01: 
+    
+        #被拦截的路由
+      path: /userApi/**
+        
+        #转发到目的地址
+        #1)url 用于指定 http地址
+      url: https://www.baidu.com/
+      
+      #serviceId 用于指定服务
+      #serviceId: http://realUrl.userApi001.com/
+          
+        #简洁写法
+      userApi: https://www.baidu.com/**
+        
+       #匹配规则
+      #predicates:
+        #- Path=/userApi/**
+        
+## 最终拦截效果 http://localhost:8081/userApi  转发到 http://realUrl.userApi001.com
+          
+          #排除某些路由
+      #ignored-patterns: 
+        #- /**/zuulTest/
+          
+      ignoredServices: '*'
+      
+myusers-service:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: https://example1.com,http://example2.com
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
