@@ -53,7 +53,20 @@ zuul:
         #简洁写法
       #userApi: serviceId-baiduOrGoogle-service/**    
 
-## 效果：
+    #路由策略3
+    gateway-service03: 
+    
+        #被拦截的路由
+      path: /testToProvider/**
+        
+        #转发到目的地址
+      url: http://192.168.1.50:8089/discovery/provider/
+        
+        #简洁写法
+      #testToProvider: http://localhost:8089/discovery/provider/**
+        
+## 最终拦截效果 http://{{host}}:8088/testToProvider/echo/test123 ==>     http://192.168.1.50:8089/discovery/provider/echo/test123
+
 serviceId-baiduOrGoogle-service: 
   ribbon:
     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList

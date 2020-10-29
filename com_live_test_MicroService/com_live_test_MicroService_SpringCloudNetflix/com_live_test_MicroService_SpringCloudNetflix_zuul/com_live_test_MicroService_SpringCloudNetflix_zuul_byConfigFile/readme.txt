@@ -2,8 +2,9 @@ Spring Cloud Netfix 项目： 使用 Zull 实现 微服务网关(通过配置文
 
 
 一、简介
+1、测试了 zuul 网关
 
-官方资料：
+2、官方资料：
 https://docs.spring.io/spring-cloud-netflix/docs/2.2.5.RELEASE/reference/html/#router-and-filter-zuul
 
 路由是微服务体系结构中不可分割的一部分。例如，/可以映射到您的web应用程序，/api/users映射到用户服务，/api/shop映射到商店服务。
@@ -42,6 +43,7 @@ Zuul’s rule engine lets rules and filters be written in essentially any JVM la
 		</dependency>
 		
 2）配置application.yml
+
 server:
   port: 8088
 
@@ -97,15 +99,29 @@ zuul:
         #简洁写法
       #userApi: serviceId-baiduOrGoogle-service/**    
 
-## 效果：
+    #路由策略3
+    gateway-service03: 
+    
+        #被拦截的路由
+      path: /testToProvider/**
+        
+        #转发到目的地址
+      url: http://192.168.1.50:8089/discovery/provider/
+        
+        #简洁写法
+      #testToProvider: http://localhost:8089/discovery/provider/**
+        
+## 最终拦截效果 http://{{host}}:8088/testToProvider/echo/test123 ==>     http://192.168.1.50:8089/discovery/provider/echo/test123
+
 serviceId-baiduOrGoogle-service: 
   ribbon:
     NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
-    listOfServers: https://www.google.cn/,https://www.baidu.com/
+    listOfServers: https://google.com,https://www.baidu.com
     ConnectTimeout: 1000
     ReadTimeout: 3000
     MaxTotalHttpConnections: 500
     MaxConnectionsPerHost: 100
+
     
 
 The preceding example means that HTTP calls to /myusers get forwarded to the users service (for example /myusers/101 is forwarded to /101).
