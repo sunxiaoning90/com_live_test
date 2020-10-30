@@ -8,12 +8,12 @@ com_live_test_MicroService_SpringCloudAlibaba_TicketShoppingt.HttpClientErrorExc
 二、项目清单
 
 *用户请求、微服务处理，整个流程示意图：
-1、user http请求购票下单网关	->	
-									->	2.1、ticketShopping_order （controller + 本地Service）
-									->	2.2、ticketShopping_order2 （controller，Fegin、Ribbion负载均衡调用其它 controller）
+1、user http请求购票下单网关(Spring Cloud Alibaba Gateway)	->	
+									->	2.1、ticketShopping_order （controller + 本地Service）(Spring Cloud Alibaba Nacos注册中心)
+									->	2.2、ticketShopping_order2 （controller，Fegin、Ribbion负载均衡调用其它 controller）(Spring Cloud Alibaba Nacos注册中心)
 										
-										->	3.1（2.2.1）、ticketShopping_order2_provider02 （controller + 本地Service）
-										->	3.2（2.2.2）、ticketShopping_order2_provider03 （controller，远端Service，rpc）
+										->	3.1（2.2.1）、ticketShopping_order2_provider02 （controller + 本地Service）(Spring Cloud Alibaba Nacos注册中心)
+										->	3.2（2.2.2）、ticketShopping_order2_provider03 （controller，远端Service，rpc）(Spring Cloud Alibaba Nacos注册中心、Dubbo 服务消费者)
 										
 											->	4.1（2.2.2.1）、order3_dubbo_provider01 （Dubbo生产者1,RPC服务提供方1）
 											->	4.2（2.2.2.2）、order3_dubbo_provider02 （Dubbo生产者1,RPC服务提供方2）
