@@ -1,4 +1,4 @@
-com_live_test_MicroService_SpringCloudAlibaba_TicketShoppingt.HttpClientErrorException: 405 nullt.HttpClientErrorException: 405 null
+com_live_test_MicroService_SpringCloudAlibaba_TicketShopping
 各个组件整合、流转
 
 
