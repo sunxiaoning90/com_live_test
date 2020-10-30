@@ -6,6 +6,18 @@ com_live_test_MicroService_SpringCloudAlibaba_TicketShoppingt.HttpClientErrorExc
 创建订单 -> 减库存 -> 加积分 -> 通知（短信通知/邮件通知...）
 
 二、项目清单
+
+*用户请求、微服务处理，整个流程示意图：
+1、user http请求购票下单网关	->	
+									->	2.1、ticketShopping_order （controller + 本地Service）
+									->	2.2、ticketShopping_order2 （controller，Fegin、Ribbion负载均衡调用其它 controller）
+										
+										->	3.1（2.2.1）、ticketShopping_order2_provider02 （controller + 本地Service）
+										->	3.2（2.2.2）、ticketShopping_order2_provider03 （controller，远端Service，rpc）
+										
+											->	4.1（2.2.2.1）、order3_dubbo_provider01 （Dubbo生产者1,RPC服务提供方1）
+											->	4.2（2.2.2.2）、order3_dubbo_provider02 （Dubbo生产者1,RPC服务提供方2）
+
 1、网关（gateway）
 项目名：com_live_test_MicroService_SpringCloudAlibaba_TicketShopping_Gateway
 作用：购票系统的网关
