@@ -1,0 +1,38 @@
+server:
+  port: 8031
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+#dubbo.scan.base-packages=com.live.test.javaee.springboot.order.service.impl
+dubbo: 
+  scan: 
+    basePackages: com.live.test.javaee.springboot.order.service.impl
+
+#dubbo.registry.address=zookeeper://192.168.1.52:2181
+# No registry config found or it's not a valid config! The registry config is: <dubbo:registry valid="false" zookeeperProtocol="false" prefix="dubbo.registry" />
+#dubbo.metadata-report.address=zookeeper://192.168.1.52:2181
+
+# No such extension org.apache.dubbo.registry.RegistryFactory by name nacos
+#dubbo.registry.address=nacos://192.168.1.52:8848
+
+#相当于nacos的服务地址127.0.0.1:8848
+  registry: 
+    address: spring-cloud://192.168.1.52
+
+ # dubbo 协议
+  protocol:
+    name: dubbo
+ # dubbo 协议端口
+#dubbo.protocol.port=20880
+    port: -1
+
+#dubbo运维服务是否开启
+  application: 
+    qos-enable: false
+
+#启动时是否检查依赖的服务
+  consumer: 
+    check: false

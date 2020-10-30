@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.live.test.MicroService</groupId>
+	<artifactId>com_live_test_MicroService_SpringCloudNexflix_CRM</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>com_live_test_MicroService_SpringCloudNexflix_CRM</name>
+
+	<modules>
+        
+        <module>com_live_test_MicroService_SpringCloudNexflix_CRM_eureka_server</module>
+        
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_zuul</module>
+        
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order1</module>
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order2</module>
+        
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order2_provider01</module>
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order2_provider02</module>
+        
+        <module>com_live_test_MicroService_SpringCloudNexflix_CRM_order3_dubbo_orderServiceAPI</module>
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order3_dubbo_consumer</module>
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order3_dubbo_provider01</module>
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order3_dubbo_provider02</module>
+        
+		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_stock</module>
+        
+        <module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_credits</module>
+        
+		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_notice</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

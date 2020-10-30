@@ -1,0 +1,39 @@
+server:
+  port: 8030
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+      
+##dubbo
+#dubbo.application.name=order3-customer
+
+#dubbo.registry.address=nacos://192.168.1.52:8848
+#dubbo.registry.address=zookeeper://192.168.1.52:2181
+dubbo: 
+  registry: 
+    address: spring-cloud://192.168.1.52
+
+#dubbo.scan.base-packages=com.live.test.javaee.springboot.order
+  scan: 
+    basePackages: com.live.test.javaee.springboot.order
+
+  protocol:
+    name: dubbo
+    port: -1
+#
+#dubbo.cloud.subscribed-services=dubbo_order3_provider01
+#dubbo.cloud.subscribed-services=ticketShopping-order2Lb-provider
+#表示要订阅服务的服务名，可以配置'*'，代表订阅所有服务，不推荐使用。若需订阅多应用，使用 "," 分割。
+  #cloud:
+   # subscribed-services: *
+
+
+#dubbo运维服务是否开启
+  application: 
+    qos-enable: false
+#dubbo.application.qosEnable=false
+#dubbo.application.qosPort=33333
+#dubbo.application.qosAcceptForeignIp=false

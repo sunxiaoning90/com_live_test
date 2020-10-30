@@ -1,0 +1,77 @@
+server:
+  port: 8088
+
+#不进行配置，访问route filter会报没有权限访问。
+management:
+  security:
+    enabled: false  # 默认值是 true, 为true的话那么页面上可能会报没有权限访问
+    
+zuul: 
+     
+   #路由策略
+  routes:
+       
+    #路由策略1
+    gateway-service01: 
+    
+        #被拦截的路由
+      path: /userApi/**
+        
+        #转发到目的地址
+        #1)url 用于指定 http地址
+      url: https://www.baidu.com/
+      
+      #serviceId 用于指定服务
+      #serviceId: http://realUrl.userApi001.com/
+          
+        #简洁写法
+      #userApi: https://www.baidu.com/**
+        
+       #匹配规则
+      #predicates:
+        #- Path=/userApi/**
+        
+## 最终拦截效果 http://localhost:8081/userApi  转发到 http://realUrl.userApi001.com
+          
+          #排除某些路由
+      #ignored-patterns: 
+        #- /**/zuulTest/
+          
+      ignoredServices: '*'
+
+ #路由策略2
+    gateway-service02: 
+    
+        #被拦截的路由
+      path: /baiduOrGoogle/**
+        
+        #转发到目的地址
+      
+      #serviceId 用于指定服务
+      serviceId: serviceId-baiduOrGoogle-service
+          
+        #简洁写法
+      #userApi: serviceId-baiduOrGoogle-service/**    
+
+    #路由策略3
+    gateway-service03: 
+    
+        #被拦截的路由
+      path: /testToProvider/**
+        
+        #转发到目的地址
+      url: http://192.168.1.50:8089/discovery/provider/
+        
+        #简洁写法
+      #testToProvider: http://localhost:8089/discovery/provider/**
+        
+## 最终拦截效果 http://{{host}}:8088/testToProvider/echo/test123 ==>     http://192.168.1.50:8089/discovery/provider/echo/test123
+
+serviceId-baiduOrGoogle-service: 
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: https://google.com,https://www.baidu.com
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100
