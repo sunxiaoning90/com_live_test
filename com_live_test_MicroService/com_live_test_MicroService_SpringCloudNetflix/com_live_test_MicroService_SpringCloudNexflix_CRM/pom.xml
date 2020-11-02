@@ -26,11 +26,9 @@
 		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order3_dubbo_provider01</module>
 		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order3_dubbo_provider02</module>
         
-		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_stock</module>
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_order4_hystrix_consumer</module>
         
-        <module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_credits</module>
-        
-		<module>com_live_test_MicroService_SpringCloudAlibaba_ticketShopping_notice</module>
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM_notice</module>
 	</modules>
 
 	<build>
