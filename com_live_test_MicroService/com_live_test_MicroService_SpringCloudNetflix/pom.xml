@@ -10,7 +10,7 @@
 	<name>com_live_test_MicroService_SpringCloudNetflix</name>
 
 	<modules>
-		<module>com_live_test_MicroService_SpringCloudNetflix_eureka</module>
+		<module>com_live_test_MicroService_SWpringCloudNetflix_eureka</module>
 		<module>com_live_test_MicroService_SpringCloudNetflix_ribbon</module>
 		<module>com_live_test_MicroService_SpringCloudNetflix_feign</module>
 		<module>com_live_test_MicroService_SpringCloudNetflix_hystrix</module>
