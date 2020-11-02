@@ -15,6 +15,8 @@
 		<module>com_live_test_MicroService_SpringCloudNetflix_feign</module>
 		<module>com_live_test_MicroService_SpringCloudNetflix_hystrix</module>
 		<module>com_live_test_MicroService_SpringCloudNetflix_zuul</module>
+        
+		<module>com_live_test_MicroService_SpringCloudNexflix_CRM</module>
 	</modules>
 
 	<build>
