@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace -->
+<mapper namespace="com.live.test.javaee.springboot.messageBoard.mapper.MessageBoardMapper">
+
+	<!-- 查询单个满意度,by id -->
+	<!-- <select id="getEvaluateById" resultType="Evaluate"> -->
+	<select id="getById" resultType="com.live.test.javaee.springboot.messageBoard.po.MessageBoard">
+		select
+		id, evaluate, suggest
+		from evaluate
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 查询全部满意度 -->
+	<select id="getAll" resultType="com.live.test.javaee.springboot.messageBoard.po.MessageBoard">
+		select
+		id, evaluate, suggest
+		from evaluate
+	</select>
+	
+	<!-- 插入 -->
+  <insert id="save2" parameterType="com.live.test.javaee.springboot.messageBoard.po.MessageBoard" useGeneratedKeys="true"	keyProperty="id">
+		insert into im_messageboard (id, content, time)
+		values (#{id,jdbcType=INTEGER},
+		#{content,jdbcType=VARCHAR},
+		#{time,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- <insert id="insert1" parameterType="Evaluate" useGeneratedKeys="true"	keyProperty="id">
+		insert into Evaluate (id, evaluate, suggest)
+		values (#{id,jdbcType=INTEGER},
+		#{evaluate,jdbcType=VARCHAR},
+		#{suggest,jdbcType=VARCHAR})
+	</insert> -->
+	
+</mapper>

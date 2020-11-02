@@ -1,0 +1,17 @@
+server: 
+ port: 8089
+ #context-path: /boot
+
+spring: 
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.51:3306/spim2?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false&amp;rewriteBatchedStatements=true
+    username: root
+    password: spzc1234
+  mvc: 
+    view: 
+      prefix: /
+      suffix: .html
+      
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
