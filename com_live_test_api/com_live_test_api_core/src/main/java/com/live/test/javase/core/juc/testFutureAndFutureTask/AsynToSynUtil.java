@@ -11,6 +11,7 @@ public class AsynToSynUtil {
 		System.out.println(new Date());
 		getImManagerSyn();
 		System.out.println(new Date());
+		
 	}
 
 	public static void getImManagerSyn() {
