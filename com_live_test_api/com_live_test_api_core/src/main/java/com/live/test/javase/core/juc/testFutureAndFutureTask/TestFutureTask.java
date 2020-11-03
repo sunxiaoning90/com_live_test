@@ -13,14 +13,16 @@ public class TestFutureTask {
 		Callable<String> r = new Callable<String>() {// 1）准备 callable
 			@Override
 			public String call() throws Exception {
-				Thread.sleep(2000);
 				System.out.println("run...");
+				Thread.sleep(2000);
+				System.out.println("runEnd...");
 				return "ok";
 			}
 		};
 
 		FutureTask<String> f = new FutureTask<String>(r);
 		try {
+			f.run();
 			String result = f.get();// 3)阻塞等待结果
 			System.out.println(result);
 		} catch (Exception egnore) {
@@ -35,6 +37,8 @@ public class TestFutureTask {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("start," + System.currentTimeMillis());
 		testFutureTask();
+		System.out.println("end," + System.currentTimeMillis());
 	}
 }
