@@ -5,12 +5,15 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.live.test.javaee.spring.po.Evaluate;
+import com.live.test.javaee.spring.testCycleDepends.TestCycleA;
+import com.live.test.javaee.spring.testCycleDepends.TestCycleB;
 
 public class TestGetBean {
 	public static void main(String[] args) {
 		TestGetBean t = new TestGetBean();
-		 t.test1();
+//		 t.test1();
 //		 t.test2();
+		t.testCycleDepends();
 	}
 
 	// 方式一.ApplicationContext
@@ -18,7 +21,7 @@ public class TestGetBean {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 		System.out.println("ac:" + ac);
 		
-		EvaluateService bean = (EvaluateService) ac.getBean("evaluateService");
+		EvaluateService bean = ac.getBean("evaluateService2",EvaluateService.class);
 		System.out.println("bean:" + bean);
 		
 		Evaluate entity = bean.getEvaluateById(1);
@@ -32,4 +35,18 @@ public class TestGetBean {
 		System.out.println("bean:" + bean);
 	}
 
+	private void testCycleDepends() {
+		ApplicationContext ac = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
+		System.out.println("ac:" + ac);
+		
+		TestCycleA a = ac.getBean("testCycleA",TestCycleA.class);
+		System.out.println("TestCycleA:" + a);
+		System.out.println("b:" + a.getB());
+		
+		TestCycleB b = ac.getBean("testCycleB",TestCycleB.class);
+		System.out.println("TestCycleB:" + b);
+		System.out.println("a:" + b.getA());
+		
+	}
+	
 }
