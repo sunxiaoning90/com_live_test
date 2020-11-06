@@ -20,6 +20,9 @@
         <module>com_live_test_distributed</module>
         <module>com_live_test_MicroService</module>
         
+        <!-- 算法 -->
+        <module>com_live_test_arithmetic</module>
+        
 	</modules>
 
 </project>
