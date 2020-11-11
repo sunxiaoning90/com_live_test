@@ -1,4 +1,8 @@
-Spring开发笔记：主要整理ioc 和 aop
+Spring开发笔记：主要整理IOC \DI
+
+ApplicationContext 启动流程
+getBean("xx")流程
+循环依赖
 
 *我的github源代码地址： 
     https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_javaee/com_live_test_javaee_mybatis

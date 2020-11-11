@@ -28,9 +28,18 @@
 		<property name="b" ref="testCycleB"></property>
 	</bean>
 
-	<bean id="testCycleB"
+	<!-- <bean id="testCycleB"
 		class="com.live.test.javaee.spring.testCycleDepends.TestCycleB">
 		<property name="a" ref="testCycleA"></property>
-	</bean>
+	</bean> -->
 
+<!--五种作用域
+ <bean scope="singleton"></bean>
+<bean scope="prototype"></bean>
+<bean scope="request"></bean>
+<bean scope="session"></bean>
+<bean scope="application"></bean> -->
+
+<!-- //使用AOP注解 -->
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 </beans>

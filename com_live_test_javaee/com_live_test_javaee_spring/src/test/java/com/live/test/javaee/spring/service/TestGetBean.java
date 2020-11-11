@@ -8,6 +8,26 @@ import com.live.test.javaee.spring.po.Evaluate;
 import com.live.test.javaee.spring.testCycleDepends.TestCycleA;
 import com.live.test.javaee.spring.testCycleDepends.TestCycleB;
 
+/**
+ * 
+ * @author live
+ * 
+ *         <pre>
+1、IOC/DI 几个重要的类
+ApplicationContext :IoC容器的封装、入口类
+BeanDefinition	：Bean定义，保存配置信息的封装类
+BeanWrapper	：Bean包装，保存所有的实例的封装类(原生对象、代理对象)
+BeanDefinitionReader：工具类，读取并解析配置文件（xml/yml/properties），统一封装为 BeanDefinition
+
+2、Spring 在设计IOC时，使用ApplicationContext、BeanDefinition、BeanWrapper等 进行一系列封装的目的：
+代码健壮性、提高可扩展性、代码可读性、单一职贵原则、开闭原则、解耦 ...
+
+3、ApplicationContext的getBean()方法的两大职责：
+1）instaniateBean()创建对象
+2）populateBean()依赖注入
+ *         </pre>
+ * 
+ */
 public class TestGetBean {
 	public static void main(String[] args) {
 		TestGetBean t = new TestGetBean();
@@ -20,13 +40,14 @@ public class TestGetBean {
 	private void test1() {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 		System.out.println("ac:" + ac);
-		
-		EvaluateService bean = ac.getBean("evaluateService2",EvaluateService.class);
+
+		EvaluateService bean = ac.getBean("evaluateService2", EvaluateService.class);
 		System.out.println("bean:" + bean);
-		
+
 		Evaluate entity = bean.getEvaluateById(1);
 		System.out.println(entity);
 	}
+
 	// 方式二.BeanFactory
 	private void test2() {
 		BeanFactory bf = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -38,15 +59,15 @@ public class TestGetBean {
 	private void testCycleDepends() {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
 		System.out.println("ac:" + ac);
-		
-		TestCycleA a = ac.getBean("testCycleA",TestCycleA.class);
+
+		TestCycleA a = ac.getBean("testCycleA", TestCycleA.class);
 		System.out.println("TestCycleA:" + a);
 		System.out.println("b:" + a.getB());
-		
-		TestCycleB b = ac.getBean("testCycleB",TestCycleB.class);
+
+		TestCycleB b = ac.getBean("testCycleB", TestCycleB.class);
 		System.out.println("TestCycleB:" + b);
 		System.out.println("a:" + b.getA());
-		
+
 	}
-	
+
 }
