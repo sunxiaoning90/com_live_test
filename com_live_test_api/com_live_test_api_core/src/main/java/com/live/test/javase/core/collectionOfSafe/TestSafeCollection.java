@@ -23,6 +23,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 
+import org.junit.Test;
+
 public class TestSafeCollection {
 	/**
 	 * 一、List
@@ -182,6 +184,7 @@ public class TestSafeCollection {
 	 * @param args
 	 * @throws Exception
 	 */
+	@Test
 	public void testPriorityBlockingQueue() throws Exception {
 		BlockingQueue<Integer> queue = new PriorityBlockingQueue<>(2);
 

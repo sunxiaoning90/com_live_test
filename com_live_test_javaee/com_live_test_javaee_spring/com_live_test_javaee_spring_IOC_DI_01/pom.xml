@@ -4,24 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.live.test.javaee</groupId>
-	<artifactId>com_live_test_javaee_spring</artifactId>
+	<artifactId>com_live_test_javaee_spring_IOC_DI_01</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 
-	<name>com_live_test_javaee_spring</name>
+	<name>com_live_test_javaee_spring_IOC_DI_01</name>
 	<url>http://maven.apache.org</url>
 
-    <modules>
-    <module>com_live_test_javaee_spring_IOC_DI_01</module>
-		<module>com_live_test_javaee_spring_IOC_DI</module>
-        
-		<module>com_live_test_javaee_spring_IOCAndServlet</module>
-		<module>com_live_test_javaee_spring_IOCAndServletContextListener</module>
-        <module>com_live_test_javaee_springmvc</module>
-        
-        <module>com_live_test_javaee_spring_AOP</module>		
-    </modules>
-    
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
