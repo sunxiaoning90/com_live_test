@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<!-- helloWord！ -->
+	<bean id="loginService" class="com.live.hello.LoginService"/>
+	
+	<!-- beanUtil:待 -->
+	<bean id="beanUtil" class="com.live.BeanUtil" lazy-init="false">
+		
+	</bean>
+	
+	<!-- 注入测试 -->
+	<bean id="car01" class="com.live.ioc.Car"/>
+	
+	<!-- 属性注入方式 -->
+	<bean id="person" class="com.live.ioc.Person">
+		<!-- <property name="name" value="张三"/> -->
+		
+		<!-- 注入，基本类型 -->
+		<property name="age" value="18"/>
+		
+		<!-- 注入，数组-->
+		<property name="array">
+			<array>
+				<value>a1</value>
+				<value>a2</value>
+				<value>a3</value>
+			</array>
+		</property>
+		
+		<!-- 注入，集合 -->
+		<property name="list">
+			<list>
+				<value>list-1</value>
+				<value>list-2</value>
+				<value>list-3</value>
+			</list>
+		</property>
+		
+		<property name="set">
+			<set>
+				<value>set-1</value>
+				<value>set-2</value>
+				<value>set-3</value>
+			</set>
+		</property>
+		
+		<property name="map">
+			<map>
+				<entry key="k1" value="v1"/>
+				<entry key="k2" value="v2"/>
+				<entry key="k3" value="v3"/>
+			</map>
+		</property>
+		
+		<property name="props">
+			<props>
+				<prop key="k1">v1</prop>
+				<prop key="k2">v2</prop>
+				<prop key="k3">v3</prop>
+			</props>
+		</property>
+		
+		<!-- 注入，引用类型类型 -->
+		<property name="car">
+			<ref bean="car01"/>
+		</property>
+		
+		<!-- 级联赋值：给注入的car 的属性name赋值 -->
+		<property name="car.name">
+			<value>奥迪</value>
+		</property>
+		
+		<!-- 注入，空字符串值 -->
+		<!-- <property name="name" value=""/> -->
+		
+		<!-- 注入，null -->
+		 <property name="name">
+		 	<null></null>
+		 </property>
+		 
+		<!-- 注入，XML特殊字符：使用<![CDATA[]]>标记处理 --> 
+		<!-- <property name="name">
+			<value><![CDATA[<包含特殊字符>]]></value>
+		</property> -->
+		
+		<!-- 定义内部Bean -->
+		<!-- <property name="car">
+			<bean class="com.live.ioc.Car"></bean>
+		</property> -->
+		
+		<!-- 定义可复用的bean -->
+		 <!-- <util:map id="map">
+			<entry key="k1" value="v1" />
+			<entry key="k2" value="v2" />
+			<entry key="k3" value="v3" />
+		</util:map> -->
+		
+		<!-- <property name="list" value="list-common">
+		</property> -->
+	</bean>
+	
+	<!-- 构造器注入方式 -->
+	<bean id="person2" class="com.live.ioc2.Person">
+		<constructor-arg>
+			<value>李四</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>19</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="car01"/>
+		</constructor-arg>
+	</bean>
+	
+	<!-- p:命名空间注入 -->
+	<bean id="person3" class="com.live.ioc3.Person" p:name="王五" p:car-ref="car01">
+	</bean>
+</beans>

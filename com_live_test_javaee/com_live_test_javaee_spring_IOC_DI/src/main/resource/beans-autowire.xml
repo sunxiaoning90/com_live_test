@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<description>autowire(自动装配)</description>
+	<bean id="userDao" class="com.live.autowire.UserDao"/>
+	
+	<!-- 1、Bean依赖注入的三种方式：1）setter方法注入 2）构造器注入 3）接口注入（由于bean要依赖额外的接口，一般不用） -->
+	
+	<!-- 1）setter注入 ：属性提供getter() -->
+	<bean id="userService1" class="com.live.autowire.UserService" autowire="no">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 2）构造器注入 -->
+	<bean id="userService2" class="com.live.autowire.UserService" autowire="no">
+		<constructor-arg name="userDao" ref="userDao"></constructor-arg>
+	</bean>
+	
+	<!-- 2、autowire（自动装配）的4种类型 1）no，需要指定property 或 constructor-arg; 2)byName 3)byType 4)constructor-->
+	<!-- 1）no，需要指定property 或 constructor-arg -->
+	<bean id="userService1" class="com.live.autowire.UserService" autowire="no">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<!-- 2)byName -->
+	<bean id="userService2" class="com.live.autowire.UserService" autowire="byName"></bean>
+	<!-- 3)byType -->
+	<bean id="userService3" class="com.live.autowire.UserService" autowire="byType"></bean>
+	<!-- 4)constructor -->
+	<bean id="userService4" class="com.live.autowire.UserService" autowire="constructor"></bean>
+</beans>
