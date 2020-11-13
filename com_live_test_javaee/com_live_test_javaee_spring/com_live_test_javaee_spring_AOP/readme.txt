@@ -10,7 +10,7 @@ getBean（） -->
 				AopConfig -->
 					Advice <-- JdkDynamicAopProxy
 
-1、
+AbstractAutowireCapableBeanFactory 创建bean记录：
 org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory
 protected Object createBean(String beanName, RootBeanDefinition mbd, Object[] args) throws BeanCreationException {}					
 proxyTargetClass=false; optimize=false; opaque=false; exposeProxy=false; frozen=false

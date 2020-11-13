@@ -1,4 +1,4 @@
-一、Servlet 与 Spring IOC
+一、web工程纯Servlet环境下（非Spring MVC） 使用 Spring IOC
 
 1、尝试 Servlet 与 Spring IOC 结合
 1）尝试 web环境中获取WebApplicationContext

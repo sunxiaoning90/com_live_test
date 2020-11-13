@@ -1,0 +1,399 @@
+
+Spring IOC/DI 篇
+Spring AOP 篇
+Spring MCV 篇
+
+Spring 设计模式 篇
+
+Spring Boot 篇
+
+
+===
+01、Spring IOC/DI 篇
+一、Spring IOC/DI 的基础使用
+目录：
+1、Bean依赖注入的三种方式：1）setter方法注入 	2）构造器注入 	3）接口注入（由于bean要依赖额外的接口，一般不用）
+2、autowire（自动装配）的4种类型：1）no，需要指定property 或 constructor-arg; 	2)byName 	3)byType	4)constructor
+3、Spring 支持注入哪些类型： 基本类型、引用类型、字符串、数组、集合（list\set\map)、props（.properties配置文件）、null、级联赋值、xml
+4、配置Spring Bean的两种方式：1）xml 配置方式 2）注解 配置方式
+5、	scope(Bean作用域)，共5种：singleton、prototype、request、session、application
+6、Spring xml 方式配置bean时，可以使用placeholder 占位符，如读取JDBC配置信息user、password、driverClass、jdbcUrl
+
+详解：
+1、Bean依赖注入的三种方式：
+	1）setter方法注入 
+	2）构造器注入 
+	3）接口注入（由于bean要依赖额外的接口，一般不用）
+	
+	eg：
+	<!-- 1）setter注入 ：属性提供getter() -->
+	<bean id="userService1" class="com.live.autowire.UserService" autowire="no">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+	<!-- 2）构造器注入 -->
+	<bean id="userService2" class="com.live.autowire.UserService" autowire="no">
+		<constructor-arg name="userDao" ref="userDao"></constructor-arg>
+	</bean>
+	
+2、autowire（自动装配）的4种类型：
+	1）no，需要指定property 或 constructor-arg; 
+	2)byName 
+	3)byType 
+	4)constructor
+
+	eg：
+	<!-- 1）no，需要指定property 或 constructor-arg -->
+	<bean id="userService1" class="com.live.autowire.UserService" autowire="no">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<!-- 2)byName -->
+	<bean id="userService2" class="com.live.autowire.UserService" autowire="byName"></bean>
+	<!-- 3)byType -->
+	<bean id="userService3" class="com.live.autowire.UserService" autowire="byType"></bean>
+	<!-- 4)constructor -->
+	<bean id="userService4" class="com.live.autowire.UserService" autowire="constructor"></bean>
+	
+3、Spring 支持注入哪些类型： 
+基本类型、引用类型、字符串、数组、集合（list\set\map)、props（.properties配置文件）、null、级联赋值、xml
+	
+!-- 属性注入方式 -->
+	<bean id="person" class="com.live.ioc.Person">
+		<!-- <property name="name" value="张三"/> -->
+		
+		<!-- 注入，基本类型 -->
+		<property name="age" value="18"/>
+		
+		<!-- 注入，数组-->
+		<property name="array">
+			<array>
+				<value>a1</value>
+				<value>a2</value>
+				<value>a3</value>
+			</array>
+		</property>
+		
+		<!-- 注入，集合 -->
+		<property name="list">
+			<list>
+				<value>list-1</value>
+				<value>list-2</value>
+				<value>list-3</value>
+			</list>
+		</property>
+		
+		<property name="set">
+			<set>
+				<value>set-1</value>
+				<value>set-2</value>
+				<value>set-3</value>
+			</set>
+		</property>
+		
+		<property name="map">
+			<map>
+				<entry key="k1" value="v1"/>
+				<entry key="k2" value="v2"/>
+				<entry key="k3" value="v3"/>
+			</map>
+		</property>
+		
+		<property name="props">
+			<props>
+				<prop key="k1">v1</prop>
+				<prop key="k2">v2</prop>
+				<prop key="k3">v3</prop>
+			</props>
+		</property>
+		
+		<!-- 注入，引用类型类型 -->
+		<property name="car">
+			<ref bean="car01"/>
+		</property>
+		
+		<!-- 级联赋值：给注入的car 的属性name赋值 -->
+		<property name="car.name">
+			<value>奥迪</value>
+		</property>
+		
+		<!-- 注入，空字符串值 -->
+		<!-- <property name="name" value=""/> -->
+		
+		<!-- 注入，null -->
+		 <property name="name">
+		 	<null></null>
+		 </property>
+		 
+		<!-- 注入，XML特殊字符：使用<![CDATA[]]>标记处理 --> 
+		<!-- <property name="name">
+			<value><![CDATA[<包含特殊字符>]]></value>
+		</property> -->
+		
+		<!-- 定义内部Bean -->
+		<!-- <property name="car">
+			<bean class="com.live.ioc.Car"></bean>
+		</property> -->
+		
+		<!-- 定义可复用的bean -->
+		 <!-- <util:map id="map">
+			<entry key="k1" value="v1" />
+			<entry key="k2" value="v2" />
+			<entry key="k3" value="v3" />
+		</util:map> -->
+		
+		<!-- <property name="list" value="list-common">
+		</property> -->
+	</bean>
+	
+	<!-- 构造器注入方式 -->
+	<bean id="person2" class="com.live.ioc2.Person">
+		<constructor-arg>
+			<value>李四</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>19</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="car01"/>
+		</constructor-arg>
+	</bean>
+	
+4、配置Spring Bean的两种方式：
+1）xml 配置方式
+2）注解 配置方式
+
+eg：
+1）xml
+
+2）注解 配置方式
+2.1）配置自动扫描Bean
+<context:component-scan base-package="com.live2.annotation"/>
+2.2）使用注解
+类级别注解： @Controller、@Service、@Repository、@Component （org.springframework.stereotype.@Component ）
+方法级别：@Autowired、@Resource
+
+@Service
+public class UserService implements IUserService {
+
+	@Autowired
+	IUserDao userDao;
+
+	public UserService() {
+		System.out.println("This is UserService Contructor!");
+	}
+
+	@Override
+	public boolean saveUser(User user) {
+		System.out.println("service:saveUser!");
+		return userDao.saveUser(user);
+	}
+}
+
+5、	scope(Bean作用域)，共5种：singleton、prototype、request、session、application
+	<bean id="person" class="com.live.scope.Person" scope="singleton"/>
+	<bean id="person" class="com.live.scope.Person" scope="prototype"/>
+	<bean id="person" class="com.live.scope.Person" scope="request"/>
+	<bean id="person" class="com.live.scope.Person" scope="session"/>
+	<bean id="person" class="com.live.scope.Person" scope="application"/>
+	
+6、Spring xml 方式配置bean时，可以使用placeholder 占位符，如读取JDBC配置信息user、password、driverClass、jdbcUrl
+	<!-- context:property-placeholder(用于引入外部配置文件) -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="<context:property-placeholder location="classpath:jdbc.properties"/>"></property>
+	</bean> -->
+	
+	<!-- 使用引入的外部文件配置 -->
+	<bean id="jdbcTemplate" class="com.live.propertyPlaceholder.JdbcTemplate">
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+	</bean>
+	
+二、Spring IOC/DI 的源码
+1、ApplicationContext 启动流程
+2、getBean("xx")流程
+3、循环依赖
+	
+Spring AOP 篇
+一、Spring AOP 的基础使用
+1、AOP 相关的八个概念
+1）、*切面（Aspect）：一个关注点的模块化，这个关注点可能会横切多个对象。事务管理是Java应用程序中一个关于横切关注点的很好的例子。在Spring AOP中，切面可以使用通过类（基于模式（XML）的风格）或者在普通类中以@Aspect注解（AspectJ风格）来实现。
+
+eg：
+
+@Aspect
+@Component
+public class HelloAspect {
+
+	//1、通知(Advice)中的前置通知：@Before
+	//2、切入点表达式:	execution(public void com.live.aop.hello.Hello.sayHello())
+	//3、通知（Advice）跟切入点表达式关联
+	@Before("execution(public void com.live.aop.hello.Hello.sayHello())")
+	public void before(JoinPoint joinPoint) {
+		System.out.println("前置通知！");
+	}
+}
+
+2）、连接点（Join point）：程序执行过程中某个特定的点，比如某方法调用的时候或者处理异常的时候。在Spring AOP中一个连接点总是代表一个方法的执行。
+
+个人理解：AOP拦截到的方法就是一个连接点。通过声明一个org.aspectj.lang.JoinPoint类型参数我们可以在通知(Advice)中获得连接点的信息。这个在稍后会给出案例。
+
+3）、*通知(Advice)：在切面（Aspect）的某个特定连接点上（Join point）执行的动作。通知的类型包括"around"，"before"，"after"等等。通知的类型将在后面进行讨论。许多AOP框架，包括Spring 都是以拦截器作为通知的模型，并维护一个以连接点为中心的拦截器链。总之就是AOP对连接点的处理通过通知来执行。
+
+个人理解：Advice指当一个方法被AOP拦截到的时候要执行的代码。
+
+	通知(Advice)的类型：
+	1）前置通知（Before advice）：在某个连接点（Join point）之前执行的通知，但这个通知不能阻止连接点的执行（除非它抛出一个异常）。
+	2）返回后通知（After returning advice）：在某个连接点（Join point）正常完成后执行的通知。例如，一个方法没有抛出任何异常正常返回。
+	抛出异常后通知（After throwing advice）：在方法抛出异常后执行的通知。
+	3）后置通知（After（finally）advice）：当某个连接点（Join point）退出的时候执行的通知（不论是正常返回还是发生异常退出）。
+	4）环绕通知（Around advice）：包围一个连接点（Join point）的通知，如方法调用。这是最强大的一种通知类型。环绕通知可以在方法前后完成自定义的行为。它也会选择是否继续执行连接点或直接返回它们自己的返回值或抛出异常来结束执行。
+
+4）、*切入点（Pointcut）：匹配连接点（Join point）的断言。通知（Advice）跟切入点表达式关联，并在与切入点匹配的任何连接点上面运行。切入点表达式如何跟连接点匹配是AOP的核心，Spring默认使用AspectJ作为切入点语法。
+
+个人理解：通过切入点的表达式来确定哪些方法要被AOP拦截，之后这些被拦截的方法会执行相对应的Advice代码。
+
+5）、引入（Introduction）：声明额外的方法或字段。Spring AOP允许你向任何被通知(Advice)对象引入一个新的接口（及其实现类）。
+
+个人理解：AOP允许在运行时动态的向代理对象实现新的接口来完成一些额外的功能并且不影响现有对象的功能。
+
+6）、目标对象（Target object）：被一个或多个切面（Aspect）所通知（Advice）的对象，也称作被通知对象。由于Spring AOP是通过运行时代理实现的，所以这个对象永远是被代理对象。
+
+个人理解：所有的对象在AOP中都会生成一个代理类，AOP整个过程都是针对代理类在进行处理。
+
+7）、AOP代理（AOP proxy）：AOP框架创建的对象，用来实现切面契约（aspect contract）（包括通知方法执行等功能），在Spring中AOP可以是JDK动态代理或者是CGLIB代理。
+
+8）、织入（Weaving）：把切面（aspect）连接到其他的应用程序类型或者对象上，并创建一个被通知对象。这些可以在编译时（例如使用AspectJ编译器），类加载时和运行时完成。Spring和其他纯AOP框架一样，在运行时完成织入。
+
+个人理解：把切面跟对象关联并创建该对象的代理对象的过程。
+
+2、Spring AOP 织入的时机是在编译期还是运行期？
+Spring AOP 和其它纯AOP框架一样，在运行时完成织入。
+二、Spring AOP 的源码
+1、Spring AOP
+getBean（） -->
+	ApplicationContext	-->
+			AdvisedSupport	-->
+				AopConfig -->
+					Advice <-- JdkDynamicAopProxy/CglibAopProxy
+
+02、AbstractAutowireCapableBeanFactory 创建bean记录：
+org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory
+protected Object createBean(String beanName, RootBeanDefinition mbd, Object[] args) throws BeanCreationException {}					
+proxyTargetClass=false; optimize=false; opaque=false; exposeProxy=false; frozen=false
+
+03、web工程纯Servlet环境下（非Spring MVC） 使用 Spring IOC 篇
+
+1、尝试 Servlet 与 Spring IOC 结合
+1）尝试 web环境中获取WebApplicationContext
+Spring提供结合web：WebApplicationContextUtils类
+
+		ServletContext sc = request.getServletContext();
+		WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
+		
+2、尝试 实现web中使用SpringIOC，借助监听器加载并存放 applicationContext
+
+package com.live.myTry.listeners;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+@WebListener
+public class MyContextListener implements ServletContextListener {
+
+	public void contextDestroyed(ServletContextEvent sce) {
+		System.out.println("========destroyed...");
+	}
+
+	public void contextInitialized(ServletContextEvent sce) {
+		System.out.println("========init...");
+		
+		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		
+		ServletContext sc = sce.getServletContext();
+		sc.setAttribute("Spring_ac", ac);
+	}
+
+}
+
+04、Spring MCV 篇
+一、Spring MCV 基础使用
+1、SpringMVC开发笔记:SpringMVC 项目搭建demo
+
+[1] 思路
+1、修改 web.xml,配置 DispatcherServlet ()
+	web.xml是web项目的重要描述,使web项目发现spring的 "servlet"
+2、配置 springmvc.xml
+配置 扫描包、视图解析器等
+
+[2] 整合过程
+1、修改 web.xml,配置 DispatcherServlet ()
+	<!-- 配置 DispatcherServlet -->
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 配置 DispatcherServlet 初始化参数: 
+		通过 contextConfigLocation 配置 SpringMVC 配置文件的位置和名称. 
+		默认的配置文件为: /WEB-INF/<servlet-name>-servlet.xml -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/springmvc.xml</param-value>
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	
+2.创建spring的xml文件:
+1)配置bean扫描包
+2)开启注解支持
+3)配置视图解析器
+<!-- bean配置形式一:通过注解 -->
+	<!-- 需配置 mvc:annotation-driven 标签,开启注解支持-->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<!-- 配置自定扫描的包 -->
+	<context:component-scan base-package="com.live.test.javaee.springmvc"></context:component-scan>
+
+<!-- bean配置形式二:通过xml配置文件-->
+<!-- <import resource="applicationContext.xml"/> -->
+
+	<!-- 配置视图解析器: 如何把 handler 方法返回值解析为实际的物理视图 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 配置视图  BeanNameViewResolver 解析器: 使用视图的名字来解析视图 -->
+	<!-- 通过 order 属性来定义视图解析器的优先级, order 值越小优先级越高 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="100"></property>
+	</bean>
+
+3.编写Controller等
+...
+4.打包、部署
+...
+二、Spring MCV 源码
+1、Spring MCV 运行流程
+
+注意：
+1、HandlerMapping 实际是一个执行器链，包含（HelperInterceptors（一系列拦截器，用与对controller的执行前中后进行拦截）、Handler（指controller中的某个方法））
+HelperInterceptor 说明： 拦截器类，在controller开始执行之前构建数据，并在controller执行完毕后释放数据
+boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)
+	
+05、Spring 事务
+
+		 
