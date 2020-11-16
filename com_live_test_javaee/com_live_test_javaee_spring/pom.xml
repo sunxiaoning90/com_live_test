@@ -20,6 +20,7 @@
         <module>com_live_test_javaee_springmvc</module>
         
         <module>com_live_test_javaee_spring_AOP</module>		
+        <module>com_live_test_javaee_spring_tx</module>		
     </modules>
     
 	<properties>

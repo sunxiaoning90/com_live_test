@@ -30,6 +30,9 @@ com_live_test_javaee_spring_AOP
 				AdvisedSupport	-->
 					AopConfig -->
 						Advice <-- JdkDynamicAopProxy
+
+com_live_test_javaee_spring_tx
+Spring 开启事务
 						
 *我的github源代码地址： 
     https://github.com/sunxiaoning90/com_live_test/tree/master/com_live_test_javaee/com_live_test_javaee_mybatis
