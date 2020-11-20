@@ -1,4 +1,4 @@
-package com.live.test.javase.core.collectionOfSort;
+package com.live.test.javase.core.collection.collectionOfSort;
 
 import java.util.ArrayList;
 import java.util.List;

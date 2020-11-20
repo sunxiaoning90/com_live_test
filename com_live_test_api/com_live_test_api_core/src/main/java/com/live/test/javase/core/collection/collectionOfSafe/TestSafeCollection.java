@@ -1,4 +1,4 @@
-package com.live.test.javase.core.collectionOfSafe;
+package com.live.test.javase.core.collection.collectionOfSafe;
 
 import java.util.ArrayList;
 import java.util.Arrays;
