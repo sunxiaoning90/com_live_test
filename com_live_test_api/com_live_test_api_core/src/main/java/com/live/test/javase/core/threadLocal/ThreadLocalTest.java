@@ -16,6 +16,7 @@ package com.live.test.javase.core.threadLocal;
             createMap(t, value);
     }
     
+    
  * 2）Object v = ThreadLocalHelper.get();
  *  public T get() {
         Thread t = Thread.currentThread();
