@@ -1,4 +1,4 @@
-package server.chatSupport.util;
+package com.live.test.javase.core.reflect;
 
 public class TestReflect {
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {

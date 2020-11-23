@@ -1,4 +1,4 @@
-package com.live.test.api.core.reflect;
+package com.live.test.javase.core.reflect;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;

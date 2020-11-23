@@ -1,4 +1,4 @@
-package com.live.test.api.core.reflect;
+package com.live.test.javase.core.reflect;
 
 /**
  * instanceof和isInstance这两个方法基本上是等价的，都可以判定类或者子类的实例是否是属于某个类，偏向于向上比较(父类)；而isAssignableFrom则偏向于向下比较（子类），而且isAssignableFrom比较的不是实例，而是类本身的层次结构，倾向于类本身，而不是实例;如：Object.class.isAssignableFrom(File.class)//true；另外2个方法则倾向于比较实例
