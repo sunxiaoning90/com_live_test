@@ -4,20 +4,8 @@
 
 	<properties resource="db.properties" />
 
-	<!-- <settings> -->
-		<!-- 设置自动驼峰转换 -->
-		<!-- <setting name="mapUnderscoreToCamelCase" value="true" /> -->
-
-		<!-- 开启懒加载 -->
-		<!-- 当启用时，有延迟加载属性的对象在被调用时将会完全加载任意属性。否则，每种属性将会按需要加载。默认：true -->
-		<!-- <setting name="aggressiveLazyLoading" value="false" /> -->
-
-	<!-- </settings> -->
-
 	<!-- 别名定义 -->
-	<!-- <typeAliases>
-		<package name="com.enjoylearning.mybatis.entity" />
-	</typeAliases> -->
+	<!-- <typeAliases> <package name="com.enjoylearning.mybatis.entity" /> </typeAliases> -->
 
 	<!-- <plugins> <plugin interceptor="com.enjoylearning.mybatis.Interceptors.ThresholdInterceptor"> 
 		<property name="threshold" value="10"/> </plugin> <plugin interceptor="com.github.pagehelper.PageInterceptor"> 
@@ -37,7 +25,7 @@
 				<property name="password" value="${jdbc_password}" />
 			</dataSource>
 		</environment>
-		
+
 		<!-- 环境配置2，每个SqlSessionFactory对应一个环境 -->
 	</environments>
 
@@ -46,5 +34,23 @@
 		<!--直接映射到相应的mapper文件 -->
 		<mapper resource="mapper/EvaluateMapper.xml" />
 	</mappers>
+
+	<settings>
+
+		<!-- 开启二级缓存 -->
+		<setting name="cacheEnabled" value="true" />
+
+		<!-- 开启延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+
+		<!-- 开启懒加载 -->
+		<!--当启用时，对任意延迟属性的调用会使带有延迟加载属性的对象完整加载，反之，每种属性都会按需加载 -->
+		<!-- 当启用时，有延迟加载属性的对象在被调用时将会完全加载任意属性。否则，每种属性将会按需要加载。默认：true -->
+		<setting name="aggressiveLazyLoading" value="true" />
+
+		<!-- 设置自动驼峰转换 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+
+	</settings>
 
 </configuration>  

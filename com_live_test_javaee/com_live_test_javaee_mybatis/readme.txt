@@ -12,7 +12,7 @@ MyBatis 开发笔记:MyBatis 脱离 Spring使用（基于xml配置）
 		Evaluate evaluate = mapper.getEvaluateById(id);
 
 二、MyBatis 执行流程
-mybatis.xml > in > sqlsessionfactory > seqsession > mapper >增删改查
+mybatis.xml > in > SqlSessionFactoryBuilder > sqlsessionfactory > seqsession > mapper >增删改查 (实际是 executor在做CRUD)
 
 更多请参考我的整理：
 

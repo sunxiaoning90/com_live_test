@@ -10,5 +10,8 @@ public class Test {
 		
 		Hello bean = (Hello) ac.getBean("hello");
 		System.out.println("bean:" + bean);
+		
+		String str = ac.getBean(String.class);
+		System.out.println("bean:" + str);
 	}
 }
