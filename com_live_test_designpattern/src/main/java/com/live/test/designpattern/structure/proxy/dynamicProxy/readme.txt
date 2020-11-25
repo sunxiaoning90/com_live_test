@@ -11,6 +11,9 @@ JDK Proxy :必须实现至少一个接口才能实现对方法的拦截。
 1)被代理类增改方法,动态代理类无需做任何改动
 2)代理任何接口类
 
+获取代理类对象：Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
+使用代理类 和 目标类效果一致
+ 
 
 方式二:CGLIB
 需要两个jar包：asm.jar和cglib.jar
