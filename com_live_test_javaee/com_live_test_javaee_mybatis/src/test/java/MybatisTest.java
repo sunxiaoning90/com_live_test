@@ -1,12 +1,17 @@
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.session.TransactionIsolationLevel;
 import org.junit.Test;
 
 import com.live.test.javaee.mybatis.mapper.EvaluateMapper;
@@ -52,5 +57,53 @@ public class MybatisTest extends TestCase {
 		sqlSession.commit();
 		System.out.println("save:" + i);
 
+	}
+	
+	{
+		
+		SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+		
+		///
+		SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(new Configuration());
+		
+		///
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSessionFactory.openSession(false);
+		
+		Connection connection = null;
+		sqlSessionFactory.openSession(connection);
+		
+		ExecutorType execType = null;
+		sqlSessionFactory.openSession(execType);
+		
+		TransactionIsolationLevel level = null;
+		sqlSessionFactory.openSession(level);
+		
+		
+		sqlSessionFactory.openSession(execType, true);
+		sqlSessionFactory.openSession(execType, connection);
+		sqlSessionFactory.openSession(execType, level);
+		
+		///
+		EvaluateMapper mapper = sqlSession.getMapper(EvaluateMapper.class);
+		
+		Configuration configuration = sqlSession.getConfiguration();
+		configuration.getDatabaseId();
+		configuration.getCaches();
+		
+		Connection connection2 = sqlSession.getConnection();
+		try {
+			connection2.getAutoCommit();
+			
+			connection2.commit();
+			connection2.rollback();
+			
+			connection2.getTransactionIsolation();
+			connection2.getNetworkTimeout();
+			
+			connection2.getMetaData();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

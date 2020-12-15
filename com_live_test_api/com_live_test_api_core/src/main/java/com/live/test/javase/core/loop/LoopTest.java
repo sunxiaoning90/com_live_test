@@ -40,4 +40,27 @@ public class LoopTest {
 		}
 	}
 	
+	/**
+	 * 
+	 */
+	{
+		// Java 7 and below
+		for (Car car : cars) {
+		  System.out.println(car.speed);
+		}
+
+		// Java 8+
+		cars.forEach(car -> System.out.println(car.speed));
+
+		// Java 7 and below
+		for (Car car : cars) {
+		  if (car.speed > 100) {
+		    System.out.println(car.speed);
+		  }
+		}
+
+		// Java 8+
+		cars.stream().filter(car -> car.speed > 100).forEach(car -> System.out.println(car.speed));
+	}
+	
 }

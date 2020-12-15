@@ -4,6 +4,19 @@
 <!-- namespace -->
 <mapper namespace="com.live.test.javaee.mybatis.mapper.EvaluateMapper">
 
+		<!-- <if test=""></if>
+		
+		<choose>
+			<when test=""></when>
+			<otherwise></otherwise>
+		</choose>
+		
+		<set></set>
+		
+		<trim></trim>
+		
+		<where></where> -->
+
 	<!-- 查询单个满意度,by id -->
 	<!-- <select id="getEvaluateById" resultType="Evaluate"> -->
 	<select id="getEvaluateById" resultType="com.live.test.javaee.mybatis.po.Evaluate">
@@ -26,6 +39,7 @@
 		values (#{id,jdbcType=INTEGER},
 		#{evaluate,jdbcType=VARCHAR},
 		#{suggest,jdbcType=VARCHAR})
+		
 	</insert>
 	
 	<!-- <insert id="insert1" parameterType="Evaluate" useGeneratedKeys="true"	keyProperty="id">
@@ -34,5 +48,32 @@
 		#{evaluate,jdbcType=VARCHAR},
 		#{suggest,jdbcType=VARCHAR})
 	</insert> -->
+	
+	<!-- <cache></cache>
+	<cache-ref namespace=""/>
+	<resultMap type="" id=""></resultMap>
+	<parameterMap type="" id=""></parameterMap>
+	<sql id=""></sql>
+	<insert id=""></insert>
+	<update id=""></update>
+	<delete id=""></delete>
+	<select id="">
+		<if test=""></if>
+		
+		<choose>
+			<when test=""></when>
+			<otherwise></otherwise>
+		</choose>
+		
+		<foreach collection=""></foreach>
+		
+		<include refid=""></include>
+		
+		<set></set>
+		
+		<trim></trim>
+		
+		<where></where>
+	</select> -->
 	
 </mapper>
