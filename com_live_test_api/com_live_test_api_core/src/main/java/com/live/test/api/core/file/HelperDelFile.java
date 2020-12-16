@@ -2,7 +2,11 @@ package com.live.test.api.core.file;
 
 import java.io.File;
 
-public class FileUtil {
+/**
+ * 删除 工程目录中的 .target 等 IDE的配置
+ * @author live
+ */
+public class HelperDelFile {
 	public static void main(String[] args) {
 		String path = "/opt/用于和PC复制文件/im/";
 		delTarget(path);
