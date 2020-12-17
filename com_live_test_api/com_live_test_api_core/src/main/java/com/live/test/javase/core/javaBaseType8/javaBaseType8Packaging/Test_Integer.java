@@ -1,8 +1,8 @@
-package com.live.test.javase.core.baseTypeOf8;
+package com.live.test.javase.core.javaBaseType8.javaBaseType8Packaging;
 
 
 
-public class IntegerTest {
+public class Test_Integer {
 	public static void main(String[] args) {
 		testParseInt();
 	}
