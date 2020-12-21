@@ -2,7 +2,7 @@ package com.live.test.api.core.random.ju;
 
 import java.util.Random;
 /*
- * 测试随机数类 Random
+ * 测试随机数类  java.util.Random 工具类
  * Random rand = new Random();rand.nextInt(size);
  */
 public class RandomTest {
