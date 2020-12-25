@@ -3,6 +3,7 @@ package com.live.test.javase.core.collection.collectionOfSafe;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Stack;
 import java.util.Vector;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -113,7 +115,7 @@ public class TestSafeCollection {
 	}
 
 	/**
-	 *2、juc中是否提供了 concurrenthashset，如果没提供，如何手动实现？<br>
+	 * 2、juc中是否提供了 concurrenthashset，如果没提供，如何手动实现？<br>
 	 * 如何自己实现一个 ConcurrentHashSet，类似 ConcurrentHashMap 借助
 	 * ConcurrentHashMap来实现具体功能，伪代码
 	 */
@@ -167,13 +169,12 @@ public class TestSafeCollection {
 	}
 
 //	HashMap 和 Hashtable 区别？
-	
+
 //	ConcurrentHashMap 和 ConcurrentSkipListMap 各自的优势？
-	
+
 	/**
 	 * 四、Quque
 	 */
-
 
 	/**
 	 * 1、PriorityBlockingQueue <br>
@@ -195,7 +196,7 @@ public class TestSafeCollection {
 		System.out.println("queue.take() = " + queue.take());
 		System.out.println("queue = " + queue);
 	}
-	
+
 	/**
 	 * 2、SynchronousQueue <br>
 	 * 1. SynchronousQueue 是无空间，offer 永远返回 false <br>
@@ -213,21 +214,19 @@ public class TestSafeCollection {
 		System.out.println("queue.size = " + queue.size());
 	}
 
-	/* 3、队列的add() 和 offer()、remove() 和 poll()、element() 和 peek() 区别？
-	 * add() 和 offer() <br>
-	 * add() : 添加元素，如果添加成功则返回true，如果队列是满的，则抛出异常; <br>
-	 * offer() : 添加元素，如果添加成功则返回true，如果队列是满的，则返回false; <br>
+	/*
+	 * 3、队列的add() 和 offer()、remove() 和 poll()、element() 和 peek() 区别？ add() 和 offer()
+	 * <br> add() : 添加元素，如果添加成功则返回true，如果队列是满的，则抛出异常; <br> offer() :
+	 * 添加元素，如果添加成功则返回true，如果队列是满的，则返回false; <br>
 	 * 区别：对于一些有容量限制的队列，当队列满的时候，用add()方法添加元素，则会抛出异常，用offer()添加元素，则返回false. <br>
 	 * 
-	 * remove() 和 poll() <br>
-	 * remove() : 移除队列头的元素并且返回，如果队列为空则抛出异常; <br>
-	 * poll() : 移除队列头的元素并且返回，如果队列为空则返回null; <br>
+	 * remove() 和 poll() <br> remove() : 移除队列头的元素并且返回，如果队列为空则抛出异常; <br> poll() :
+	 * 移除队列头的元素并且返回，如果队列为空则返回null; <br>
 	 * 区别：在移除队列头元素时，当队列为空的时候，用remove()方法会抛出异常，用poll()方法则会返回null. <br>
 	 * 
-	 * element() 和 peek() <br>
-	 * element() ：返回队列头元素但不移除，如果队列为空，则抛出异常; <br>
-	 * peek() ：返回队列头元素但不移除，如果队列为空，则返回null; <br>
-	 * 区别 ：在取出队列头元素时，如果队列为空，用element()方法则会抛出异常，用peek()方法则会返回null.
+	 * element() 和 peek() <br> element() ：返回队列头元素但不移除，如果队列为空，则抛出异常; <br> peek()
+	 * ：返回队列头元素但不移除，如果队列为空，则返回null; <br> 区别
+	 * ：在取出队列头元素时，如果队列为空，用element()方法则会抛出异常，用peek()方法则会返回null.
 	 */
 	private static void testOffer() throws Exception {
 		offer(new ArrayBlockingQueue<>(2));
@@ -244,11 +243,11 @@ public class TestSafeCollection {
 		System.out.println("queue.size() = " + queue.size());
 		System.out.println("queue.take() = " + queue.take());
 	}
-	
+
 //	4、ArrayBlockingQueue 和 LinkedBlockingQueue的区别
-	
+
 //	5、LinkedTransferQueue和SynchronousQueue区别
-	
+
 	/**
 	 * 6、无界队列 与 有界队列
 	 */
@@ -377,19 +376,45 @@ public class TestSafeCollection {
 			Entry<String, String> next = iterator.next();
 			System.out.println(next.getKey() + " --" + next.getValue());
 		}
-		
+
 		///
 		List list = null;
 		Iterator<String> it = list.iterator();
 		while (it.hasNext()) {
-				it.remove();
+			it.remove();
 		}
 	}
+
+	@Test
+	public static void testStack() {
+		Stack<String> s = new Stack<String>();
+		s.add("a");
+		String pop = s.pop();
+		System.out.println(pop);
+	}
+
+	public static void testEnumeration() {
+		Enumeration<String> days;
+		Vector<String> dayNames = new Vector<String>();
+		dayNames.add("Sunday");
+		dayNames.add("Monday");
+		dayNames.add("Tuesday");
+		dayNames.add("Wednesday");
+		dayNames.add("Thursday");
+		dayNames.add("Friday");
+		dayNames.add("Saturday");
+		days = dayNames.elements();
+		while (days.hasMoreElements()) {
+			System.out.println(days.nextElement());
+		}
+	}
+
 	public static void main(String[] args) {
+		testStack();
+
 		TestSafeCollection c = new TestSafeCollection();
 		c.iteratorAndAddOfSafeList();
 		c.iteratorAndAddOfUnsafeList();
 
 	}
-
 }
