@@ -5,6 +5,14 @@ import java.lang.Thread.UncaughtExceptionHandler;
 public class ThreadUtil {
 
 	/**
+	 * 最优的线程数算法之一 ：cpu核心数 * 2
+	 * @return
+	 */
+	public static int getOpimalByAvailableProcessors() {
+		return Runtime.getRuntime().availableProcessors() * 2;
+	}
+
+	/**
 	 * 异常时，阻止打印堆栈
 	 */
 	public static void forbidSystemOutErrorException() {

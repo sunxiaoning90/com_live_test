@@ -2,6 +2,7 @@ package com.live.test.api.core.schedule.quartz.test;
 
 import java.util.Date;
 
+import org.junit.Test;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -18,7 +19,8 @@ import com.live.test.api.core.schedule.quartz.job.ConcurrentJob;
 
 public class Test1 {
 
-	public void a() {
+	@Test
+	public void quartzTest() {
 		System.out.println("start_");
 		// 创建JobDetial
 		JobBuilder jobBuilder = JobBuilder.newJob(ConcurrentJob.class).withIdentity("job1", "group1");

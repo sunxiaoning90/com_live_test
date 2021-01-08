@@ -10,6 +10,7 @@ public class HelperDelFile {
 	public static void main(String[] args) {
 		String path = "/opt/用于和PC复制文件/im/";
 		delTarget(path);
+		System.out.println("successful");
 	}
 
 	public static void delTarget(String path) {
