@@ -1,4 +1,5 @@
 package com.live.test.javase.core.regularExpression;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,23 +9,24 @@ import org.junit.Test;
  * 
  * @author live
  *
- *       <pre>
- *1、正则表达式的定义
- *       正则表达式定义了字符串的模式。
- *       正则表达式可以用来搜索、编辑或处理文本。
- *       正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。
- *       
- *2、语法：
- *	 ^在[]里面为取反 在外面为开头匹配  
-     $为结尾匹配
-     \\d为数字（其中第一个\是转义） 
-     +是匹配一次或者多次
-     ?是匹配字表达式的零次或者一次
-     []标记表达式开始和结束
-     ()子表达式的开始和结束
-     .匹配除换行符 \n 之外的任何单字符
-     |指明两项之间的一个选择。要匹配 |
- *       </pre>
+ *         <pre>
+ 1、正则表达式的定义
+        正则表达式定义了字符串的模式。
+        正则表达式可以用来搜索、编辑或处理文本。
+        正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。
+        
+ 2、语法：
+ 	 ^在[]里面为取反 在外面为开头匹配  
+    $为结尾匹配
+    \\d为数字（其中第一个\是转义） 
+    +是匹配一次或者多次
+    ?是匹配字表达式的零次或者一次
+    []标记表达式开始和结束
+    ()子表达式的开始和结束
+    .匹配除换行符 \n 之外的任何单字符
+    |指明两项之间的一个选择。要匹配 |
+ *         </pre>
+ * 
  */
 public class RegularExpressionUtil {
 	public static void main(String[] args) {
@@ -38,9 +40,11 @@ public class RegularExpressionUtil {
 	}
 
 	/**
-	 * 当正则完全匹配字符串，从头到尾正好匹配上字符串，matches()方法是true，find()方法为false
-	 * 
-	 * 当正则只能匹配字符串中的部分内容，matches()方法是fasle ,find()方法是true
+	 * <pre>
+	 matches() 和 find() 的区别
+	 当正则完全匹配字符串，从头到尾正好匹配上字符串，matches()方法是true，find()方法为false;	 
+	 当正则只能匹配字符串中的部分内容，matches()方法是fasle ,find()方法是true.
+	 * </pre>
 	 */
 	@Test
 	public void testMatchersAndFind() {
