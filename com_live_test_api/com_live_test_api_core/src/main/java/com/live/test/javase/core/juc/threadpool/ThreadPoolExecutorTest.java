@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
@@ -45,6 +46,9 @@ public class ThreadPoolExecutorTest {
 	 * 1、ThreadPoolExecutor 简单使用
 	 */
 	private void testThreadPoolExecutor() {
+//		ThreadPoolExecutor p = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler)
+//		ThreadPoolExecutor p = new ThreadPoolExecutor(2, 10, 3000, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>(100), new AbortPolicy() )
+				
 		//1)指定：corePoolSize,maximumPoolSize, keepAliveTime, TimeUnit, BlockingQueue<Runnable>
 		ThreadPoolExecutor pool = new ThreadPoolExecutor(2, 18, 6, TimeUnit.MICROSECONDS, new LinkedBlockingQueue<Runnable>());
 		
@@ -164,5 +168,22 @@ public class ThreadPoolExecutorTest {
 	 */
 	
 	public static void main(String[] args) {
+		Executors.newFixedThreadPool(10);
+		//	等同于: 
+		new ThreadPoolExecutor(10, 10,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>()); //	workQueue工作队列的容量（上界）太大：Integer.MAX_VALUE，会导致OOM
+		
+		Executors.newSingleThreadExecutor();
+		//	等同于:
+		new ThreadPoolExecutor(1, 1,
+                0L, TimeUnit.MILLISECONDS,
+                new LinkedBlockingQueue<Runnable>());//	workQueue工作队列的容量（上界）太大：Integer.MAX_VALUE，会导致OOM
+		
+		Executors.newCachedThreadPool();
+		//	等同于:
+		new ThreadPoolExecutor(0, Integer.MAX_VALUE, // 最大线程数的上限太大：Integer.MAX_VALUE，会导致OOM
+                60L, TimeUnit.SECONDS,
+                new SynchronousQueue<Runnable>());	//	workQueue工作队列的容量上界,下界都是0.(无缓冲层就无法传递数据,将数据巧妙地保存在了由线程调用时产生的节点上( 和线程同生共死). )
 	}
 }

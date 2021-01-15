@@ -11,11 +11,17 @@ import java.math.BigDecimal;
 public class TestBigDecimal {
 
 	public static void main(String[] args) {
+		System.out.println(0.1 + 0.2);
+
+		BigDecimal b1 = new BigDecimal("0.1");
+		BigDecimal b2 = new BigDecimal("0.2");
+		System.out.println(b1.add(b2));
+
 		new TestBigDecimal().a();
 
 		double lv = 2.5470;
-		double oneDaylx = 100;//每日利息100,需要本金多少?
-		new TestBigDecimal().xinJinBao(lv, oneDaylx);//需要:1413428
+		double oneDaylx = 100;// 每日利息100,需要本金多少?
+		new TestBigDecimal().xinJinBao(lv, oneDaylx);// 需要:1413428
 	}
 
 	/**

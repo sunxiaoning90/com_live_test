@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
@@ -260,4 +262,17 @@ public class JsonUtil {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
+		String mock = "{'externalName':'hell'}";
+		//System.out.println(mock);
+		
+		//mock = StringEscapeUtils.escapeJava("{'externalName':'hello'}");
+		//System.out.println(mock);
+		
+		JSONObject json = JSONObject.parseObject(mock);
+		System.out.println(json);
+		
+//		json.put("imUser", JSONObject.parse("{\"externalName\":\"test\"}"));
+	}
 }
