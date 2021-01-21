@@ -6,6 +6,7 @@ public class ThreadUtil {
 
 	/**
 	 * 最优的线程数算法之一 ：cpu核心数 * 2
+	 * 
 	 * @return
 	 */
 	public static int getOpimalByAvailableProcessors() {
@@ -32,6 +33,15 @@ public class ThreadUtil {
 	public static void allowSystemOutErrorException() {
 		// Thread.getDefaultUncaughtExceptionHandler();
 		Thread.setDefaultUncaughtExceptionHandler(null);
+	}
+
+	/**
+	 * ThreadGroup
+	 */
+	void testThreadGroup() {
+		Thread t2 = new Thread(new ThreadGroup("g1"), null, "name" + 1, 0);
+		System.out.println(t2);
+		System.out.println(t2.getThreadGroup());
 	}
 
 	/**
