@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- monitorInterval 如果文件被修改了，指定时间后会重新加载配置。单位秒，最小值是5 status 内部日志级别 -->
+<configuration status="info" monitorInterval="30">
+	
+	<!-- 定义常量 打印日志的格式-->
+	<properties>
+		<property name="PATTERN_Y">[%d{yyyy-MM-dd HH:mm:ss.SSS z}] [%-5level] [%class{36} %L %M] [%marker] %msg%xEx%n</property>
+		<property name="PATTERN_H">[%d{HH:mm:ss.SSS z}] [%-5level] [%class{36} %L %M] [%marker] %msg%xEx%n</property>
+		<property name="PATTERN_JSON">{"time":"%d{yyyy-MM-dd HH:mm:ss.SSS z}","grade":"%-5level","calss":"%class{36} %L %M","marker":"%marker","msg":"%msg%xEx"}%n</property>
+	</properties>
+
+	<!-- appenders 将日志请求打印到多个目的地 -->
+	<appenders>
+
+		<!--输出控制台的配置 --> 
+		<Console name="Console" target="SYSTEM_OUT">
+			<!-- 当标记名与日志事件的标记或其父标记一致时匹配    marker 是标记名 -->
+			<!-- <MarkerFilter marker="FLOW" onMatch="ACCEPT" onMismatch="DENY" /> -->
+			<!-- <PatternLayout pattern="${PATTERN_Y}" /> -->
+			<PatternLayout pattern="${PATTERN_JSON}" />
+		</Console>
+			
+		<!-- 输出到文件中 -->
+		<File name="file" fileName="logFile/errorLog.log">
+			<!-- 将error以上级别的信息输出到文件上 -->
+			<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${PATTERN_JSON}" />
+		</File>
+
+		<RollingFile name="stopWatchFile" fileName="logFile/stopWatchLog.log" filePattern="logFile/stopWatchLog-%date{MM-dd-yyyy}-%i.log.gz">
+			<MarkerFilter marker="STOPWATCH_MARKER" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${PATTERN_JSON}" />
+			<!-- 日志文件大小 -->
+			<SizeBasedTriggeringPolicy size="10MB" />
+			<!-- 最多保留文件数 -->
+			<DefaultRolloverStrategy max="1000" />
+		</RollingFile>
+
+
+		<!--打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+		<RollingFile name="RollingFile" fileName="logs/SAAS.run.log"
+			filePattern="logs/SAAS-%date{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout pattern="${PATTERN_JSON}" />
+			<!-- 日志文件大小 -->
+			<SizeBasedTriggeringPolicy size="10MB" />
+			<!-- 最多保留文件数 -->
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+
+		<!-- 收集 logger 中 为 test 的 日志 -->
+		<RollingFile name="RollingFileTEST" fileName="logsTest/TEST.run.log"
+			filePattern="logsTest/TEST-%date{MM-dd-yyyy}-%i.log.gz">
+			<!-- 正则表达式的日志信息  logger 打印中包含test单词 当前 正则 test 前后要加上空格-->
+			<RegexFilter regex=".* test .*" useRawMsg="false" onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${PATTERN_JSON}" />
+			<!-- 日志文件大小 -->
+			<SizeBasedTriggeringPolicy size="10MB" />
+			<!-- 最多保留文件数 -->
+			<DefaultRolloverStrategy max="20" />
+			<TimeBasedTriggeringPolicy />
+		</RollingFile>
+
+		<!-- 收集 logger 中 为 删除客户资料 日志 -->
+		<RollingFile name="DeleteCustomerInfoFile" fileName="logDelete/DeleteCustomerInfo.run.log"
+			filePattern="logDelete/DeleteCustomerInfo-%date{MM-dd-yyyy}-%i.log.gz">
+			<MarkerFilter marker="DELETECUSTOMERINFO_MARKER" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${PATTERN_JSON}" />
+			<!-- 日志文件大小 -->
+			<SizeBasedTriggeringPolicy size="10MB" />
+			<!-- 最多保留文件数 -->
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		
+	
+		<!-- 自定义appender filter -->
+		<!-- <MyAppender name="myAppender" ignoreExceptions="false"> --> 
+			<!-- <MyFilter  level="error" onMatch="ACCEPT" onMismatch="DENY"/>  -->
+			<!-- <PatternLayout pattern="${PATTERN_Y}" /> 
+		</MyAppender> -->
+
+		<!-- <WebConsoleAppender name="webConsoleAppender" ignoreExceptions="false" class="core.spzc.log4j.plugins.WebConsoleAppender"> 
+			<PatternLayout pattern="${PATTERN_JSON}" /> 
+		</WebConsoleAppender> -->
+	</appenders>
+
+	<loggers>
+		<!-- 引入appender -->
+		<root level="info">
+			<appender-ref ref="Console" />
+			<appender-ref ref="file" />
+			<appender-ref ref="stopWatchFile"/>
+			<appender-ref ref="RollingFile" />
+			<appender-ref ref="RollingFileTEST" />
+			<appender-ref ref="DeleteCustomerInfoFile"/>
+			<!-- <appender-ref ref="myAppender" />
+			<appender-ref ref="webConsoleAppender" /> -->
+		</root>
+	</loggers>
+
+</configuration> 

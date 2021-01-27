@@ -1,23 +1,26 @@
 package com.live.test.javase.core.javaBaseType8;
 
+import org.junit.Test;
+
 public class Test_char {
 	public static void main(String[] args) {
+		char[] c = getAToz();
+		System.out.println(c);
+//		System.out.println(String.valueOf((char) 9802) + "" + (char) 937 + "" + (char) 171 + "♊ ⚠ ♣ Ω*«*proxy总数：");
 
-		System.out.println(String.valueOf((char) 9802) + "" + (char) 937 + "" + (char) 171 + "♊ ⚠ ♣ Ω*«*proxy总数：");
-
-		System.out.println('a');
-		System.out.println('A');
-
-		System.out.println((int) 'a');
-		System.out.println((int) 'A');
+		System.out.println((int)'A'); //65
+		System.out.println((int)'Z');//90
+		
+		System.out.println((int)'a');//97
+		System.out.println((int)'z');//122
 
 		System.out.println((int) 'a' - (int) 'A');
 
-		String s1 = changeFirstLower("Hello");
-		System.out.println(s1);
+		//String s1 = changeFirstLower("Hello");
+		//System.out.println(s1);
 
-		String s2 = showCharOf100(1024 * 30);
-		System.out.println(s2);
+		//String s2 = showCharOf100(1024 * 30);
+		//System.out.println(s2);
 
 	}
 
@@ -42,4 +45,76 @@ public class Test_char {
 		String r = String.valueOf(charArray);
 		return r;
 	}
+	
+	@Test
+	public void printAToZ() {
+		for (int i = 65; i <= 90; i++) {
+			System.out.println(i+":	" + (char)i);
+		}
+	}
+	
+	@Test
+	public void printaToz() {
+		for (int i = 97; i <= 122; i++) {
+			System.out.println(i+":	" + (char)i);
+		}
+	}
+	
+	public static char[] getaToz() {
+		int size= (int)'z' -(int)'a';
+		char[] r = new char[size+1]; //26
+		System.out.println(r);
+		for (int i = 97; i <= 122; i++) {
+//			System.out.println(i+":	" + (char)i);
+			r[i - 97] = (char)i;
+		}
+		return r;
+	}
+	
+	public static char[] getAToZ() {
+		int size= (int)'Z' -(int)'A' +1;
+		char[] r = new char[size];
+		for (int i = 65; i <= 90; i++) {
+//			System.out.println(i+":	" + (char)i);
+			r[i-65] = (char)i;
+		}
+		return r;
+	}
+	
+	public static char[] getAToz() {
+		char[] c1=getaToz();
+		char[] c2=getAToZ();
+		char[] c3=new char[c1.length+c2.length];
+		//（资源，资源起点，目标，目标起点，长度）
+		System.arraycopy(c1,0,c3,0,c1.length);
+		System.arraycopy(c2,0,c3,c1.length,c2.length);
+//		System.out.println(c3);
+		return c3;
+	}
+	
+	public static String charToString(char[] c) {
+		return String.valueOf(c);
+	}
+	
+	/**
+	 * 生成 长度为2 的字符串 数组
+	 * @return
+	 */
+	public static String[] createString2() {
+		char[] c = Test_char.getAToz();
+		
+//		26 * 2 = 52 ,52*52 = 2704
+		String[] r = new String[c.length * c.length];
+		int count = 0;
+		for (int i = 0; i < c.length; i++) {
+			for (int j = 0; j < c.length; j++) {
+				String s = String.valueOf((char)c[i])+String.valueOf((char)c[j]);
+				r[count++] = s;
+//				System.out.println(count);
+			}
+		}
+		
+		return r;
+	}
+	
 }
