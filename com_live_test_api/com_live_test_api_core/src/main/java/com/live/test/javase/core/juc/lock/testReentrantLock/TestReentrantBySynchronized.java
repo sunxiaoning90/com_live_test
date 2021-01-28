@@ -1,6 +1,6 @@
-package com.live.test.javase.core.juc.lock;
+package com.live.test.javase.core.juc.lock.testReentrantLock;
 
-public class TestReentrant {
+public class TestReentrantBySynchronized {
 	private void m1() {
 		synchronized (this) {
 			System.out.println(Thread.currentThread().getName() + "-> m1.");
@@ -23,7 +23,7 @@ public class TestReentrant {
 	 * 随机一种结果： t1-> m1. t1-> m2. t2-> m1. t2-> m2. t3-> m2.
 	 */
 	public static void main(String[] args) {
-		TestReentrant o = new TestReentrant();
+		TestReentrantBySynchronized o = new TestReentrantBySynchronized();
 
 		Thread t1 = new Thread(() -> {
 			o.m1();
