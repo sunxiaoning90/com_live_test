@@ -3,7 +3,12 @@ package com.live.test.javase.core.juc.lock.testReentrantLock;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-//可重入 锁：已经持有锁的线程，可以多次 加锁 减锁（嵌套，加锁时 锁标志++，减锁时 锁标志-- ，直到 锁标志为0 释放锁）。
+/**
+ * 
+ * 可重入 锁：已经持有锁的线程，可以多次 加锁 减锁（嵌套，加锁时 锁标志++，减锁时 锁标志-- ，直到 锁标志为0 释放锁）。
+ * 
+ * @author live
+ */
 public class TestReentrantByReentrant {
 
 	Lock l = new ReentrantLock(); // 可重入 锁
