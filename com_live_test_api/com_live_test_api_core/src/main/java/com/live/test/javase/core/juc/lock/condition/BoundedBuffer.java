@@ -5,6 +5,11 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * 等待/唤醒 :await()/signal()（by juc.Condition）
+ * 
+ * @author live
+ */
 public class BoundedBuffer {
 
 	final Lock lock = new ReentrantLock();
