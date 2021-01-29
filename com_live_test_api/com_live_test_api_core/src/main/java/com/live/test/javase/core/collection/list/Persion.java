@@ -1,4 +1,4 @@
-package com.live.test.javase.core.collection.testList;
+package com.live.test.javase.core.collection.list;
 
 public class Persion {
 	private String name;
