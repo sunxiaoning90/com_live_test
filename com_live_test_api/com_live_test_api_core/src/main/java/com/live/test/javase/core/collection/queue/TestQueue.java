@@ -1,30 +1,34 @@
 package com.live.test.javase.core.collection.queue;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
-/**
- * Queue 篇
- * Queue
-			|-AbstractQueue //抽象
-			|-BlockingQueue //阻塞队列
-			|-Deque //双端队列
-			
- * @author live
- */
 public class TestQueue {
-
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
-		BlockingQueue<String> q = new ArrayBlockingQueue<String>(2);
 		
-		BlockingQueue<String> q2 = new LinkedBlockingQueue<String>();
+//		BlockingQueue<Integer> queue = new PriorityBlockingQueue<>(2);
+//
+//		queue.put(9);
+//		queue.put(1);
+//		queue.put(8);
+//		System.out.println("queue.size() = " + queue.size());
+//		System.out.println("queue.take() = " + queue.take());
+//		System.out.println("queue = " + queue);
 		
-		Deque<String> q3 = new ArrayDeque<String>();
+//		Queue<String> queue = new ConcurrentLinkedQueue<String>();
+		Queue<String> queue = new PriorityQueue<String>(10);
+		
+		queue.add("a");
+		queue.add("c");
+		queue.add("d");
+		
+		System.out.println("queue.size() = " + queue.size());
+		System.out.println("queue.take() = " + queue.poll());
+		System.out.println("queue.take() = " + queue.poll());
+		System.out.println("queue.take() = " + queue.poll());
+		System.out.println("queue.take() = " + queue.poll());
+		System.out.println("queue = " + queue);
+		
 	}
-	
-	
 }

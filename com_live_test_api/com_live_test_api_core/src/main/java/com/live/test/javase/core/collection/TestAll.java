@@ -13,6 +13,7 @@ public class TestAll {
 		System.out.println(1);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void testNull() {
 		List list = new ArrayList<Object>();
 		list.add(null);

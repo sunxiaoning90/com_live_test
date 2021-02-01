@@ -1,4 +1,4 @@
-package com.live.test.javase.core.collection;
+package com.live.test.javase.core.collection.map;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
